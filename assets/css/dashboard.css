@@ -142,3 +142,49 @@ body{
     color:#DC3545;
 
 }
+
+/* 
+        CHARTS
+ */
+
+.chart-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+    height:100%;
+
+}
+
+.card-header-custom{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.card-header-custom h5{
+
+    margin:0;
+
+    font-weight:600;
+
+}
+
+.chart-card canvas{
+
+    width:100% !important;
+
+    height:320px !important;
+
+}
