@@ -47,119 +47,123 @@
             <li class="active">
                 <a href="dashboard.html">
                     <i class="bi bi-grid-fill"></i>
-                    Dashboard
+                    <span>Dashboard</span>
                 </a>
             </li>
 
             <li>
                 <a href="pos.html">
                     <i class="bi bi-cart-check"></i>
-                    POS
+                    <span>POS</span>
                 </a>
             </li>
 
             <li>
                 <a href="tables.html">
                     <i class="bi bi-grid-3x3-gap-fill"></i>
-                    Table Management
+                    <span>Table Management</span>
                 </a>
             </li>
 
             <li>
                 <a href="kitchen.html">
                     <i class="bi bi-fire"></i>
-                    Kitchen Display
+                    <span>Kitchen Display</span>
                 </a>
             </li>
 
             <li>
                 <a href="orders.html">
                     <i class="bi bi-receipt"></i>
-                    Orders
+                    <span>Orders</span>
                 </a>
             </li>
 
             <li>
                 <a href="menu.html">
                     <i class="bi bi-menu-button-wide-fill"></i>
-                    Menu
+                    <span>Menu</span>
                 </a>
             </li>
 
             <li>
                 <a href="customers.html">
                     <i class="bi bi-people-fill"></i>
-                    Customers
+                    <span>Customers</span>
                 </a>
             </li>
 
             <li>
                 <a href="employees.html">
                     <i class="bi bi-person-badge-fill"></i>
-                    Employees
+                    <span>Employees</span>
                 </a>
             </li>
 
             <li>
                 <a href="inventory.html">
                     <i class="bi bi-box-seam"></i>
-                    Inventory
+                    <span>Inventory</span>
                 </a>
             </li>
 
             <li>
                 <a href="purchases.html">
                     <i class="bi bi-bag-fill"></i>
-                    Purchases
+                    <span>Purchases</span>
                 </a>
             </li>
 
             <li>
                 <a href="expenses.html">
                     <i class="bi bi-cash-stack"></i>
-                    Expenses
+                    <span>Expenses</span>
                 </a>
             </li>
 
             <li>
                 <a href="delivery.html">
                     <i class="bi bi-truck"></i>
-                    Delivery
+                    <span>Delivery</span>
                 </a>
             </li>
 
             <li>
                 <a href="reservation.html">
                     <i class="bi bi-calendar-check"></i>
-                    Reservation
+                    <span>Reservation</span>
                 </a>
             </li>
 
             <li>
                 <a href="reports.html">
                     <i class="bi bi-bar-chart-fill"></i>
-                    Reports
+                    <span>Reports</span>
                 </a>
             </li>
 
             <li>
                 <a href="settings.html">
                     <i class="bi bi-gear-fill"></i>
-                    Settings
+                    <span>Settings</span>
                 </a>
             </li>
 
             <li>
                 <a href="index.html">
                     <i class="bi bi-box-arrow-right"></i>
-                    Logout
+                    <span>Logout</span>
                 </a>
             </li>
 
         </ul>
 
     </aside>
-
+    
+    <div
+    class="sidebar-overlay"
+    id="sidebarOverlay">
+    </div>
     <!-- ================= MAIN CONTENT ================= -->
 
     <main class="main-content">
@@ -207,29 +211,67 @@
                     <i class="bi bi-search"></i>
 
                     <input
-                        type="text"
-                        placeholder="Search...">
+                    type="search"
+                    id="globalSearch"
+                    autocomplete="off"
+                    placeholder="Search menu, orders...">
 
                 </div>
 
-                <button class="icon-btn">
+                <div class="dropdown">
 
-                    <i class="bi bi-bell-fill"></i>
+                    <button
+                        class="icon-btn"
+                        id="notificationBtn"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
 
-                    <span class="notification-dot"></span>
+                        <i class="bi bi-bell-fill"></i>
 
-                </button>
+                        <span class="notification-dot"></span>
 
-                <button class="icon-btn">
+                    </button>
 
-                    <i class="bi bi-envelope-fill"></i>
+                    <ul class="dropdown-menu dropdown-menu-end">
 
-                </button>
+                        <li><h6 class="dropdown-header">Notifications</h6></li>
 
-                <div class="profile-box">
+                        <li><a class="dropdown-item" href="#">New Reservation</a></li>
 
-                    <img src="https://i.pravatar.cc/45"
-                        alt="Profile">
+                        <li><a class="dropdown-item" href="#">Kitchen Order Ready</a></li>
+
+                        <li><a class="dropdown-item" href="#">Inventory Updated</a></li>
+
+                    </ul>
+
+                </div>
+
+             <div class="dropdown">
+
+            <button
+            class="icon-btn"
+            id="messageBtn"
+            data-bs-toggle="dropdown">
+
+            <i class="bi bi-envelope-fill"></i>
+
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end">
+
+            ...
+
+            </ul>
+
+            </div>
+
+                <div class="dropdown">
+
+                <div
+                class="profile-box"
+                id="profileDropdown"
+                data-bs-toggle="dropdown">
+                <img src="https://i.pravatar.cc/45" alt="Profile">
 
                     <div>
 
@@ -242,6 +284,20 @@
                         </small>
 
                     </div>
+
+                </div>
+
+                <ul class="dropdown-menu dropdown-menu-end">
+
+                <li><a class="dropdown-item" href="#">My Profile</a></li>
+
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+
+                <li><hr class="dropdown-divider"></li>
+
+                <li><a class="dropdown-item" href="index.html">Logout</a></li>
+
+                </ul>
 
                 </div>
 
@@ -271,7 +327,7 @@
 
                             <small>Today's Sales</small>
 
-                            <h3>$3,850</h3>
+                            <h3>$<span data-counter="3850">0</span></h3>
 
                             <span class="trend up">
                                 <i class="bi bi-arrow-up"></i>
@@ -298,7 +354,7 @@
 
                             <small>Orders</small>
 
-                            <h3>148</h3>
+                            <h3><span data-counter="145">0</span></h3>
 
                             <span class="trend up">
                                 <i class="bi bi-arrow-up"></i>
@@ -928,6 +984,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="assets/javascript/app.js"></script>
 
 <script src="assets/javascript/dashboard.js"></script>
 
