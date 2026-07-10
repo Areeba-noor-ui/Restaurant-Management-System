@@ -1074,3 +1074,21 @@ body.sidebar-collapsed .main-content{
   .table-box { min-height: 80px; }
   .table-box span { font-size: 12px; }
 }
+
+.chart-container {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 340px;
+
+}
+
+.chart-container canvas {
+
+    width: 100% !important;
+
+    height: 100% !important;
+
+}

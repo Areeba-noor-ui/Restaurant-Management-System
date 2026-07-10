@@ -159,7 +159,7 @@
         </ul>
 
     </aside>
-    
+
     <div
     class="sidebar-overlay"
     id="sidebarOverlay">
@@ -495,15 +495,17 @@
 
                             <select class="form-select w-auto">
 
-                                <option>This Week</option>
-                                <option>Last Week</option>
-                                <option>This Month</option>
+                                <option value="thisWeek">This Week</option>
+                                <option value="lastWeek">Last Week</option>
+                                <option value="thisMonth">This Month</option>
 
                             </select>
 
                         </div>
 
-                        <canvas id="salesChart"></canvas>
+                       <div class="chart-container">
+                            <canvas id="salesChart"></canvas>
+                        </div>
 
                     </div>
 
@@ -523,7 +525,9 @@
 
                         </div>
 
-                        <canvas id="revenueChart"></canvas>
+                        <div class="chart-container">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
 
                     </div>
 
