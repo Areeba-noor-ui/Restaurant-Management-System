@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Restaurant Management System</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="logo-area">
+
+            <i class="bi bi-shop"></i>
+
+            <div>
+                <h4>RMS</h4>
+                <small>Restaurant Panel</small>
+            </div>
+
+        </div>
+
+        <ul class="sidebar-menu">
+
+            <li class="active">
+                <a href="dashboard.html">
+                    <i class="bi bi-grid-fill"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="pos.html">
+                    <i class="bi bi-cart-check"></i>
+                    POS
+                </a>
+            </li>
+
+            <li>
+                <a href="tables.html">
+                    <i class="bi bi-grid-3x3-gap-fill"></i>
+                    Table Management
+                </a>
+            </li>
+
+            <li>
+                <a href="kitchen.html">
+                    <i class="bi bi-fire"></i>
+                    Kitchen Display
+                </a>
+            </li>
+
+            <li>
+                <a href="orders.html">
+                    <i class="bi bi-receipt"></i>
+                    Orders
+                </a>
+            </li>
+
+            <li>
+                <a href="menu.html">
+                    <i class="bi bi-menu-button-wide-fill"></i>
+                    Menu
+                </a>
+            </li>
+
+            <li>
+                <a href="customers.html">
+                    <i class="bi bi-people-fill"></i>
+                    Customers
+                </a>
+            </li>
+
+            <li>
+                <a href="employees.html">
+                    <i class="bi bi-person-badge-fill"></i>
+                    Employees
+                </a>
+            </li>
+
+            <li>
+                <a href="inventory.html">
+                    <i class="bi bi-box-seam"></i>
+                    Inventory
+                </a>
+            </li>
+
+            <li>
+                <a href="purchases.html">
+                    <i class="bi bi-bag-fill"></i>
+                    Purchases
+                </a>
+            </li>
+
+            <li>
+                <a href="expenses.html">
+                    <i class="bi bi-cash-stack"></i>
+                    Expenses
+                </a>
+            </li>
+
+            <li>
+                <a href="delivery.html">
+                    <i class="bi bi-truck"></i>
+                    Delivery
+                </a>
+            </li>
+
+            <li>
+                <a href="reservation.html">
+                    <i class="bi bi-calendar-check"></i>
+                    Reservation
+                </a>
+            </li>
+
+            <li>
+                <a href="reports.html">
+                    <i class="bi bi-bar-chart-fill"></i>
+                    Reports
+                </a>
+            </li>
+
+            <li>
+                <a href="settings.html">
+                    <i class="bi bi-gear-fill"></i>
+                    Settings
+                </a>
+            </li>
+
+            <li>
+                <a href="index.html">
+                    <i class="bi bi-box-arrow-right"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+        <!-- ================= TOP NAVBAR ================= -->
+
+        <nav class="top-navbar">
+
+            <div class="left-nav">
+
+                <button class="menu-btn" id="menuToggle">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div>
+
+                    <h4 class="page-title mb-0">
+                        Dashboard
+                    </h4>
+
+                    <nav>
+
+                        <ol class="breadcrumb mb-0">
+
+                            <li class="breadcrumb-item">
+                                Home
+                            </li>
+
+                            <li class="breadcrumb-item active">
+                                Dashboard
+                            </li>
+
+                        </ol>
+
+                    </nav>
+
+                </div>
+
+            </div>
+
+            <div class="right-nav">
+
+                <div class="search-box">
+
+                    <i class="bi bi-search"></i>
+
+                    <input
+                        type="text"
+                        placeholder="Search...">
+
+                </div>
+
+                <button class="icon-btn">
+
+                    <i class="bi bi-bell-fill"></i>
+
+                    <span class="notification-dot"></span>
+
+                </button>
+
+                <button class="icon-btn">
+
+                    <i class="bi bi-envelope-fill"></i>
+
+                </button>
+
+                <div class="profile-box">
+
+                    <img src="https://i.pravatar.cc/45"
+                        alt="Profile">
+
+                    <div>
+
+                        <h6 class="mb-0">
+                            Admin
+                        </h6>
+
+                        <small>
+                            Restaurant Manager
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+        <!-- ================= DASHBOARD CONTENT ================= -->
+
+        <section class="dashboard-content">
+
+            <!-- Statistics Cards -->
+            <div id="statisticsCards">
+
+                <!-- Next Part -->
+
+            </div>
+
+            <!-- Charts -->
+            <div id="dashboardCharts">
+
+                <!-- Next Part -->
+
+            </div>
+
+            <!-- Recent Orders -->
+            <div id="recentOrders">
+
+                <!-- Next Part -->
+
+            </div>
+
+            <!-- Kitchen Status -->
+            <div id="kitchenStatus">
+
+                <!-- Next Part -->
+
+            </div>
+
+            <!-- Recent Activity -->
+            <div id="recentActivity">
+
+                <!-- Next Part -->
+
+            </div>
+
+            <!-- Table Status -->
+            <div id="tableStatus">
+
+                <!-- Next Part -->
+
+            </div>
+
+        </section>
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer class="dashboard-footer">
+
+            <p class="mb-0">
+
+                © 2026 Restaurant Management System |
+                Designed by Areeba Noor
+
+            </p>
+
+        </footer>
+
+    </main>
+
+    <!-- Bootstrap JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Dashboard JS -->
+
+    <script src="assets/js/dashboard.js"></script>
+
+</body>
+
+</html>
