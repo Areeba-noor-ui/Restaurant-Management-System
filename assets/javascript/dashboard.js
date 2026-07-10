@@ -1,6 +1,7 @@
 "use strict";
 
-/*DASHBOARD DATA*/
+/*=========================================================
+                DASHBOARD DATA*/
 
 const DashboardData = {
 
@@ -57,19 +58,191 @@ const DashboardData = {
 
 };
 
-/*DASHBOARD*/
+/*=========================================================
+                DASHBOARD*/
 
 const Dashboard = {
 
+
+    salesChart: null,
+
+    revenueChart: null,
+
     init() {
 
-        console.log("Dashboard Loaded");
+        this.renderSalesChart();
+
+        this.renderRevenueChart();
+
+    },
+
+    /*==========================================
+                SALES CHART
+    ==========================================*/
+
+    renderSalesChart() {
+
+        const canvas = Helper.id("salesChart");
+
+        if (!canvas) return;
+
+        this.salesChart = new Chart(canvas, {
+
+            type: "bar",
+
+            data: {
+
+                labels: [
+
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
+
+                ],
+
+                datasets: [
+
+                    {
+
+                        label: "Sales",
+
+                        data: DashboardData.weeklySales.thisWeek,
+
+                        backgroundColor: "#8B0000",
+
+                        borderRadius: 8,
+
+                        borderSkipped: false
+
+                    }
+
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                plugins: {
+
+                    legend: {
+
+                        display: false
+
+                    }
+
+                },
+
+                scales: {
+
+                    y: {
+
+                        beginAtZero: true,
+
+                        grid: {
+
+                            color: "#eeeeee"
+
+                        }
+
+                    },
+
+                    x: {
+
+                        grid: {
+
+                            display: false
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        });
+
+    },
+
+    /*==========================================
+                REVENUE CHART
+    ==========================================*/
+
+    renderRevenueChart() {
+
+        const canvas = Helper.id("revenueChart");
+
+        if (!canvas) return;
+
+        this.revenueChart = new Chart(canvas, {
+
+            type: "doughnut",
+
+            data: {
+
+                labels: DashboardData.revenueSources.labels,
+
+                datasets: [
+
+                    {
+
+                        data: DashboardData.revenueSources.values,
+
+                        backgroundColor: [
+
+                            "#8B0000",
+
+                            "#FF8C00",
+
+                            "#198754"
+
+                        ],
+
+                        borderWidth: 0
+
+                    }
+
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                cutout: "65%",
+
+                plugins: {
+
+                    legend: {
+
+                        position: "bottom"
+
+                    }
+
+                }
+
+            }
+
+        });
 
     }
 
+
 };
 
-/*INITIALIZATION*/
+/*=========================================================
+                INITIALIZATION*/
 
 document.addEventListener("DOMContentLoaded", () => {
 
