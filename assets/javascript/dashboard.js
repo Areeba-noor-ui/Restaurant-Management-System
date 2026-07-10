@@ -1,7 +1,6 @@
 "use strict";
 
-/*=========================================================
-                DASHBOARD DATA*/
+/*DASHBOARD DATA*/
 
 const DashboardData = {
 
@@ -58,8 +57,7 @@ const DashboardData = {
 
 };
 
-/*=========================================================
-                DASHBOARD*/
+/* DASHBOARD*/
 
 const Dashboard = {
 
@@ -74,11 +72,11 @@ const Dashboard = {
 
         this.renderRevenueChart();
 
+        this.initializeSalesFilter();
+
     },
 
-    /*==========================================
-                SALES CHART
-    ==========================================*/
+    /*SALES CHART*/
 
     renderSalesChart() {
 
@@ -172,9 +170,7 @@ const Dashboard = {
 
     },
 
-    /*==========================================
-                REVENUE CHART
-    ==========================================*/
+    /* REVENUE CHART*/
 
     renderRevenueChart() {
 
@@ -236,7 +232,33 @@ const Dashboard = {
 
         });
 
-    }
+    },
+
+    /*= SALES FILTER*/
+
+    initializeSalesFilter() {
+
+        const filter = Helper.id("salesFilter");
+
+        if (!filter) return;
+
+        filter.addEventListener("change", () => {
+
+            const selected = filter.value;
+
+            this.salesChart.data.datasets[0].data =
+                DashboardData.weeklySales[selected];
+
+            this.salesChart.update();
+
+            Toast.show(
+                `Showing ${filter.options[filter.selectedIndex].text} sales`,
+                "info"
+            );
+
+        });
+
+    },
 
 
 };
