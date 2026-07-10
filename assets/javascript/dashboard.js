@@ -51,9 +51,33 @@ const DashboardData = {
             table:"T-02",
             status:"Served",
             total:"$68.00"
-        }
+        },
 
-    ]
+    {
+        id: "#1023",
+        customer: "Michael Lee",
+        table: "Delivery",
+        status: "Pending",
+        total: "$25.00"
+    },
+
+    {
+        id: "#1022",
+        customer: "Sarah Khan",
+        table: "T-09",
+        status: "Ready",
+        total: "$54.20"
+    },
+
+    {
+        id: "#1021",
+        customer: "Ali Ahmed",
+        table: "T-11",
+        status: "Completed",
+        total: "$87.90"
+    }
+
+],
 
 };
 
@@ -260,10 +284,81 @@ const Dashboard = {
 
     },
 
+    /*RECENT ORDERS*/
+
+    renderRecentOrders() {
+
+        const tbody = Helper.id("recentOrdersBody");
+
+        if (!tbody) return;
+
+        tbody.innerHTML = "";
+
+        DashboardData.recentOrders.forEach(order => {
+
+            let badgeClass = "";
+
+            switch (order.status) {
+
+                case "Preparing":
+                    badgeClass = "bg-warning text-dark";
+                    break;
+
+                case "Served":
+                    badgeClass = "bg-success";
+                    break;
+
+                case "Pending":
+                    badgeClass = "bg-danger";
+                    break;
+
+                case "Ready":
+                    badgeClass = "bg-primary";
+                    break;
+
+                case "Completed":
+                    badgeClass = "bg-success";
+                    break;
+
+                default:
+                    badgeClass = "bg-secondary";
+
+            }
+
+            tbody.innerHTML += `
+
+                <tr>
+
+                    <td>${order.id}</td>
+
+                    <td>${order.customer}</td>
+
+                    <td>${order.table}</td>
+
+                    <td>
+
+                        <span class="badge ${badgeClass}">
+
+                            ${order.status}
+
+                        </span>
+
+                    </td>
+
+                    <td>${order.total}</td>
+
+                </tr>
+
+            `;
+
+        });
+
+    },
+
 
 };
 
-/*=========================================================
+/*===============
                 INITIALIZATION*/
 
 document.addEventListener("DOMContentLoaded", () => {
