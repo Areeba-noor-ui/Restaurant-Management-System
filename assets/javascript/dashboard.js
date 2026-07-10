@@ -1,104 +1,78 @@
-// SALES CHART
+"use strict";
 
-const salesChart = document.getElementById("salesChart");
+/*DASHBOARD DATA*/
 
-if(salesChart){
+const DashboardData = {
 
-new Chart(salesChart,{
+    statistics: {
 
-type:"bar",
+        sales: 3850,
+        orders: 148,
+        customers: 92,
+        tables: 18,
+        kitchen: 23,
+        expenses: 840
 
-data:{
+    },
 
-labels:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+    weeklySales: {
 
-datasets:[{
+        thisWeek: [420, 610, 510, 730, 880, 950, 760],
+        lastWeek: [310, 500, 450, 620, 710, 780, 640],
+        thisMonth: [250, 420, 510, 600, 710, 850, 960]
 
-label:"Sales",
+    },
 
-data:[1200,1800,1500,2300,2700,3200,2900],
+    revenueSources: {
 
-backgroundColor:"#8B0000",
+        labels: [
+            "Dine In",
+            "Take Away",
+            "Delivery"
+        ],
 
-borderRadius:8
+        values: [55, 20, 25]
 
-}]
+    },
 
-},
+    recentOrders: [
 
-options:{
+        {
+            id:"#1025",
+            customer:"John Smith",
+            table:"T-05",
+            status:"Preparing",
+            total:"$42.50"
+        },
 
-responsive:true,
+        {
+            id:"#1024",
+            customer:"Emma Watson",
+            table:"T-02",
+            status:"Served",
+            total:"$68.00"
+        }
 
-plugins:{
+    ]
 
-legend:{
-display:false
-}
+};
 
-}
+/*DASHBOARD*/
 
-}
+const Dashboard = {
 
-});
+    init() {
 
-}
-// REVENUE CHART
+        console.log("Dashboard Loaded");
 
-const revenueChart=document.getElementById("revenueChart");
+    }
 
-if(revenueChart){
+};
 
-new Chart(revenueChart,{
+/*INITIALIZATION*/
 
-type:"doughnut",
+document.addEventListener("DOMContentLoaded", () => {
 
-data:{
-
-labels:[
-
-"Dine In",
-
-"Take Away",
-
-"Delivery"
-
-],
-
-datasets:[{
-
-data:[55,25,20],
-
-backgroundColor:[
-
-"#8B0000",
-
-"#FF8C00",
-
-"#198754"
-
-]
-
-}]
-
-},
-
-options:{
-
-responsive:true,
-
-plugins:{
-
-legend:{
-
-position:"bottom"
-
-}
-
-}
-
-}
+    Dashboard.init();
 
 });
-
-}
