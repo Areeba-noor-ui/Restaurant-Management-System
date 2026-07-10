@@ -1,0 +1,144 @@
+/*
+   Dashboard Layout
+ */
+
+body{
+    background:#f5f5f5;
+}
+
+.main-content{
+    margin-left:270px;
+    padding:25px;
+}
+
+/* 
+   Statistics Cards
+ */
+
+.stat-card{
+
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+    cursor:pointer;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+}
+
+.stat-icon{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#fff;
+
+    font-size:26px;
+
+}
+
+.sales-card .stat-icon{
+
+    background:#8B0000;
+
+}
+
+.order-card .stat-icon{
+
+    background:#FF8C00;
+
+}
+
+.customer-card .stat-icon{
+
+    background:#198754;
+
+}
+
+.table-card .stat-icon{
+
+    background:#0D6EFD;
+
+}
+
+.kitchen-card .stat-icon{
+
+    background:#6F42C1;
+
+}
+
+.expense-card .stat-icon{
+
+    background:#DC3545;
+
+}
+
+.stat-info{
+
+    text-align:right;
+
+}
+
+.stat-info small{
+
+    color:#777;
+
+}
+
+.stat-info h3{
+
+    margin:8px 0;
+
+    font-size:28px;
+
+    font-weight:700;
+
+}
+
+.trend{
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.up{
+
+    color:#198754;
+
+}
+
+.down{
+
+    color:#DC3545;
+
+}
