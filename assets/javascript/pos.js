@@ -117,6 +117,10 @@ const POS = {
 
         this.initializeClearCart();
 
+        this.loadCart();
+
+        this.initializeActionButtons();
+
     },
 
     renderCategories() {
@@ -365,6 +369,7 @@ const POS = {
     }
 
     this.renderCart();
+    this.saveCart();
 
     },
 
@@ -394,47 +399,57 @@ const POS = {
 
             cartItems.innerHTML += `
 
-                <div class="cart-item">
+               <div class="cart-item">
 
-                    <div class="cart-info">
+                <div class="cart-info">
 
-                        <h6>${item.name}</h6>
+                    <h6>${item.name}</h6>
 
-                        <span>Rs. ${item.price}</span>
+                    <span>
 
-                    </div>
+                        ${formatCurrency(item.price)}
 
-                    <div class="quantity-box">
+                        ×
 
-                        <button
-                            class="qty-btn decrease-btn"
-                            data-id="${item.id}">
+                        ${item.quantity}
 
-                            <i class="bi bi-dash"></i>
+                    </span>
 
-                        </button>
+                    <p class="mb-0 fw-bold text-danger">
 
-                        <strong>${item.quantity}</strong>
+                        ${formatCurrency(item.price * item.quantity)}
 
-                        <button
-                            class="qty-btn increase-btn"
-                            data-id="${item.id}">
-
-                            <i class="bi bi-plus"></i>
-
-                        </button>
-
-                        <button
-                            class="remove-btn"
-                            data-id="${item.id}">
-
-                            <i class="bi bi-trash"></i>
-
-                        </button>
-
-                    </div>
+                    </p>
 
                 </div>
+
+                <div class="quantity-box">
+
+                    <button
+                        class="qty-btn decrease-btn"
+                        data-id="${item.id}">
+                        -
+                    </button>
+
+                    <span>${item.quantity}</span>
+
+                    <button
+                        class="qty-btn increase-btn"
+                        data-id="${item.id}">
+                        +
+                    </button>
+
+                    <button
+                        class="remove-btn"
+                        data-id="${item.id}">
+
+                        <i class="bi bi-trash"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
 
             `;
 
@@ -495,6 +510,7 @@ const POS = {
     }
 
     this.renderCart();
+    this.saveCart();
 
     },
 
@@ -504,30 +520,29 @@ const POS = {
 
     this.renderCart();
 
+    this.saveCart();
+
     },
 
     updateTotals() {
 
-    let subtotal = 0;
+    const subtotal = this.cart.reduce(
 
-    this.cart.forEach(item => {
+        (sum, item) => sum + item.price * item.quantity, 0
+    );
 
-        subtotal += item.price * item.quantity;
-
-    });
-
-    const tax = subtotal * 0.10;
+    const tax = Number((subtotal * 0.10).toFixed(2));
 
     const grandTotal = subtotal + tax;
 
     Helper.id("subtotal").textContent =
-        `RS. ${subtotal}`;
+        formatCurrency(subtotal);
 
     Helper.id("tax").textContent =
-        `RS. ${tax}`;
+        formatCurrency(tax);
 
     Helper.id("grandTotal").textContent =
-        `RS. ${grandTotal}`;
+        formatCurrency(grandTotal);
 
     },
 
@@ -547,7 +562,106 @@ const POS = {
 
     });
 
+    this.saveCart();
+
     },
+
+    saveCart(){
+
+    localStorage.setItem(
+
+        "posCart",
+
+        JSON.stringify(this.cart)
+
+    );
+
+    },
+
+    loadCart(){
+
+    const savedCart = localStorage.getItem("posCart");
+
+    if(savedCart){
+
+        this.cart = JSON.parse(savedCart);
+
+        this.renderCart();
+
+    }
+
+    },
+
+    initializeActionButtons(){
+
+    const holdBtn = Helper.id("holdOrder");
+
+    if(holdBtn){
+
+        holdBtn.addEventListener("click",()=>{
+
+            if(this.cart.length===0){
+
+                Toast.show("Cart is empty","warning");
+
+                return;
+
+            }
+
+            this.saveCart();
+
+            Toast.show("Order placed on hold","info");
+
+        });
+
+    }
+
+        const saveBtn = Helper.id("saveOrder");
+
+    if(saveBtn){
+
+        saveBtn.addEventListener("click",()=>{
+
+            if(this.cart.length===0){
+
+                Toast.show("Cart is empty","warning");
+
+                return;
+
+            }
+
+            Toast.show(
+
+                "Order saved successfully",
+
+                "success"
+
+            );
+
+            this.cart=[];
+
+            this.renderCart();
+
+            this.saveCart();
+
+        });
+
+    }
+
+        const printBtn=Helper.id("printReceipt");
+
+    if(printBtn){
+
+        printBtn.addEventListener("click",()=>{
+
+            window.print();
+
+        });
+
+    }
+
+    }
+
 
 
     }
