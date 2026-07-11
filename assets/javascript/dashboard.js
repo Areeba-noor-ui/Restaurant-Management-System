@@ -139,6 +139,22 @@ const DashboardData = {
 
 ],
 
+    tables: [
+
+    { number: "T1", status: "available" },
+
+    { number: "T2", status: "occupied" },
+
+    { number: "T3", status: "reserved" },
+
+    { number: "T4", status: "cleaning" },
+
+    { number: "T5", status: "available" },
+
+    { number: "T6", status: "occupied" }
+
+],
+
 };
 
 /* DASHBOARD*/
@@ -165,6 +181,8 @@ const Dashboard = {
         this.renderKitchenOrders();
 
         this.renderActivities();
+
+        this.renderTableStatus();
 
     },
 
@@ -601,6 +619,46 @@ const Dashboard = {
         });
 
     },
+
+    /*==========================================
+            TABLE STATUS
+==========================================*/
+
+    renderTableStatus() {
+
+        const grid = Helper.id("tableStatusGrid");
+
+        if (!grid) return;
+
+        grid.innerHTML = "";
+
+        DashboardData.tables.forEach(table => {
+
+            const label =
+
+                table.status.charAt(0).toUpperCase() +
+
+                table.status.slice(1);
+
+            grid.innerHTML += `
+
+                <div class="col-4">
+
+                    <div class="table-box ${table.status}">
+
+                        <h6>${table.number}</h6>
+
+                        <span>${label}</span>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    }    
 };
 
 /*===============
