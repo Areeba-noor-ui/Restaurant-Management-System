@@ -220,17 +220,33 @@
 
                 <div class="dropdown">
 
-                    <button
-                        class="icon-btn"
-                        id="notificationBtn"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                    <div class="notification-wrapper">
 
-                        <i class="bi bi-bell-fill"></i>
+                        <button
+                            class="icon-btn"
+                            id="notificationBtn">
 
-                        <span class="notification-dot"></span>
+                            <i class="bi bi-bell-fill"></i>
 
-                    </button>
+                            <span class="notification-dot"></span>
+
+                        </button>
+
+                    <div
+                        class="notification-dropdown"
+                        id="notificationDropdown">
+
+                        <div class="notification-header">
+
+                            <h6>Notifications</h6>
+
+                        </div>
+
+                        <div id="notificationList"></div>
+
+                    </div>
+
+                    </div>
 
                     <ul class="dropdown-menu dropdown-menu-end">
 

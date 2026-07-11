@@ -4,6 +4,50 @@
 
 const DashboardData = {
 
+    notifications:[
+
+        {
+
+        icon:"bi-receipt",
+
+        title:"New order received",
+
+        time:"2 min ago"
+
+        },
+
+        {
+
+        icon:"bi-fire",
+
+        title:"Kitchen order is ready",
+
+        time:"10 min ago"
+
+        },
+
+        {
+
+        icon:"bi-calendar-check",
+
+        title:"New reservation",
+
+        time:"20 min ago"
+
+        },
+
+        {
+
+        icon:"bi-wallet2",
+
+        title:"Expense added",
+
+        time:"45 min ago"
+
+        }
+
+        ],
+
     statistics: {
 
         sales: 3850,
@@ -184,9 +228,13 @@ const Dashboard = {
 
         this.renderTableStatus();
 
+        this.renderNotifications();
+
+        this.initializeNotifications();
+
     },
 
-    /*SALES CHART*/
+ 
 
     renderSalesChart() {
 
@@ -280,8 +328,7 @@ const Dashboard = {
 
     },
 
-    /* REVENUE CHART*/
-
+   
     renderRevenueChart() {
 
         const canvas = Helper.id("revenueChart");
@@ -344,7 +391,7 @@ const Dashboard = {
 
     },
 
-    /*= SALES FILTER*/
+   
 
     initializeSalesFilter() {
 
@@ -370,7 +417,7 @@ const Dashboard = {
 
     },
 
-    /*RECENT ORDERS*/
+    
 
     renderRecentOrders(orders = DashboardData.recentOrders) {
 
@@ -459,7 +506,7 @@ const Dashboard = {
 
     },
 
-/*  SEARCH ORDERS*/
+
 
     initializeSearch() {
 
@@ -519,7 +566,7 @@ const Dashboard = {
 
     },
 
-    /*  KITCHEN STATUS */
+    
 
     renderKitchenOrders() {
 
@@ -582,7 +629,7 @@ const Dashboard = {
 
     },
 
-    /*RECENT ACTIVITY*/
+    
 
     renderActivities() {
 
@@ -620,9 +667,7 @@ const Dashboard = {
 
     },
 
-    /*==========================================
-            TABLE STATUS
-==========================================*/
+  
 
     renderTableStatus() {
 
@@ -658,7 +703,68 @@ const Dashboard = {
 
         });
 
-    }    
+    },
+
+    
+
+    renderNotifications(){
+
+        const list=Helper.id("notificationList");
+
+        if(!list) return;
+
+        list.innerHTML="";
+
+        DashboardData.notifications.forEach(item=>{
+
+            list.innerHTML+=`
+
+                <div class="notification-item">
+
+                    <i class="bi ${item.icon}"></i>
+
+                    <div>
+
+                        <strong>${item.title}</strong>
+
+                        <br>
+
+                        <small>${item.time}</small>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    },
+
+
+    initializeNotifications(){
+
+        const button=Helper.id("notificationBtn");
+
+        const dropdown=Helper.id("notificationDropdown");
+
+        if(!button || !dropdown) return;
+
+        button.addEventListener("click",(event)=>{
+
+            event.stopPropagation();
+
+            dropdown.classList.toggle("show");
+
+        });
+
+        document.addEventListener("click",()=>{
+
+            dropdown.classList.remove("show");
+
+        });
+
+    }
 };
 
 /*===============

@@ -510,6 +510,89 @@ body.sidebar-collapsed .main-content{
   width: 100%;
 }
 
+/*=========================================================
+                NOTIFICATIONS
+=========================================================*/
+
+.notification-wrapper{
+
+    position:relative;
+
+}
+
+.notification-dropdown{
+
+    position:absolute;
+
+    top:55px;
+
+    right:0;
+
+    width:320px;
+
+    background:#fff;
+
+    border-radius:12px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+
+    display:none;
+
+    z-index:999;
+
+    overflow:hidden;
+
+}
+
+.notification-dropdown.show{
+
+    display:block;
+
+}
+
+.notification-header{
+
+    padding:15px 18px;
+
+    border-bottom:1px solid #eee;
+
+    font-weight:600;
+
+}
+
+.notification-item{
+
+    display:flex;
+
+    gap:12px;
+
+    padding:15px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.notification-item:hover{
+
+    background:#f7f7f7;
+
+}
+
+.notification-item i{
+
+    font-size:20px;
+
+    color:var(--primary);
+
+}
+
+.notification-item small{
+
+    color:#888;
+
+}
 /* =========================================================
    KPI CARDS
 ========================================================= */
