@@ -1,5 +1,11 @@
 "use strict";
 
+function formatCurrency(amount){
+
+    return `Rs. ${amount.toLocaleString("en-PK")}`;
+
+}
+
 
 const POSData = {
 
@@ -30,7 +36,7 @@ const POSData = {
             id: 1,
             name: "Zinger Burger",
             category: "Burger",
-            price: 8.50,
+            price: 850,
             image: "assets/images/zingerBurger.jpg",
             description: "Crispy chicken burger"
         },
@@ -39,7 +45,7 @@ const POSData = {
             id: 2,
             name: "Cheese Burger",
             category: "Burger",
-            price: 9.50,
+            price: 950,
             image: "assets/images/cheeseBurger.jpg",
             description: "Double cheese burger"
         },
@@ -48,7 +54,7 @@ const POSData = {
             id: 3,
             name: "Chicken Pizza",
             category: "Pizza",
-            price: 15,
+            price: 1500,
             image: "assets/images/chickenPizza.jpg",
             description: "Large pizza"
         },
@@ -57,7 +63,7 @@ const POSData = {
             id: 4,
             name: "French Fries",
             category: "Chicken",
-            price: 4,
+            price: 400,
             image: "assets/images/frenchFries.jpg",
             description: "Crispy fries"
         },
@@ -66,7 +72,7 @@ const POSData = {
             id: 5,
             name: "Cold Drink",
             category: "Drinks",
-            price: 2,
+            price: 200,
             image: "assets/images/coldDrinks.jpg",
             description: "Soft drink"
         },
@@ -75,7 +81,7 @@ const POSData = {
             id: 6,
             name: "Chocolate Cake",
             category: "Dessert",
-            price: 6,
+            price: 650,
             image: "assets/images/choclateCake.jpg",
             description: "Chocolate dessert"
         }
@@ -85,12 +91,15 @@ const POSData = {
 };
 
 
+// object
 
 const POS = {
 
     currentCategory: "All",
 
     filteredProducts: [],
+
+    cart: [],
 
     init() {
 
@@ -105,6 +114,8 @@ const POS = {
         this.initializeSearch();
 
         this.initializeCategorySelect();
+
+        this.initializeClearCart();
 
     },
 
@@ -210,7 +221,7 @@ const POS = {
 
                             <span class="product-price">
 
-                                $${product.price.toFixed(2)}
+                                ${formatCurrency(product.price)}
 
                             </span>
 
@@ -233,6 +244,8 @@ const POS = {
         `;
 
     });
+
+    this.initializeAddToCartButtons();
 
     },
 
@@ -307,9 +320,237 @@ const POS = {
         });
 
 
+    },
+
+    initializeAddToCartButtons() {
+
+        const buttons = document.querySelectorAll(".add-cart-btn");
+
+        buttons.forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const productId = Number (button.dataset.id);
+
+                this.addToCart(productId);
+
+            });
+
+        });
+
+    },
+
+    addToCart(productId) {
+
+    const product = POSData.products.find(item => item.id === productId);
+
+    if (!product) return;
+
+    const existing = this.cart.find(item => item.id === productId);
+
+    if (existing) {
+
+        existing.quantity++;
+
+    } else {
+
+        this.cart.push({
+
+            ...product,
+
+            quantity: 1
+
+        });
+
     }
 
-}
+    this.renderCart();
+
+    },
+
+    renderCart() {
+
+        const cartItems = Helper.id("cartItems");
+
+        if (!cartItems) return;
+
+        if (this.cart.length === 0) {
+
+            cartItems.innerHTML = `
+                <p class="text-center text-muted py-5">
+                    Cart is empty.
+                </p>
+            `;
+
+            this.updateTotals();
+
+            return;
+
+        }
+
+        cartItems.innerHTML = "";
+
+        this.cart.forEach(item => {
+
+            cartItems.innerHTML += `
+
+                <div class="cart-item">
+
+                    <div class="cart-info">
+
+                        <h6>${item.name}</h6>
+
+                        <span>Rs. ${item.price}</span>
+
+                    </div>
+
+                    <div class="quantity-box">
+
+                        <button
+                            class="qty-btn decrease-btn"
+                            data-id="${item.id}">
+
+                            <i class="bi bi-dash"></i>
+
+                        </button>
+
+                        <strong>${item.quantity}</strong>
+
+                        <button
+                            class="qty-btn increase-btn"
+                            data-id="${item.id}">
+
+                            <i class="bi bi-plus"></i>
+
+                        </button>
+
+                        <button
+                            class="remove-btn"
+                            data-id="${item.id}">
+
+                            <i class="bi bi-trash"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+        this.initializeCartButtons();
+
+        this.updateTotals();
+
+    },
+
+    initializeCartButtons() {
+
+    document.querySelectorAll(".increase-btn").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            this.changeQuantity(Number(button.dataset.id), 1);
+
+        });
+
+    });
+
+    document.querySelectorAll(".decrease-btn").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            this.changeQuantity(Number(button.dataset.id), -1);
+
+        });
+
+    });
+
+    document.querySelectorAll(".remove-btn").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            this.removeFromCart(Number(button.dataset.id));
+
+        });
+
+    });
+
+    },
+
+    changeQuantity(productId, amount) {
+
+    const item = this.cart.find(product => product.id === productId);
+
+    if (!item) return;
+
+    item.quantity += amount;
+
+    if (item.quantity <= 0) {
+
+        this.cart = this.cart.filter(product => product.id !== productId);
+
+    }
+
+    this.renderCart();
+
+    },
+
+    removeFromCart(productId) {
+
+    this.cart = this.cart.filter(product => product.id !== productId);
+
+    this.renderCart();
+
+    },
+
+    updateTotals() {
+
+    let subtotal = 0;
+
+    this.cart.forEach(item => {
+
+        subtotal += item.price * item.quantity;
+
+    });
+
+    const tax = subtotal * 0.10;
+
+    const grandTotal = subtotal + tax;
+
+    Helper.id("subtotal").textContent =
+        `RS. ${subtotal}`;
+
+    Helper.id("tax").textContent =
+        `RS. ${tax}`;
+
+    Helper.id("grandTotal").textContent =
+        `RS. ${grandTotal}`;
+
+    },
+
+    initializeClearCart() {
+
+    const button = Helper.id("clearCart");
+
+    if (!button) return;
+
+    button.addEventListener("click", () => {
+
+        this.cart = [];
+
+        this.renderCart();
+
+        Toast.show("Cart cleared", "warning");
+
+    });
+
+    },
+
+
+    }
 
 document.addEventListener("DOMContentLoaded", () => {
 
