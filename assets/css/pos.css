@@ -6,7 +6,8 @@
 
 /* SEARCH AREA */
 
-.dashboard-card{
+.pos-filter-card,
+.pos-cart-card{
 
     border:none;
 
@@ -14,10 +15,15 @@
 
     box-shadow:var(--shadow-md);
 
-}
+    margin-bottom:25px;
 
-.dashboard-card .form-control,
-.dashboard-card .form-select{
+    padding:20px;
+
+}
+.pos-filter-card .form-control,
+.pos-filter-card .form-select,
+.pos-cart-card .form-control,
+.pos-cart-card .form-select{
 
     height:48px;
 
@@ -29,10 +35,14 @@
 
     transition:.3s;
 
+     padding-right: 2.5rem;
+
 }
 
-.dashboard-card .form-control:focus,
-.dashboard-card .form-select:focus{
+.pos-filter-card .form-control:focus,
+.pos-filter-card .form-select:focus,
+.pos-cart-card .form-control:focus,
+.pos-cart-card .form-select:focus{
 
     border-color:var(--primary);
 
@@ -50,7 +60,17 @@
 
     overflow-x:auto;
 
-    padding-bottom:10px;
+    overflow-y:hidden;
+
+    flex-wrap:nowrap;
+
+    width:100%;
+
+    margin-top:20px;
+
+    margin-bottom:25px;
+
+    padding-bottom:12px;
 
     scrollbar-width:none;
 
@@ -515,7 +535,8 @@
 
 @media (max-width:991px){
 
-    .dashboard-card{
+.pos-filter-card,
+.pos-cart-card{
 
         margin-bottom:20px;
 
@@ -539,7 +560,8 @@
 
     }
 
-    .dashboard-card{
+    .pos-filter-card,
+.pos-cart-card{
 
         padding:16px;
 
@@ -581,7 +603,8 @@
 
 @media (max-width:576px){
 
-    .dashboard-card .row>div{
+    .pos-filter-card,
+.pos-cart-card .row>div{
 
         width:100%;
 
@@ -608,6 +631,121 @@
     .cart-items{
 
         max-height:300px;
+
+    }
+
+}
+
+/* ====================================
+   POS RESPONSIVE
+==================================== */
+
+#productGrid>.col-12{
+    display:flex;
+}
+
+.product-card{
+    width:100%;
+}
+
+@media(max-width:992px){
+
+    .pos-cart-card{
+
+        margin-top:25px;
+
+        position:static;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .product-footer{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .add-cart-btn{
+
+        width:100%;
+
+        border-radius:10px;
+
+    }
+
+    .product-image img{
+
+        height:180px;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    #productGrid{
+
+        row-gap:20px;
+
+    }
+
+    .category-list{
+
+        gap:8px;
+
+    }
+
+}
+/* ===================================
+   POS FILTER RESPONSIVE
+=================================== */
+
+@media (max-width:768px){
+
+    .pos-filter-card{
+
+        padding:1px;
+
+    }
+
+    .pos-filter-card .row{
+
+        row-gap:15px;
+
+    }
+
+    .pos-filter-card .col-md-5,
+    .pos-filter-card .col-md-4,
+    .pos-filter-card .col-md-3{
+
+        width:100%;
+
+        flex:0 0 100%;
+
+        max-width:100%;
+
+    }
+
+    .pos-filter-card input,
+    .pos-filter-card select{
+
+        width:100%;
+
+    }
+
+}
+@media(max-width:768px){
+
+    .category-list{
+
+        margin-top:20px;
+
+        margin-bottom:20px;
 
     }
 
