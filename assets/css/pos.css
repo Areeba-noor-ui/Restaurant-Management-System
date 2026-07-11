@@ -124,6 +124,10 @@
 
     flex-direction:column;
 
+    width:100%;
+
+    min-width:0;
+
 }
 
 .product-card:hover{
@@ -149,6 +153,8 @@
     height:180px;
 
     object-fit:cover;
+   
+    display:block;
 
     transition:.35s;
 
@@ -228,6 +234,9 @@
 
     align-items:center;
 
+    flex-wrap:wrap;
+
+    gap:10px;
 }
 
 .product-price{
@@ -452,6 +461,14 @@
 
     }
 
+    .add-cart-btn{
+
+        width:42px;
+
+        height:42px;
+
+    }
+
 }
 
 @media(max-width:576px){
@@ -467,6 +484,130 @@
     .summary-row{
 
         font-size:14px;
+
+    }
+
+}
+
+/* ==========================================
+        RESPONSIVE POS
+========================================== */
+
+#productGrid{
+
+    align-items:stretch;
+
+}
+
+#productGrid > div{
+
+    display:flex;
+
+}
+
+.product-card{
+
+    width:100%;
+
+}
+
+/* Tablets */
+
+@media (max-width:991px){
+
+    .dashboard-card{
+
+        margin-bottom:20px;
+
+    }
+
+    .cart-card{
+
+        margin-top:10px;
+
+    }
+
+}
+
+/* Mobile */
+
+@media (max-width:768px){
+
+    .dashboard-content{
+
+        padding:15px;
+
+    }
+
+    .dashboard-card{
+
+        padding:16px;
+
+    }
+
+    .product-image img{
+
+        height:170px;
+
+    }
+
+    .product-body{
+
+        padding:14px;
+
+    }
+
+    .product-name{
+
+        font-size:16px;
+
+    }
+
+    .product-description{
+
+        font-size:13px;
+
+    }
+
+    .product-price{
+
+        font-size:18px;
+
+    }
+
+}
+
+/* Small Mobile */
+
+@media (max-width:576px){
+
+    .dashboard-card .row>div{
+
+        width:100%;
+
+    }
+
+    .product-footer{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .add-cart-btn{
+
+        width:100%;
+
+        border-radius:10px;
+
+        height:42px;
+
+    }
+
+    .cart-items{
+
+        max-height:300px;
 
     }
 
