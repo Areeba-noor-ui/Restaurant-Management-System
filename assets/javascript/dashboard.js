@@ -79,30 +79,62 @@ const DashboardData = {
 
 ],
 
-kitchenOrders: [
+    kitchenOrders: [
+
+        {
+            id: "#1028",
+            item: "Burger + Fries",
+            status: "Pending"
+        },
+
+        {
+            id: "#1027",
+            item: "Chicken Pizza",
+            status: "Preparing"
+        },
+
+        {
+            id: "#1026",
+            item: "Pasta Alfredo",
+            status: "Ready"
+        },
+
+        {
+            id: "#1025",
+            item: "BBQ Sandwich",
+            status: "Served"
+        }
+
+    ],
+
+    activities: [
 
     {
-        id: "#1028",
-        item: "Burger + Fries",
-        status: "Pending"
+        icon: "bi-check-circle-fill",
+        color: "bg-success",
+        title: "Order #1028 Completed",
+        time: "2 minutes ago"
     },
 
     {
-        id: "#1027",
-        item: "Chicken Pizza",
-        status: "Preparing"
+        icon: "bi-calendar-check-fill",
+        color: "bg-primary",
+        title: "New Table Reservation",
+        time: "10 minutes ago"
     },
 
     {
-        id: "#1026",
-        item: "Pasta Alfredo",
-        status: "Ready"
+        icon: "bi-box-seam-fill",
+        color: "bg-warning",
+        title: "Inventory Updated",
+        time: "25 minutes ago"
     },
 
     {
-        id: "#1025",
-        item: "BBQ Sandwich",
-        status: "Served"
+        icon: "bi-cash-stack",
+        color: "bg-danger",
+        title: "Expense Added",
+        time: "45 minutes ago"
     }
 
 ],
@@ -131,6 +163,8 @@ const Dashboard = {
         this.initializeSearch();
 
         this.renderKitchenOrders();
+
+        this.renderActivities();
 
     },
 
@@ -409,126 +443,164 @@ const Dashboard = {
 
 /*  SEARCH ORDERS*/
 
-initializeSearch() {
+    initializeSearch() {
 
-    const input = Helper.id("globalSearch");
+        const input = Helper.id("globalSearch");
 
-    if (!input) return;
+        if (!input) return;
 
-    // Live filtering
-    input.addEventListener("input", () => {
+        // Live filtering
+        input.addEventListener("input", () => {
 
-        const keyword = input.value
-            .toLowerCase()
-            .trim();
+            const keyword = input.value
+                .toLowerCase()
+                .trim();
 
-        const filteredOrders = DashboardData.recentOrders.filter(order => {
+            const filteredOrders = DashboardData.recentOrders.filter(order => {
 
-            return (
+                return (
 
-                order.id.toLowerCase().includes(keyword) ||
+                    order.id.toLowerCase().includes(keyword) ||
 
-                order.customer.toLowerCase().includes(keyword) ||
+                    order.customer.toLowerCase().includes(keyword) ||
 
-                order.table.toLowerCase().includes(keyword) ||
+                    order.table.toLowerCase().includes(keyword) ||
 
-                order.status.toLowerCase().includes(keyword)
+                    order.status.toLowerCase().includes(keyword)
 
-            );
-
-        });
-
-        this.renderRecentOrders(filteredOrders);
-
-    });
-
-    // Scroll on Enter
-    input.addEventListener("keydown", (event) => {
-
-        if (event.key !== "Enter") return;
-
-        event.preventDefault();
-
-        const section = Helper.id("recentOrdersSection");
-
-        if (section) {
-
-            section.scrollIntoView({
-
-                behavior: "smooth",
-
-                block: "start"
+                );
 
             });
 
-        }
+            this.renderRecentOrders(filteredOrders);
 
-    });
+        });
 
-},
+        // Scroll on Enter
+        input.addEventListener("keydown", (event) => {
 
-/*  KITCHEN STATUS */
+            if (event.key !== "Enter") return;
 
-renderKitchenOrders() {
+            event.preventDefault();
 
-    const container = Helper.id("kitchenList");
+            const section = Helper.id("recentOrdersSection");
 
-    if (!container) return;
+            if (section) {
 
-    container.innerHTML = "";
+                section.scrollIntoView({
 
-    DashboardData.kitchenOrders.forEach(order => {
+                    behavior: "smooth",
 
-        let badgeClass = "";
+                    block: "start"
 
-        switch (order.status) {
+                });
 
-            case "Pending":
-                badgeClass = "bg-danger";
-                break;
+            }
 
-            case "Preparing":
-                badgeClass = "bg-warning text-dark";
-                break;
+        });
 
-            case "Ready":
-                badgeClass = "bg-primary";
-                break;
+    },
 
-            case "Served":
-                badgeClass = "bg-success";
-                break;
+    /*  KITCHEN STATUS */
 
-            default:
-                badgeClass = "bg-secondary";
+    renderKitchenOrders() {
 
-        }
+        const container = Helper.id("kitchenList");
 
-        container.innerHTML += `
+        if (!container) return;
 
-            <div class="kitchen-item">
+        container.innerHTML = "";
 
-                <div>
+        DashboardData.kitchenOrders.forEach(order => {
 
-                    <strong>${order.id}</strong>
+            let badgeClass = "";
 
-                    <p class="mb-0">${order.item}</p>
+            switch (order.status) {
+
+                case "Pending":
+                    badgeClass = "bg-danger";
+                    break;
+
+                case "Preparing":
+                    badgeClass = "bg-warning text-dark";
+                    break;
+
+                case "Ready":
+                    badgeClass = "bg-primary";
+                    break;
+
+                case "Served":
+                    badgeClass = "bg-success";
+                    break;
+
+                default:
+                    badgeClass = "bg-secondary";
+
+            }
+
+            container.innerHTML += `
+
+                <div class="kitchen-item">
+
+                    <div>
+
+                        <strong>${order.id}</strong>
+
+                        <p class="mb-0">${order.item}</p>
+
+                    </div>
+
+                    <span class="badge ${badgeClass}">
+
+                        ${order.status}
+
+                    </span>
 
                 </div>
 
-                <span class="badge ${badgeClass}">
+            `;
 
-                    ${order.status}
+        });
 
-                </span>
+    },
 
-            </div>
+    /*RECENT ACTIVITY*/
 
-        `;
+    renderActivities() {
 
-    });
+        const container = Helper.id("activityList");
 
-},
+        if (!container) return;
+
+        container.innerHTML = "";
+
+        DashboardData.activities.forEach(activity => {
+
+            container.innerHTML += `
+
+                <div class="activity-item">
+
+                    <div class="activity-icon ${activity.color}">
+
+                        <i class="bi ${activity.icon}"></i>
+
+                    </div>
+
+                    <div class="activity-content">
+
+                        <h6>${activity.title}</h6>
+
+                        <small>${activity.time}</small>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    },
 };
 
 /*===============
