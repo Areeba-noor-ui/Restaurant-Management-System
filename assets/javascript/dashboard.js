@@ -79,6 +79,34 @@ const DashboardData = {
 
 ],
 
+kitchenOrders: [
+
+    {
+        id: "#1028",
+        item: "Burger + Fries",
+        status: "Pending"
+    },
+
+    {
+        id: "#1027",
+        item: "Chicken Pizza",
+        status: "Preparing"
+    },
+
+    {
+        id: "#1026",
+        item: "Pasta Alfredo",
+        status: "Ready"
+    },
+
+    {
+        id: "#1025",
+        item: "BBQ Sandwich",
+        status: "Served"
+    }
+
+],
+
 };
 
 /* DASHBOARD*/
@@ -101,6 +129,8 @@ const Dashboard = {
         this.renderRecentOrders();
 
         this.initializeSearch();
+
+        this.renderKitchenOrders();
 
     },
 
@@ -377,9 +407,7 @@ const Dashboard = {
 
     },
 
-/*==========================================
-            SEARCH ORDERS
-==========================================*/
+/*  SEARCH ORDERS*/
 
 initializeSearch() {
 
@@ -437,7 +465,70 @@ initializeSearch() {
 
     });
 
-}
+},
+
+/*  KITCHEN STATUS */
+
+renderKitchenOrders() {
+
+    const container = Helper.id("kitchenList");
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    DashboardData.kitchenOrders.forEach(order => {
+
+        let badgeClass = "";
+
+        switch (order.status) {
+
+            case "Pending":
+                badgeClass = "bg-danger";
+                break;
+
+            case "Preparing":
+                badgeClass = "bg-warning text-dark";
+                break;
+
+            case "Ready":
+                badgeClass = "bg-primary";
+                break;
+
+            case "Served":
+                badgeClass = "bg-success";
+                break;
+
+            default:
+                badgeClass = "bg-secondary";
+
+        }
+
+        container.innerHTML += `
+
+            <div class="kitchen-item">
+
+                <div>
+
+                    <strong>${order.id}</strong>
+
+                    <p class="mb-0">${order.item}</p>
+
+                </div>
+
+                <span class="badge ${badgeClass}">
+
+                    ${order.status}
+
+                </span>
+
+            </div>
+
+        `;
+
+    });
+
+},
 };
 
 /*===============
