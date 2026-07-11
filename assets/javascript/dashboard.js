@@ -39,7 +39,7 @@ const DashboardData = {
 
         {
             id:"#1025",
-            customer:"John Smith",
+            customer:"Areeba Noor",
             table:"T-05",
             status:"Preparing",
             total:"$42.50"
@@ -47,7 +47,7 @@ const DashboardData = {
 
         {
             id:"#1024",
-            customer:"Emma Watson",
+            customer:"Babar khan",
             table:"T-02",
             status:"Served",
             total:"$68.00"
@@ -55,7 +55,7 @@ const DashboardData = {
 
     {
         id: "#1023",
-        customer: "Michael Lee",
+        customer: "Hina Batool",
         table: "Delivery",
         status: "Pending",
         total: "$25.00"
@@ -97,6 +97,10 @@ const Dashboard = {
         this.renderRevenueChart();
 
         this.initializeSalesFilter();
+
+        this.renderRecentOrders();
+
+        this.initializeSearch();
 
     },
 
@@ -286,7 +290,7 @@ const Dashboard = {
 
     /*RECENT ORDERS*/
 
-    renderRecentOrders() {
+    renderRecentOrders(orders = DashboardData.recentOrders) {
 
         const tbody = Helper.id("recentOrdersBody");
 
@@ -294,7 +298,7 @@ const Dashboard = {
 
         tbody.innerHTML = "";
 
-        DashboardData.recentOrders.forEach(order => {
+        orders.forEach(order => {
 
             let badgeClass = "";
 
@@ -353,9 +357,87 @@ const Dashboard = {
 
         });
 
+        if(orders.length === 0){
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td colspan="5" class="text-center text-muted py-4">
+
+                    No matching orders found.
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
     },
 
+/*==========================================
+            SEARCH ORDERS
+==========================================*/
 
+initializeSearch() {
+
+    const input = Helper.id("globalSearch");
+
+    if (!input) return;
+
+    // Live filtering
+    input.addEventListener("input", () => {
+
+        const keyword = input.value
+            .toLowerCase()
+            .trim();
+
+        const filteredOrders = DashboardData.recentOrders.filter(order => {
+
+            return (
+
+                order.id.toLowerCase().includes(keyword) ||
+
+                order.customer.toLowerCase().includes(keyword) ||
+
+                order.table.toLowerCase().includes(keyword) ||
+
+                order.status.toLowerCase().includes(keyword)
+
+            );
+
+        });
+
+        this.renderRecentOrders(filteredOrders);
+
+    });
+
+    // Scroll on Enter
+    input.addEventListener("keydown", (event) => {
+
+        if (event.key !== "Enter") return;
+
+        event.preventDefault();
+
+        const section = Helper.id("recentOrdersSection");
+
+        if (section) {
+
+            section.scrollIntoView({
+
+                behavior: "smooth",
+
+                block: "start"
+
+            });
+
+        }
+
+    });
+
+}
 };
 
 /*===============
