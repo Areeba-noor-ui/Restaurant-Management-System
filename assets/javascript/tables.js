@@ -4,6 +4,8 @@ const Tables = {
 
     tables: [],
 
+    selectedTable: null,
+
     filteredTables: [],
 
     init() {
@@ -25,6 +27,7 @@ const Tables = {
         this.initializeFilters();
 
         this.initializeRefresh();
+
 
     },
     renderTables() {
@@ -119,57 +122,19 @@ const Tables = {
 
     });
 
-},
+     this.initializeViewButtons();
 
-updateSummary() {
+    },
 
-    Helper.id("totalTables").textContent = this.tables.length;
+    initializeViewButtons() {
 
-    Helper.id("occupiedTables").textContent =
+    document.querySelectorAll(".view-table").forEach(button => {
 
-        this.tables.filter(
+        button.addEventListener("click", () => {
 
-            table => table.status === "Occupied"
+            const tableId = Number(button.dataset.id);
 
-        ).length;
-
-    Helper.id("reservedTables").textContent =
-
-        this.tables.filter(
-
-            table => table.status === "Reserved"
-
-        ).length;
-
-    Helper.id("availableTables").textContent =
-
-        this.tables.filter(
-
-            table => table.status === "Available"
-
-        ).length;
-
-},
-
-initializeFilters() {
-
-    const search = Helper.id("tableSearch");
-
-    const status = Helper.id("tableStatusFilter");
-
-    const capacity = Helper.id("tableCapacityFilter");
-
-    [search, status, capacity].forEach(element => {
-
-        element.addEventListener("input", () => {
-
-            this.filterTables();
-
-        });
-
-        element.addEventListener("change", () => {
-
-            this.filterTables();
+            this.openTableModal(tableId);
 
         });
 
@@ -177,95 +142,175 @@ initializeFilters() {
 
 },
 
+    openTableModal(tableId) {
 
-filterTables() {
+        this.selectedTable = this.tables.find(
 
-    const keyword =
-
-        Helper.id("tableSearch")
-
-        .value
-
-        .trim()
-
-        .toLowerCase();
-
-    const status =
-
-        Helper.id("tableStatusFilter").value;
-
-    const seats =
-
-        Helper.id("tableCapacityFilter").value;
-
-    this.filteredTables = this.tables.filter(table => {
-
-        const matchKeyword =
-
-            table.name.toLowerCase().includes(keyword);
-
-        const matchStatus =
-
-            status === "All" ||
-
-            table.status === status;
-
-        const matchSeats =
-
-            seats === "All" ||
-
-            table.capacity == seats;
-
-        return (
-
-            matchKeyword &&
-
-            matchStatus &&
-
-            matchSeats
+            table => table.id === tableId
 
         );
 
-    });
+        if(!this.selectedTable) return;
 
-    this.renderTables();
+        console.log(this.selectedTable);
 
-},
+        // Update modal content
+        Helper.id("modalTableName").textContent = this.selectedTable.name;
+        Helper.id("modalCustomer").textContent = this.selectedTable.customer || "None";
+        Helper.id("modalCapacity").textContent = this.selectedTable.capacity;
+        Helper.id("modalStatus").textContent = this.selectedTable.status;
+
+        // Show modal
+        const modal = new bootstrap.Modal(Helper.id("tableModal"));
+        modal.show();
+
+    },
+
+    updateSummary() {
+
+        Helper.id("totalTables").textContent = this.tables.length;
+
+        Helper.id("occupiedTables").textContent =
+
+            this.tables.filter(
+
+                table => table.status === "Occupied"
+
+            ).length;
+
+        Helper.id("reservedTables").textContent =
+
+            this.tables.filter(
+
+                table => table.status === "Reserved"
+
+            ).length;
+
+        Helper.id("availableTables").textContent =
+
+            this.tables.filter(
+
+                table => table.status === "Available"
+
+            ).length;
+
+    },
+
+    initializeFilters() {
+
+        const search = Helper.id("tableSearch");
+
+        const status = Helper.id("tableStatusFilter");
+
+        const capacity = Helper.id("tableCapacityFilter");
+
+        [search, status, capacity].forEach(element => {
+
+            element.addEventListener("input", () => {
+
+                this.filterTables();
+
+            });
+
+            element.addEventListener("change", () => {
+
+                this.filterTables();
+
+            });
+
+        });
+
+    },
 
 
-initializeRefresh() {
+    filterTables() {
 
-    const button = Helper.id("refreshTables");
+        const keyword =
 
-    if (!button) return;
+            Helper.id("tableSearch")
 
-    button.addEventListener("click", () => {
+            .value
 
-        this.tables = Storage.get(
+            .trim()
 
-            CONSTANTS.STORAGE_KEYS.TABLES,
+            .toLowerCase();
 
-            Database.tables
+        const status =
 
-        );
+            Helper.id("tableStatusFilter").value;
 
-        this.filteredTables = [...this.tables];
+        const seats =
+
+            Helper.id("tableCapacityFilter").value;
+
+        this.filteredTables = this.tables.filter(table => {
+
+            const matchKeyword =
+
+                table.name.toLowerCase().includes(keyword);
+
+            const matchStatus =
+
+                status === "All" ||
+
+                table.status === status;
+
+            const matchSeats =
+
+                seats === "All" ||
+
+                table.capacity == seats;
+
+            return (
+
+                matchKeyword &&
+
+                matchStatus &&
+
+                matchSeats
+
+            );
+
+        });
 
         this.renderTables();
 
-        this.updateSummary();
+    },
 
-        Toast.show(
 
-            "Tables refreshed",
+    initializeRefresh() {
 
-            "success"
+        const button = Helper.id("refreshTables");
 
-        );
+        if (!button) return;
 
-    });
+        button.addEventListener("click", () => {
 
-},
+            this.tables = Storage.get(
+
+                CONSTANTS.STORAGE_KEYS.TABLES,
+
+                Database.tables
+
+            );
+
+            this.filteredTables = [...this.tables];
+
+            this.renderTables();
+
+            this.updateSummary();
+
+            Toast.show(
+
+                "Tables refreshed",
+
+                "success"
+
+            );
+
+        });
+
+    },
 
 }
 

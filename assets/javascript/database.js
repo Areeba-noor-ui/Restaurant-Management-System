@@ -1,3 +1,22 @@
+"use strict";
+
+const Database = {
+
+    cart: [],
+
+    orders: [],
+
+    customers: [
+
+        {
+            id: 1,
+            name: "Walk-in Customer",
+            phone: ""
+        }
+
+    ],
+
+
 tables: [
 
     {
@@ -49,3 +68,4 @@ tables: [
     }
 
 ]
+}

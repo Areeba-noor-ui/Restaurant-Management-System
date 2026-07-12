@@ -577,115 +577,6 @@
 
         </div>
 
-        <!-- ======================================
-        TABLE DETAILS MODAL
-======================================= -->
-
-        <div class="modal fade" id="tableModal" tabindex="-1">
-
-            <div class="modal-dialog modal-lg">
-
-                <div class="modal-content">
-
-                    <div class="modal-header">
-
-                        <h5 id="tableModalTitle" class="modal-title">
-                            Table Details
-                        </h5>
-
-                        <button
-                            class="btn-close"
-                            data-bs-dismiss="modal">
-                        </button>
-
-                    </div>
-
-                    <div class="modal-body">
-
-                        <div class="row g-3">
-
-                            <div class="col-md-6">
-
-                                <label class="form-label">
-                                    Customer
-                                </label>
-
-                                <input
-                                    id="tableCustomer"
-                                    class="form-control"
-                                    type="text"
-                                    placeholder="Customer name">
-
-                            </div>
-
-                            <div class="col-md-6">
-
-                                <label class="form-label">
-                                    Waiter
-                                </label>
-
-                                <input
-                                    id="tableWaiter"
-                                    class="form-control"
-                                    type="text"
-                                    placeholder="Waiter name">
-
-                            </div>
-
-                            <div class="col-md-6">
-
-                                <label class="form-label">
-                                    Status
-                                </label>
-
-                                <select
-                                    id="tableStatus"
-                                    class="form-select">
-
-                                    <option>Available</option>
-                                    <option>Occupied</option>
-                                    <option>Reserved</option>
-                                    <option>Cleaning</option>
-
-                                </select>
-
-                            </div>
-
-                            <div class="col-md-6">
-
-                                <label class="form-label">
-                                    Capacity
-                                </label>
-
-                                <input
-                                    id="tableCapacity"
-                                    class="form-control"
-                                    type="number">
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="modal-footer">
-
-                        <button
-                            id="saveTableBtn"
-                            class="btn btn-danger">
-
-                            Save
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
         <!-- ================= FOOTER ================= -->
 
         <footer class="dashboard-footer">
@@ -701,6 +592,77 @@
 
     </main>
 
+    <div class="modal fade" id="tableModal">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 id="modalTableName"></h5>
+
+                    <button
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <p>
+                        <strong>Customer:</strong>
+                        <span id="modalCustomer"></span>
+                    </p>
+
+                    <p>
+                        <strong>Capacity:</strong>
+                        <span id="modalCapacity"></span>
+                    </p>
+
+                    <p>
+                        <strong>Status:</strong>
+                        <span id="modalStatus"></span>
+                    </p>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button
+                        class="btn btn-success"
+                        id="assignTable">
+
+                        Assign Table
+
+                    </button>
+
+                    <button
+                        class="btn btn-warning"
+                        id="reserveTable">
+
+                        Reserve
+
+                    </button>
+
+                    <button
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                        Close
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
