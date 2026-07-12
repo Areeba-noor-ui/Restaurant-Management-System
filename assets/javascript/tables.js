@@ -66,7 +66,7 @@ const Tables = {
 
     }
 
-    this.filteredTables.forEach(table => {
+    this.filteredTables.filter(table=>table.status!==CONSTANTS.TABLE_STATUS.MERGED).forEach(table => {
 
         container.innerHTML += `
 
@@ -197,6 +197,7 @@ const Tables = {
         modal.show();
 
         this.loadTransferTables();
+        this.loadMergeTables();
 
     },
 
@@ -581,46 +582,6 @@ const Tables = {
 
     },
 
-    mergeTables(){
-
-        const targetId = Number(
-            Helper.id("mergeTable").value
-        );
-
-        if(!targetId) return;
-
-        const target = this.tables.find(
-            table=>table.id===targetId
-        );
-
-        if(!target) return;
-
-        target.capacity += this.selectedTable.capacity;
-
-        this.selectedTable.status =
-            CONSTANTS.TABLE_STATUS.AVAILABLE;
-
-        this.selectedTable.customer = null;
-        this.selectedTable.waiter = "";
-        this.selectedTable.phone = "";
-        this.selectedTable.time = "";
-
-        Storage.save(
-            CONSTANTS.STORAGE_KEYS.TABLES,
-            this.tables
-        );
-
-        this.renderTables();
-
-        this.updateSummary();
-
-        Toast.show(
-            "Tables merged",
-            "success"
-        );
-
-    },
-
     splitTable(){
 
         if(this.selectedTable.capacity<=2){
@@ -671,6 +632,100 @@ const Tables = {
         this.splitTable();
 
     });
+
+},
+
+    loadMergeTables() {
+
+        const select = Helper.id("mergeTable");
+
+        select.innerHTML = "";
+
+        this.tables
+            .filter(table =>
+
+                table.id !== this.selectedTable.id &&
+
+                table.status === CONSTANTS.TABLE_STATUS.AVAILABLE
+
+            )
+
+            .forEach(table => {
+
+                select.innerHTML += `
+
+                    <option value="${table.id}">
+                        ${table.name}
+                    </option>
+
+                `;
+
+            });
+
+    },
+
+    mergeTables(){
+
+    const targetId = Number(
+        Helper.id("mergeTable").value
+    );
+
+    if(!targetId) return;
+
+    const target = this.tables.find(
+        table=>table.id===targetId
+    );
+
+    if(!target) return;
+
+    if(
+        this.selectedTable.merged ||
+        target.merged
+    ){
+
+        Toast.show(
+            "One table is already merged.",
+            "warning"
+        );
+
+        return;
+
+    }
+
+    this.selectedTable.capacity += target.capacity;
+
+    this.selectedTable.merged = true;
+
+    this.selectedTable.mergedWith = target.id;
+
+    target.merged = true;
+
+    target.mergedWith = this.selectedTable.id;
+
+    target.status =
+        CONSTANTS.TABLE_STATUS.MERGED;
+
+    Storage.save(
+        CONSTANTS.STORAGE_KEYS.TABLES,
+        this.tables
+    );
+
+    this.filteredTables=[...this.tables];
+
+    this.renderTables();
+
+    this.updateSummary();
+
+    bootstrap.Modal
+    .getInstance(
+        Helper.id("tableModal")
+    )
+    .hide();
+
+    Toast.show(
+        "Tables merged",
+        "success"
+    );
 
 }
 
