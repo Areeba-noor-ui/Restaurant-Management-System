@@ -341,31 +341,42 @@ const Tables = {
     },
 
 
-    initializeRefresh() {
+   initializeRefresh() {
 
-        const button = Helper.id("refreshTables");
+    const button = Helper.id("refreshTables");
 
-        if (!button) return;
+    if (!button) return;
 
-        button.addEventListener("click", () => {
+    button.addEventListener("click", () => {
 
-            this.tables = Storage.get(
-                CONSTANTS.STORAGE_KEYS.TABLES,
-                Database.tables
-            );
+        if (!confirm("Reset all tables to default state?"))
+            return;
 
-            this.filteredTables = [...this.tables];
+        this.tables = structuredClone(Database.tables);
 
-            this.renderTables();
+        Storage.save(
 
-            this.updateSummary();
+            CONSTANTS.STORAGE_KEYS.TABLES,
 
-            Toast.show(
-                "Tables updated successfully",
-                "success"
-            );
+            this.tables
 
-        });
+        );
+
+        this.filteredTables = [...this.tables];
+
+        this.renderTables();
+
+        this.updateSummary();
+
+        Toast.show(
+
+            "Tables reset successfully",
+
+            "success"
+
+        );
+
+    });
 
     },
 
