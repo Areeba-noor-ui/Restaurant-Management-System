@@ -30,9 +30,11 @@ const Tables = {
 
         this.initializeModalButtons();
 
-        this.initializeActionButtons(); 
-
         this.initializeWaiterButton();
+
+        this.initializeTransferButton();
+
+        this.initializeMergeSplitButtons();
 
 
     },
@@ -193,6 +195,8 @@ const Tables = {
         // Show modal
         const modal = new bootstrap.Modal(Helper.id("tableModal"));
         modal.show();
+
+        this.loadTransferTables();
 
     },
 
@@ -393,13 +397,40 @@ const Tables = {
 
     });
 
-    Helper.id("reserveTableBtn")
-        .addEventListener("click",()=>{
+    Helper.id("reserveTableBtn").addEventListener("click", () => {
 
-        this.changeStatus(
+        if (!this.selectedTable) return;
 
-            CONSTANTS.TABLE_STATUS.RESERVED
+        this.selectedTable.status =
+            CONSTANTS.TABLE_STATUS.RESERVED;
 
+        this.selectedTable.customer =
+            Helper.id("reservationCustomer").value.trim();
+
+        this.selectedTable.phone =
+            Helper.id("reservationPhone").value.trim();
+
+        this.selectedTable.time =
+            Helper.id("reservationTime").value;
+
+        Storage.save(
+            CONSTANTS.STORAGE_KEYS.TABLES,
+            this.tables
+        );
+
+        this.filteredTables = [...this.tables];
+
+        this.renderTables();
+
+        this.updateSummary();
+
+        bootstrap.Modal
+            .getInstance(Helper.id("tableModal"))
+            .hide();
+
+        Toast.show(
+            "Table Reserved",
+            "success"
         );
 
     });
@@ -427,46 +458,7 @@ const Tables = {
     });
 
 },
-    initializeActionButtons() {
 
-        Helper.id("reserveTableBtn")
-        .addEventListener("click", () => {
-
-            this.selectedTable.status =
-                CONSTANTS.TABLE_STATUS.RESERVED;
-
-            this.selectedTable.customer =
-                Helper.id("reservationCustomer").value;
-
-            this.selectedTable.phone =
-                Helper.id("reservationPhone").value;
-
-            this.selectedTable.time =
-                Helper.id("reservationTime").value;
-
-            Storage.save(
-                CONSTANTS.STORAGE_KEYS.TABLES,
-                this.tables
-            );
-
-            this.renderTables();
-
-            this.updateSummary();
-
-            bootstrap.Modal
-                .getInstance(
-                    Helper.id("tableModal")
-                )
-                .hide();
-
-            Toast.show(
-                "Table Reserved",
-                "success"
-            );
-
-        });
-
-    },
 
     initializeWaiterButton() {
 
@@ -496,6 +488,192 @@ const Tables = {
         });
 
     },
+
+    initializeTransferButton(){
+
+    const button = Helper.id("transferTableBtn");
+
+    if(!button) return;
+
+    button.addEventListener("click",()=>{
+
+        this.transferTable();
+
+    });
+
+},
+
+    loadTransferTables(){
+
+        const select=Helper.id("transferTable");
+
+        select.innerHTML="";
+
+        this.tables
+        .filter(table=>
+
+        table.id!==this.selectedTable.id
+
+        &&
+
+        table.status===CONSTANTS.TABLE_STATUS.AVAILABLE
+
+        )
+
+        .forEach(table=>{
+
+        select.innerHTML+=`
+
+        <option value="${table.id}">
+
+        ${table.name}
+
+        </option>
+
+        `;
+
+        });
+
+        },
+
+    transferTable() {
+
+        const targetId = Number(
+            Helper.id("transferTable").value
+        );
+
+        if (!targetId) return;
+
+        const target = this.tables.find(
+            table => table.id === targetId
+        );
+
+        if (!target) return;
+
+        target.customer = this.selectedTable.customer;
+        target.phone = this.selectedTable.phone;
+        target.waiter = this.selectedTable.waiter;
+        target.time = this.selectedTable.time;
+        target.status = this.selectedTable.status;
+
+        this.selectedTable.customer = null;
+        this.selectedTable.phone = "";
+        this.selectedTable.waiter = "";
+        this.selectedTable.time = "";
+        this.selectedTable.status =
+            CONSTANTS.TABLE_STATUS.AVAILABLE;
+
+        Storage.save(
+            CONSTANTS.STORAGE_KEYS.TABLES,
+            this.tables
+        );
+
+        this.filteredTables=[...this.tables];
+
+        this.renderTables();
+
+        this.updateSummary();
+
+        Toast.show(
+            "Table transferred",
+            "success"
+        );
+
+    },
+
+    mergeTables(){
+
+        const targetId = Number(
+            Helper.id("mergeTable").value
+        );
+
+        if(!targetId) return;
+
+        const target = this.tables.find(
+            table=>table.id===targetId
+        );
+
+        if(!target) return;
+
+        target.capacity += this.selectedTable.capacity;
+
+        this.selectedTable.status =
+            CONSTANTS.TABLE_STATUS.AVAILABLE;
+
+        this.selectedTable.customer = null;
+        this.selectedTable.waiter = "";
+        this.selectedTable.phone = "";
+        this.selectedTable.time = "";
+
+        Storage.save(
+            CONSTANTS.STORAGE_KEYS.TABLES,
+            this.tables
+        );
+
+        this.renderTables();
+
+        this.updateSummary();
+
+        Toast.show(
+            "Tables merged",
+            "success"
+        );
+
+    },
+
+    splitTable(){
+
+        if(this.selectedTable.capacity<=2){
+
+            Toast.show(
+                "Cannot split this table",
+                "warning"
+            );
+
+            return;
+
+        }
+
+        this.selectedTable.capacity /=2;
+
+        Storage.save(
+
+            CONSTANTS.STORAGE_KEYS.TABLES,
+
+            this.tables
+
+        );
+
+        this.renderTables();
+
+        Toast.show(
+
+            "Table split",
+
+            "success"
+
+        );
+
+    },
+
+    initializeMergeSplitButtons(){
+
+    Helper.id("mergeTableBtn")
+    ?.addEventListener("click",()=>{
+
+        this.mergeTables();
+
+    });
+
+    Helper.id("splitTableBtn")
+    ?.addEventListener("click",()=>{
+
+        this.splitTable();
+
+    });
+
+}
+
 
 }
 
