@@ -312,6 +312,26 @@
 
 }
 
+.status-available{
+    background:#d1fae5;
+    color:#065f46;
+}
+
+.status-occupied{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.status-reserved{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.status-cleaning{
+    background:#dbeafe;
+    color:#1d4ed8;
+}
+
 /* ==========================================
             RESPONSIVE
 ========================================== */

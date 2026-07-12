@@ -28,6 +28,8 @@ const Tables = {
 
         this.initializeRefresh();
 
+        this.initializeModalButtons();
+
 
     },
     renderTables() {
@@ -166,32 +168,65 @@ const Tables = {
 
     },
 
+    changeStatus(status){
+
+    if(!this.selectedTable) return;
+
+    this.selectedTable.status = status;
+
+    Storage.save(
+
+        CONSTANTS.STORAGE_KEYS.TABLES,
+
+        this.tables
+
+    );
+
+    this.filteredTables = [...this.tables];
+
+    this.renderTables();
+
+    this.updateSummary();
+
+    bootstrap.Modal
+        .getInstance(
+            Helper.id("tableModal")
+        )
+        .hide();
+
+    Toast.show(
+
+        "Table updated",
+
+        "success"
+
+    );
+
+    },
+
     updateSummary() {
 
-        Helper.id("totalTables").textContent = this.tables.length;
+        Helper.id("totalTables").textContent =
+            this.tables.length;
 
         Helper.id("occupiedTables").textContent =
-
             this.tables.filter(
-
-                table => table.status === "Occupied"
-
+                table => table.status === CONSTANTS.TABLE_STATUS.OCCUPIED
             ).length;
 
         Helper.id("reservedTables").textContent =
-
             this.tables.filter(
-
-                table => table.status === "Reserved"
-
+                table => table.status === CONSTANTS.TABLE_STATUS.RESERVED
             ).length;
 
         Helper.id("availableTables").textContent =
-
             this.tables.filter(
+                table => table.status === CONSTANTS.TABLE_STATUS.AVAILABLE
+            ).length;
 
-                table => table.status === "Available"
-
+        Helper.id("cleaningTables").textContent =
+            this.tables.filter(
+                table => table.status === CONSTANTS.TABLE_STATUS.CLEANING
             ).length;
 
     },
@@ -287,11 +322,8 @@ const Tables = {
         button.addEventListener("click", () => {
 
             this.tables = Storage.get(
-
                 CONSTANTS.STORAGE_KEYS.TABLES,
-
                 Database.tables
-
             );
 
             this.filteredTables = [...this.tables];
@@ -301,16 +333,62 @@ const Tables = {
             this.updateSummary();
 
             Toast.show(
-
-                "Tables refreshed",
-
+                "Tables updated successfully",
                 "success"
-
             );
 
         });
 
     },
+
+    initializeModalButtons(){
+
+    Helper.id("occupyTableBtn")
+        .addEventListener("click",()=>{
+
+        this.changeStatus(
+
+            CONSTANTS.TABLE_STATUS.OCCUPIED
+
+        );
+
+    });
+
+    Helper.id("reserveTableBtn")
+        .addEventListener("click",()=>{
+
+        this.changeStatus(
+
+            CONSTANTS.TABLE_STATUS.RESERVED
+
+        );
+
+    });
+
+    Helper.id("cleanTableBtn")
+        .addEventListener("click",()=>{
+
+        this.changeStatus(
+
+            CONSTANTS.TABLE_STATUS.CLEANING
+
+        );
+
+    });
+
+    Helper.id("availableTableBtn")
+        .addEventListener("click",()=>{
+
+        this.changeStatus(
+
+            CONSTANTS.TABLE_STATUS.AVAILABLE
+
+        );
+
+    });
+
+},
+
 
 }
 
