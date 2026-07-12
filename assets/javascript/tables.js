@@ -30,6 +30,10 @@ const Tables = {
 
         this.initializeModalButtons();
 
+        this.initializeActionButtons(); 
+
+        this.initializeWaiterButton();
+
 
     },
     renderTables() {
@@ -98,7 +102,20 @@ const Tables = {
 
                         <strong>Customer:</strong>
 
-                        ${table.customer || "None"}
+                        ${table.customer || "Walk-in Customer"}
+
+                    </p>
+
+                    <p>
+                        <strong>Waiter:</strong>
+                        ${table.waiter || "Not Assigned"}
+                    </p>
+
+                    <p>
+
+                        <strong>Time:</strong>
+
+                        ${table.time || "--"}
 
                     </p>
 
@@ -161,6 +178,17 @@ const Tables = {
         Helper.id("modalCustomer").textContent = this.selectedTable.customer || "None";
         Helper.id("modalCapacity").textContent = this.selectedTable.capacity;
         Helper.id("modalStatus").textContent = this.selectedTable.status;
+
+        Helper.id("modalWaiter").value = this.selectedTable.waiter || "";
+
+        Helper.id("reservationCustomer").value =
+            this.selectedTable.customer || "";
+
+        Helper.id("reservationPhone").value =
+            this.selectedTable.phone || "";
+
+        Helper.id("reservationTime").value =
+            this.selectedTable.time || "";
 
         // Show modal
         const modal = new bootstrap.Modal(Helper.id("tableModal"));
@@ -388,7 +416,75 @@ const Tables = {
     });
 
 },
+    initializeActionButtons() {
 
+        Helper.id("reserveTableBtn")
+        .addEventListener("click", () => {
+
+            this.selectedTable.status =
+                CONSTANTS.TABLE_STATUS.RESERVED;
+
+            this.selectedTable.customer =
+                Helper.id("reservationCustomer").value;
+
+            this.selectedTable.phone =
+                Helper.id("reservationPhone").value;
+
+            this.selectedTable.time =
+                Helper.id("reservationTime").value;
+
+            Storage.save(
+                CONSTANTS.STORAGE_KEYS.TABLES,
+                this.tables
+            );
+
+            this.renderTables();
+
+            this.updateSummary();
+
+            bootstrap.Modal
+                .getInstance(
+                    Helper.id("tableModal")
+                )
+                .hide();
+
+            Toast.show(
+                "Table Reserved",
+                "success"
+            );
+
+        });
+
+    },
+
+    initializeWaiterButton() {
+
+        const button = Helper.id("assignWaiterBtn");
+
+        if (!button) return;
+
+        button.addEventListener("click", () => {
+
+            if (!this.selectedTable) return;
+
+            this.selectedTable.waiter =
+                Helper.id("modalWaiter").value;
+
+            Storage.save(
+                CONSTANTS.STORAGE_KEYS.TABLES,
+                this.tables
+            );
+
+            this.renderTables();
+
+            Toast.show(
+                "Waiter Assigned",
+                "success"
+            );
+
+        });
+
+    },
 
 }
 

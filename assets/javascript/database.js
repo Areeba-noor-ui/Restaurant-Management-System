@@ -28,7 +28,8 @@ tables: [
         waiter: "",
         reservation: "",
         mergedWith: [],
-        orderId: null
+        orderId: null,
+        waiter: null
     },
 
     {
@@ -40,7 +41,8 @@ tables: [
         waiter: "",
         reservation: "",
         mergedWith: [],
-        orderId: null
+        orderId: null,
+        waiter: null
     },
 
     {
@@ -52,7 +54,8 @@ tables: [
         waiter: "",
         reservation: "",
         mergedWith: [],
-        orderId: null
+        orderId: null,
+        waiter: null
     },
 
     {
@@ -64,7 +67,60 @@ tables: [
         waiter: "",
         reservation: "",
         mergedWith: [],
-        orderId: null
+        orderId: null,
+        waiter: null
+    },
+
+        {
+        id: 5,
+        name: "Table 5",
+        capacity: 10,
+        status: CONSTANTS.TABLE_STATUS.AVAILABLE,
+        customer: "",
+        waiter: "",
+        reservation: "",
+        mergedWith: [],
+        orderId: null,
+        waiter: null
+    },
+
+        {
+        id: 6,
+        name: "Table 6",
+        capacity: 12    ,
+        status: CONSTANTS.TABLE_STATUS.AVAILABLE,
+        customer: "",
+        waiter: "",
+        reservation: "",
+        mergedWith: [],
+        orderId: null,
+        waiter: null
+    },
+
+        {
+        id: 7,
+        name: "Table 7",
+        capacity: 14,
+        status: CONSTANTS.TABLE_STATUS.AVAILABLE,
+        customer: "",
+        waiter: "",
+        reservation: "",
+        mergedWith: [],
+        orderId: null,
+        waiter: null
+    },
+
+        {
+        id: 8,
+        name: "Table 8",
+        capacity: 16,
+        status: CONSTANTS.TABLE_STATUS.AVAILABLE,
+        customer: "",
+        waiter: "",
+        reservation: "",
+        mergedWith: [],
+        orderId: null,
+        waiter: null
     }
 
 ]
