@@ -5,29 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Dashboard | Restaurant Management System</title>
+    <title>Tables Management | Restaurant Management System</title>
 
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- Global CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-
-    <!-- Dashboard CSS -->
+   
     <link rel="stylesheet" href="assets/css/dashboard.css">
+
+    <link rel="stylesheet" href="assets/css/tables.css">
+
 </head>
 
 <body>
 
-    <!-- ================= SIDEBAR ================= -->
 
     <aside class="sidebar" id="sidebar">
 
@@ -164,11 +161,10 @@
     class="sidebar-overlay"
     id="sidebarOverlay">
     </div>
-    <!-- ================= MAIN CONTENT ================= -->
+
 
     <main class="main-content">
 
-        <!-- ================= TOP NAVBAR ================= -->
 
         <nav class="top-navbar">
 
@@ -181,7 +177,7 @@
                 <div>
 
                     <h4 class="page-title mb-0">
-                        Dashboard
+                        Tables Management
                     </h4>
 
                     <nav>
@@ -193,7 +189,7 @@
                             </li>
 
                             <li class="breadcrumb-item active">
-                                Dashboard
+                                Tables Management
                             </li>
 
                         </ol>
@@ -321,142 +317,69 @@
 
         </nav>
 
-        <!-- ================= DASHBOARD CONTENT ================= -->
+        <!--TABLES PAGE CONTENT -->
 
-        <section class="dashboard-content">
+        <div class="dashboard-content">
 
-            <!-- Statistics Cards -->
+            <!-- Page Header -->
+
+            <div class="table-page-header">
+
+                <div>
+
+                    <h2 class="table-page-title">
+
+                        Table Management
+
+                    </h2>
+
+                    <p class="table-page-subtitle">
+
+                        Manage restaurant tables and monitor occupancy.
+
+                    </p>
+
+                </div>
+
+                <div class="table-header-actions">
+
+                    <button
+                        class="btn btn-outline-secondary"
+                        id="refreshTables">
+
+                        <i class="bi bi-arrow-clockwise"></i>
+
+                        Refresh
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Summary Cards -->
 
             <div class="row g-4 mb-4">
 
-                <!-- Today's Sales -->
+                <div class="col-md-3 col-sm-6">
 
-               <div class="col-12 col-sm-6 col-lg-6 col-xl-4 col-xxl-2">
+                    <div class="table-summary-card">
 
-                    <div class="stat-card sales-card">
+                        <div class="table-summary-icon available">
 
-                        <div class="stat-icon">
-                            <i class="bi bi-currency-dollar"></i>
-                        </div>
-
-                        <div class="stat-info">
-
-                            <small>Today's Sales</small>
-
-                            <h3>$<span data-counter="3850">0</span></h3>
-
-                            <span class="trend up">
-                                <i class="bi bi-arrow-up"></i>
-                                12.8%
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- Orders -->
-
-               <div class="col-12 col-sm-6 col-lg-6 col-xl-4 col-xxl-2">
-
-                    <div class="stat-card order-card">
-
-                        <div class="stat-icon">
-                            <i class="bi bi-receipt"></i>
-                        </div>
-
-                        <div class="stat-info">
-
-                            <small>Orders</small>
-
-                            <h3><span data-counter="145">0</span></h3>
-
-                            <span class="trend up">
-                                <i class="bi bi-arrow-up"></i>
-                                8.5%
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- Customers -->
-
-               <div class="col-12 col-sm-6 col-lg-6 col-xl-4 col-xxl-2">
-
-                    <div class="stat-card customer-card">
-
-                        <div class="stat-icon">
-                            <i class="bi bi-people-fill"></i>
-                        </div>
-
-                        <div class="stat-info">
-
-                            <small>Customers</small>
-
-                            <h3><span data-counter="98">0</span></h3>
-
-                            <span class="trend up">
-                                <i class="bi bi-arrow-up"></i>
-                                15%
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- Available Tables -->
-
-               <div class="col-12 col-sm-6 col-lg-6 col-xl-4 col-xxl-2">
-
-                    <div class="stat-card table-card">
-
-                        <div class="stat-icon">
                             <i class="bi bi-grid-3x3-gap-fill"></i>
-                        </div>
-
-                        <div class="stat-info">
-
-                            <small>Available Tables</small>
-
-                            <h3><span data-counter="16">0</span></h3>
-
-                            <span class="trend down">
-                                <i class="bi bi-arrow-down"></i>
-                                2%
-                            </span>
 
                         </div>
 
-                    </div>
+                        <div>
 
-                </div>
+                            <h6>Total Tables</h6>
 
-                <!-- Kitchen -->
+                            <h3 id="totalTables">
 
-               <div class="col-12 col-sm-6 col-lg-6 col-xl-4 col-xxl-2">
+                                0
 
-                    <div class="stat-card kitchen-card">
-
-                        <div class="stat-icon">
-                            <i class="bi bi-fire"></i>
-                        </div>
-
-                        <div class="stat-info">
-
-                            <small>Kitchen Queue</small>
-
-                            <h3><span data-counter="23">0</span></h3>
-
-                            <span class="trend up">
-                                <i class="bi bi-arrow-up"></i>
-                                5%
-                            </span>
+                            </h3>
 
                         </div>
 
@@ -464,26 +387,77 @@
 
                 </div>
 
-                <!-- Expenses -->
+                <div class="col-md-3 col-sm-6">
 
-               <div class="col-12 col-sm-6 col-lg-6 col-xl-4 col-xxl-2">
+                    <div class="table-summary-card">
 
-                    <div class="stat-card expense-card">
+                        <div class="table-summary-icon occupied">
 
-                        <div class="stat-icon">
-                            <i class="bi bi-wallet2"></i>
+                            <i class="bi bi-person-fill"></i>
+
                         </div>
 
-                        <div class="stat-info">
+                        <div>
 
-                            <small>Expenses</small>
+                            <h6>Occupied</h6>
 
-                            <h3>$<span data-counter="840">0</span></h3>
+                            <h3 id="occupiedTables">
 
-                            <span class="trend down">
-                                <i class="bi bi-arrow-down"></i>
-                                6%
-                            </span>
+                                0
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+
+                    <div class="table-summary-card">
+
+                        <div class="table-summary-icon reserved">
+
+                            <i class="bi bi-bookmark-check-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h6>Reserved</h6>
+
+                            <h3 id="reservedTables">
+
+                                0
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+
+                    <div class="table-summary-card">
+
+                        <div class="table-summary-icon free">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h6>Available</h6>
+
+                            <h3 id="availableTables">
+
+                                0
+
+                            </h3>
 
                         </div>
 
@@ -493,171 +467,95 @@
 
             </div>
 
-            <!-- dashboardCharts -->
+            <!-- Filter Card -->
 
-            <div class="row mb-4">
+            <div class="card table-filter-card mb-4">
 
-                <!-- Weekly Sales -->
+                <div class="card-body">
 
-                <div class="col-lg-8 mb-4">
+                    <div class="row g-3">
 
-                    <div class="chart-card">
+                        <div class="col-lg-4">
 
-                        <div class="card-header-custom">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="tableSearch"
+                                placeholder="Search table...">
 
-                            <h5>
-                                Weekly Sales Overview
-                            </h5>
+                        </div>
 
-                            <select class="form-select w-auto" id="salesFilter">
+                        <div class="col-lg-4">
 
-                                <option value="thisWeek">This Week</option>
-                                <option value="lastWeek">Last Week</option>
-                                <option value="thisMonth">This Month</option>
+                            <select
+                                class="form-select"
+                                id="tableStatusFilter">
+
+                                <option value="All">
+
+                                    All Status
+
+                                </option>
+
+                                <option value="Available">
+
+                                    Available
+
+                                </option>
+
+                                <option value="Occupied">
+
+                                    Occupied
+
+                                </option>
+
+                                <option value="Reserved">
+
+                                    Reserved
+
+                                </option>
 
                             </select>
 
                         </div>
 
-                       <div class="chart-container">
-                            <canvas id="salesChart"></canvas>
-                        </div>
+                        <div class="col-lg-4">
 
-                    </div>
+                            <select
+                                class="form-select"
+                                id="tableCapacityFilter">
 
-                </div>
+                                <option value="All">
 
-                <!-- Revenue -->
+                                    All Capacities
 
-                <div class="col-lg-4 mb-4">
+                                </option>
 
-                    <div class="chart-card">
+                                <option value="2">
 
-                        <div class="card-header-custom">
+                                    2 Seats
 
-                            <h5>
-                                Revenue Sources
-                            </h5>
+                                </option>
 
-                        </div>
+                                <option value="4">
 
-                        <div class="chart-container">
-                            <canvas id="revenueChart"></canvas>
-                        </div>
+                                    4 Seats
 
-                    </div>
+                                </option>
 
-                </div>
+                                <option value="6">
 
-            </div>
+                                    6 Seats
 
-<!-- ================= RECENT ORDERS ================= -->
+                                </option>
 
-            <div class="row">
+                                <option value="8">
 
-                <div class="col-lg-8 mb-4">
+                                    8 Seats
 
-                    <div class="dashboard-card" id="recentOrdersSection">
+                                </option>
 
-                        <div class="dashboard-card-header">
-
-                            <h5>Recent Orders</h5>
-
-                            <button class="btn btn-sm btn-outline-danger">
-                                View All
-                            </button>
-
-                        </div>
-
-                        <div class="table-responsive">
-
-                            <table class="table align-middle">
-
-                                <thead>
-
-                                    <tr>
-
-                                        <th>Order ID</th>
-                                        <th>Customer</th>
-                                        <th>Table</th>
-                                        <th>Status</th>
-                                        <th>Total</th>
-
-                                    </tr>
-
-                                </thead>
-
-                        <tbody id="recentOrdersBody">
-
-                            <!-- rows are generated through javascript -->
-
-                        </tbody>
-
-                            </table>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-           <!-- ================= KITCHEN STATUS ================= -->
-
-            <div class="col-lg-4 mb-4">
-
-                <div class="dashboard-card">
-
-                    <div class="dashboard-card-header">
-
-                        <h5>Kitchen Status</h5>
-
-                    </div>
-
-                    <div class="kitchen-list" id="kitchenList">
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            </div>
-
-<!-- ================= RECENT ACTIVITY ================= -->
-
-            <div class="row">
-
-                <div class="col-lg-6 mb-4">
-
-                    <div class="dashboard-card">
-
-                        <div class="dashboard-card-header">
-
-                            <h5>Recent Activity</h5>
-
-                        </div>
-
-                        <div class="activity-list" id="activityList">
-
-                        </div>
-                    </div>
-
-                </div>
-
-<!-- ================= TABLE STATUS ================= -->
-
-                <div class="col-lg-6 mb-4">
-
-                    <div class="dashboard-card">
-
-                        <div class="dashboard-card-header">
-
-                            <h5>Table Status</h5>
-
-                        </div>
-
-                        <div class="row g-3" id="tableStatusGrid">
+                            </select>
 
                         </div>
 
@@ -667,7 +565,17 @@
 
             </div>
 
-        </section>
+            <!-- Tables Grid -->
+
+            <div
+                class="row g-4"
+                id="tablesGrid">
+
+                <!-- JavaScript will render tables here -->
+
+            </div>
+
+        </div>
 
         <!-- ================= FOOTER ================= -->
 
