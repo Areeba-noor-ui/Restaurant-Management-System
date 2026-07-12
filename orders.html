@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Orders | Restaurant Management System</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+
+    <link rel="stylesheet" href="assets/css/orders.css">
+
+</head>
+
+<body>
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="logo-area">
+
+            <i class="bi bi-shop"></i>
+
+            <div>
+                <h4>RMS</h4>
+                <small>Restaurant Panel</small>
+            </div>
+
+        </div>
+
+        <ul class="sidebar-menu">
+
+            <li >
+                <a href="dashboard.html">
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Restaurant Management</span>
+                </a>
+            </li>
+
+            <li >
+                <a href="pos.html">
+                    <i class="bi bi-cart-check"></i>
+                    <span>POS</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="tables.html">
+                    <i class="bi bi-grid-3x3-gap-fill"></i>
+                    <span>Table Management</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="kitchen.html">
+                    <i class="bi bi-fire"></i>
+                    <span>Kitchen Display</span>
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="orders.html">
+                    <i class="bi bi-receipt"></i>
+                    <span>Orders</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="menu.html">
+                    <i class="bi bi-menu-button-wide-fill"></i>
+                    <span>Menu</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="customers.html">
+                    <i class="bi bi-people-fill"></i>
+                    <span>Customers</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="employees.html">
+                    <i class="bi bi-person-badge-fill"></i>
+                    <span>Employees</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="inventory.html">
+                    <i class="bi bi-box-seam"></i>
+                    <span>Inventory</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="purchases.html">
+                    <i class="bi bi-bag-fill"></i>
+                    <span>Purchases</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="expenses.html">
+                    <i class="bi bi-cash-stack"></i>
+                    <span>Expenses</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="delivery.html">
+                    <i class="bi bi-truck"></i>
+                    <span>Delivery</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="reservation.html">
+                    <i class="bi bi-calendar-check"></i>
+                    <span>Reservation</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="reports.html">
+                    <i class="bi bi-bar-chart-fill"></i>
+                    <span>Reports</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="settings.html">
+                    <i class="bi bi-gear-fill"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="index.html">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <div
+    class="sidebar-overlay"
+    id="sidebarOverlay">
+    </div>
+
+    <main class="main-content">
+
+        <nav class="top-navbar">
+
+            <div class="left-nav">
+
+                <button class="menu-btn" id="menuToggle">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div>
+
+                    <h4 class="page-title mb-0">
+                        Orders Management
+                    </h4>
+
+                    <nav>
+
+                        <ol class="breadcrumb mb-0">
+
+                            <li class="breadcrumb-item">
+                                Home
+                            </li>
+
+                            <li class="breadcrumb-item active">
+                                orders
+                            </li>
+
+                        </ol>
+
+                    </nav>
+
+                </div>
+
+            </div>
+
+            <div class="right-nav">
+
+
+                <div class="dropdown">
+
+                    <div class="notification-wrapper">
+
+                        <button
+                            class="icon-btn"
+                            id="notificationBtn">
+
+                            <i class="bi bi-bell-fill"></i>
+
+                            <span class="notification-dot"></span>
+
+                        </button>
+
+                    <div
+                        class="notification-dropdown"
+                        id="notificationDropdown">
+
+                        <div class="notification-header">
+
+                            <h6>Notifications</h6>
+
+                        </div>
+
+                        <div id="notificationList"></div>
+
+                    </div>
+
+                    </div>
+
+                    <ul class="dropdown-menu dropdown-menu-end">
+
+                        <li><h6 class="dropdown-header">Notifications</h6></li>
+
+                        <li><a class="dropdown-item" href="#">New Reservation</a></li>
+
+                        <li><a class="dropdown-item" href="#">Kitchen Order Ready</a></li>
+
+                        <li><a class="dropdown-item" href="#">Inventory Updated</a></li>
+
+                    </ul>
+
+                </div>
+
+             <div class="dropdown">
+
+            <button
+            class="icon-btn"
+            id="messageBtn"
+            data-bs-toggle="dropdown">
+
+            <i class="bi bi-envelope-fill"></i>
+
+            </button>
+
+           <ul class="dropdown-menu dropdown-menu-end">
+
+                <li>
+                    <h6 class="dropdown-header">
+                        Messages
+                    </h6>
+                </li>
+
+                <li>
+                    <a class="dropdown-item" href="#">
+                        Kitchen: Order #1025 Ready
+                    </a>
+                </li>
+
+                <li>
+                    <a class="dropdown-item" href="#">
+                        New Reservation Received
+                    </a>
+                </li>
+
+            </ul>
+
+            </div>
+
+                <div class="dropdown">
+
+                <div
+                class="profile-box"
+                id="profileDropdown"
+                data-bs-toggle="dropdown">
+                <img src="https://i.pravatar.cc/45" alt="Profile">
+
+                    <div>
+
+                        <h6 class="mb-0">
+                            Admin
+                        </h6>
+
+                        <small>
+                            Restaurant Manager
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <ul class="dropdown-menu dropdown-menu-end">
+
+                <li><a class="dropdown-item" href="#">My Profile</a></li>
+
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+
+                <li><hr class="dropdown-divider"></li>
+
+                <li><a class="dropdown-item" href="index.html">Logout</a></li>
+
+                </ul>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+        <!-- Page -->
+
+        <div class="container-fluid py-4">
+
+            <div class="orders-page-header">
+
+                <h2>
+
+                    Orders
+
+                </h2>
+
+                <p>
+
+                    Manage all restaurant orders.
+
+                </p>
+
+            </div>
+
+            <!-- Summary Cards -->
+
+            <div class="row g-4 mb-4">
+
+                <div class="col-lg col-md-4 col-sm-6">
+
+                    <div class="orders-summary-card">
+
+                        <h6>Total Orders</h6>
+
+                        <h3 id="totalOrders">0</h3>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg col-md-4 col-sm-6">
+
+                    <div class="orders-summary-card">
+
+                        <h6>Pending</h6>
+
+                        <h3 id="pendingOrders">0</h3>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg col-md-4 col-sm-6">
+
+                    <div class="orders-summary-card">
+
+                        <h6>Preparing</h6>
+
+                        <h3 id="preparingOrders">0</h3>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg col-md-4 col-sm-6">
+
+                    <div class="orders-summary-card">
+
+                        <h6>Completed</h6>
+
+                        <h3 id="completedOrders">0</h3>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg col-md-4 col-sm-6">
+
+                    <div class="orders-summary-card">
+
+                        <h6>Total Revenue</h6>
+
+                        <h3 id="totalRevenue">Rs.0</h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Filters -->
+
+            <div class="orders-filter-card mb-4">
+
+                <div class="row g-3">
+
+                    <div class="col-lg-4">
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="orderSearch"
+                            placeholder="Search Order">
+
+                    </div>
+
+                    <div class="col-lg-3">
+
+                        <select
+                            class="form-select"
+                            id="statusFilter">
+
+                            <option value="All">All Status</option>
+
+                            <option>Pending</option>
+
+                            <option>Preparing</option>
+
+                            <option>Ready</option>
+
+                            <option>Served</option>
+
+                            <option>Completed</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-lg-3">
+
+                        <select
+                            class="form-select"
+                            id="paymentFilter">
+
+                            <option value="All">All Payments</option>
+
+                            <option>Cash</option>
+
+                            <option>Card</option>
+
+                            <option>Online</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-lg-2">
+
+                        <button
+                            class="btn btn-primary w-100"
+                            id="refreshOrders">
+
+                            <i class="bi bi-arrow-clockwise"></i>
+
+                            Refresh
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Orders Table -->
+
+            <div class="orders-table-card">
+
+                <div class="table-responsive">
+
+                    <table class="table align-middle">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Customer</th>
+
+                                <th>Order Type</th>
+
+                                <th>Payment</th>
+
+                                <th>Total</th>
+
+                                <th>Status</th>
+
+                                <th>Date</th>
+
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="ordersTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- View Order Modal -->
+
+    <div class="modal fade"
+         id="orderModal">
+
+        <div class="modal-dialog modal-lg">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 id="modalOrderTitle">
+
+                        Order Details
+
+                    </h5>
+
+                    <button
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row g-3 mb-3">
+
+                        <div class="col-md-6">
+
+                            <strong>Customer:</strong>
+
+                            <p id="modalCustomer"></p>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <strong>Order Type:</strong>
+
+                            <p id="modalOrderType"></p>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <strong>Payment:</strong>
+
+                            <p id="modalPayment"></p>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <strong>Date:</strong>
+
+                            <p id="modalDate"></p>
+
+                        </div>
+
+                    </div>
+
+                    <h6 class="mb-3">
+
+                        Ordered Items
+
+                    </h6>
+
+                    <div id="modalItems">
+
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <strong>Total:</strong>
+
+                            <span id="modalTotal"></span>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+
+                                Order Status
+
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="modalStatus">
+
+                                <option>Pending</option>
+
+                                <option>Preparing</option>
+
+                                <option>Ready</option>
+
+                                <option>Served</option>
+
+                                <option>Completed</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button
+                        class="btn btn-success"
+                        id="saveStatusBtn">
+
+                        Save Status
+
+                    </button>
+
+                    <button
+                        class="btn btn-danger"
+                        id="deleteOrderBtn">
+
+                        Delete Order
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/javascript/app.js"></script>
+    <script src="assets/javascript/constants.js"></script>
+    <script src="assets/javascript/database.js"></script>
+    <script src="assets/javascript/orders.js"></script>
+
+</body>
+
+</html>
