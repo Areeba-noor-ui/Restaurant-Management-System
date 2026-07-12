@@ -750,3 +750,42 @@
     }
 
 }
+
+
+/* PRINT RECEIPT*/
+
+@media print{
+
+.sidebar,
+.top-navbar,
+.dashboard-footer,
+#holdOrder,
+#saveOrder,
+#printReceipt,
+#productGrid,
+.category-list,
+.pos-filter-card{
+
+    display:none !important;
+
+}
+
+.main-content{
+
+    margin:0;
+
+    padding:0;
+
+}
+
+.pos-cart-card{
+
+    width:100%;
+
+    box-shadow:none;
+
+    border:none;
+
+}
+
+}

@@ -109,15 +109,15 @@ const POS = {
 
         this.renderCustomers();
 
-        this.renderProducts();
+        this.initializeCategorySelect();
 
         this.initializeSearch();
 
-        this.initializeCategorySelect();
+        this.loadCart();          
+
+        this.renderProducts();    
 
         this.initializeClearCart();
-
-        this.loadCart();
 
         this.initializeActionButtons();
 
@@ -146,8 +146,26 @@ const POS = {
             </button>
 
         `;
+    });
+
+        container.querySelectorAll(".category-btn").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+        document.querySelectorAll(".category-btn")
+            .forEach(btn => btn.classList.remove("active"));
+
+        button.classList.add("active");
+
+        this.currentCategory = button.dataset.category;
+
+        Helper.id("categoryFilter").value = this.currentCategory;
+
+        this.filterProducts();
 
     });
+
+});
 
     },
 
@@ -273,6 +291,13 @@ const POS = {
         `;
 
     });
+    select.addEventListener("change", () => {
+
+        this.currentCategory = select.value;
+
+        this.filterProducts();
+
+});
 
     },
 
@@ -286,16 +311,7 @@ const POS = {
 
         search.addEventListener("input", () => {
 
-            const keyword = search.value.trim().toLowerCase();
-
-            const products = POSData.products.filter(product =>
-
-                product.name.toLowerCase().includes(keyword)
-
-            );
-
-            this.renderProducts(products);
-                console.log(search.value);
+            this.filterProducts(); 
 
         });
 
@@ -325,6 +341,43 @@ const POS = {
 
 
     },
+
+    filterProducts() {
+
+    const keyword = Helper.id("productSearch")
+        .value
+        .trim()
+        .toLowerCase();
+
+    let products = [...POSData.products];
+
+    // Filter by category
+    if (this.currentCategory !== "All") {
+
+        products = products.filter(product =>
+            product.category === this.currentCategory
+        );
+
+    }
+
+    // Filter by search
+    if (keyword) {
+
+        products = products.filter(product =>
+
+            product.name.toLowerCase().includes(keyword) ||
+
+            product.description.toLowerCase().includes(keyword)
+
+        );
+
+    }
+
+    this.filteredProducts = products;
+
+    this.renderProducts();
+
+},
 
     initializeAddToCartButtons() {
 
@@ -558,15 +611,17 @@ const POS = {
 
         this.renderCart();
 
+        this.saveCart();
+
         Toast.show("Cart cleared", "warning");
 
     });
 
-    this.saveCart();
-
     },
 
     saveCart(){
+
+        console.log("Saving cart to localStorage:", this.cart);
 
     localStorage.setItem(
 
@@ -580,11 +635,15 @@ const POS = {
 
     loadCart(){
 
+        console.log("loadCart() called");
+
     const savedCart = localStorage.getItem("posCart");
 
     if(savedCart){
 
         this.cart = JSON.parse(savedCart);
+
+        console.log("Loaded cart from localStorage:", this.cart);
 
         this.renderCart();
 
