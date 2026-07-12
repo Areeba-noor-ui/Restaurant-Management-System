@@ -36,7 +36,9 @@ const CONSTANTS = {
 
         OCCUPIED: "Occupied",
 
-        RESERVED: "Reserved"
+        RESERVED: "Reserved",
+
+        CLEANING: "Cleaning"
 
     }
 

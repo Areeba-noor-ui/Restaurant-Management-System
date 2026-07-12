@@ -1,0 +1,276 @@
+"use strict";
+
+const Tables = {
+
+    tables: [],
+
+    filteredTables: [],
+
+    init() {
+
+        this.tables = Storage.get(
+
+            CONSTANTS.STORAGE_KEYS.TABLES,
+
+            Database.tables
+
+        );
+
+        this.filteredTables = [...this.tables];
+
+        this.renderTables();
+
+        this.updateSummary();
+
+        this.initializeFilters();
+
+        this.initializeRefresh();
+
+    },
+    renderTables() {
+
+    const container = Helper.id("tablesGrid");
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    if (this.filteredTables.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="col-12">
+
+                <div class="alert alert-warning">
+
+                    No tables found.
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    this.filteredTables.forEach(table => {
+
+        container.innerHTML += `
+
+        <div class="col-md-6 col-xl-4">
+
+            <div class="table-card">
+
+                <div class="table-card-top">
+
+                    <h4 class="table-number">
+
+                        ${table.name}
+
+                    </h4>
+
+                    <span class="table-status status-${table.status.toLowerCase()}">
+
+                        ${table.status}
+
+                    </span>
+
+                </div>
+
+                <div class="table-info">
+
+                    <p>
+
+                        <strong>Capacity:</strong>
+
+                        ${table.capacity}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Customer:</strong>
+
+                        ${table.customer || "None"}
+
+                    </p>
+
+                </div>
+
+                <div class="table-actions">
+
+                    <button
+                        class="btn btn-outline-primary view-table"
+                        data-id="${table.id}">
+
+                        View
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+},
+
+updateSummary() {
+
+    Helper.id("totalTables").textContent = this.tables.length;
+
+    Helper.id("occupiedTables").textContent =
+
+        this.tables.filter(
+
+            table => table.status === "Occupied"
+
+        ).length;
+
+    Helper.id("reservedTables").textContent =
+
+        this.tables.filter(
+
+            table => table.status === "Reserved"
+
+        ).length;
+
+    Helper.id("availableTables").textContent =
+
+        this.tables.filter(
+
+            table => table.status === "Available"
+
+        ).length;
+
+},
+
+initializeFilters() {
+
+    const search = Helper.id("tableSearch");
+
+    const status = Helper.id("tableStatusFilter");
+
+    const capacity = Helper.id("tableCapacityFilter");
+
+    [search, status, capacity].forEach(element => {
+
+        element.addEventListener("input", () => {
+
+            this.filterTables();
+
+        });
+
+        element.addEventListener("change", () => {
+
+            this.filterTables();
+
+        });
+
+    });
+
+},
+
+
+filterTables() {
+
+    const keyword =
+
+        Helper.id("tableSearch")
+
+        .value
+
+        .trim()
+
+        .toLowerCase();
+
+    const status =
+
+        Helper.id("tableStatusFilter").value;
+
+    const seats =
+
+        Helper.id("tableCapacityFilter").value;
+
+    this.filteredTables = this.tables.filter(table => {
+
+        const matchKeyword =
+
+            table.name.toLowerCase().includes(keyword);
+
+        const matchStatus =
+
+            status === "All" ||
+
+            table.status === status;
+
+        const matchSeats =
+
+            seats === "All" ||
+
+            table.capacity == seats;
+
+        return (
+
+            matchKeyword &&
+
+            matchStatus &&
+
+            matchSeats
+
+        );
+
+    });
+
+    this.renderTables();
+
+},
+
+
+initializeRefresh() {
+
+    const button = Helper.id("refreshTables");
+
+    if (!button) return;
+
+    button.addEventListener("click", () => {
+
+        this.tables = Storage.get(
+
+            CONSTANTS.STORAGE_KEYS.TABLES,
+
+            Database.tables
+
+        );
+
+        this.filteredTables = [...this.tables];
+
+        this.renderTables();
+
+        this.updateSummary();
+
+        Toast.show(
+
+            "Tables refreshed",
+
+            "success"
+
+        );
+
+    });
+
+},
+
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    Tables.init();
+
+});
