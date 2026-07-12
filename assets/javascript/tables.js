@@ -517,7 +517,7 @@ const Tables = {
 
         &&
 
-        table.status===CONSTANTS.TABLE_STATUS.AVAILABLE
+        table.status===CONSTANTS.TABLE_STATUS.AVAILABLE 
 
         )
 
@@ -584,38 +584,77 @@ const Tables = {
 
     splitTable(){
 
-        if(this.selectedTable.capacity<=2){
-
-            Toast.show(
-                "Cannot split this table",
-                "warning"
-            );
-
-            return;
-
-        }
-
-        this.selectedTable.capacity /=2;
-
-        Storage.save(
-
-            CONSTANTS.STORAGE_KEYS.TABLES,
-
-            this.tables
-
-        );
-
-        this.renderTables();
+    if(
+        !this.selectedTable.merged
+    ){
 
         Toast.show(
-
-            "Table split",
-
-            "success"
-
+            "This table is not merged.",
+            "warning"
         );
 
-    },
+        return;
+
+    }
+
+    const secondTable=this.tables.find(
+
+        table=>
+
+        table.id===
+
+        this.selectedTable.mergedWith
+
+    );
+
+    if(!secondTable) return;
+
+    this.selectedTable.capacity=
+
+        this.selectedTable.originalCapacity;
+
+    secondTable.capacity=
+
+        secondTable.originalCapacity;
+
+    secondTable.status=
+
+        CONSTANTS.TABLE_STATUS.AVAILABLE;
+
+    secondTable.merged=false;
+
+    secondTable.mergedWith=null;
+
+    this.selectedTable.merged=false;
+
+    this.selectedTable.mergedWith=null;
+
+    Storage.save(
+
+        CONSTANTS.STORAGE_KEYS.TABLES,
+
+        this.tables
+
+    );
+
+    this.filteredTables=[...this.tables];
+
+    this.renderTables();
+
+    this.updateSummary();
+
+    bootstrap.Modal
+    .getInstance(
+        Helper.id("tableModal")
+    )
+    .hide();
+
+    Toast.show(
+        "Tables separated",
+        "success"
+    );
+
+},
 
     initializeMergeSplitButtons(){
 
@@ -646,7 +685,7 @@ const Tables = {
 
                 table.id !== this.selectedTable.id &&
 
-                table.status === CONSTANTS.TABLE_STATUS.AVAILABLE
+                table.status===CONSTANTS.TABLE_STATUS.AVAILABLE && !table.merged
 
             )
 

@@ -29,7 +29,10 @@ tables: [
         reservation: "",
         mergedWith: [],
         orderId: null,
-        waiter: null
+        waiter: null,
+        originalCapacity: 2,
+        merged: false,
+        mergedWith: null,
     },
 
     {
@@ -42,7 +45,10 @@ tables: [
         reservation: "",
         mergedWith: [],
         orderId: null,
-        waiter: null
+        waiter: null,
+        originalCapacity: 4,
+        merged: false,
+        mergedWith: null,
     },
 
     {
@@ -55,7 +61,10 @@ tables: [
         reservation: "",
         mergedWith: [],
         orderId: null,
-        waiter: null
+        waiter: null,
+        originalCapacity: 6,
+        merged: false,
+        mergedWith: null,
     },
 
     {
@@ -68,7 +77,10 @@ tables: [
         reservation: "",
         mergedWith: [],
         orderId: null,
-        waiter: null
+        waiter: null,
+        originalCapacity: 8,
+        merged: false,
+        mergedWith: null,
     },
 
         {
@@ -81,7 +93,10 @@ tables: [
         reservation: "",
         mergedWith: [],
         orderId: null,
-        waiter: null
+        waiter: null,
+        originalCapacity: 10,
+        merged: false,
+        mergedWith: null,
     },
 
         {
@@ -94,7 +109,10 @@ tables: [
         reservation: "",
         mergedWith: [],
         orderId: null,
-        waiter: null
+        waiter: null,
+        originalCapacity: 12,
+        merged: false,
+        mergedWith: null,
     },
 
         {
@@ -107,7 +125,10 @@ tables: [
         reservation: "",
         mergedWith: [],
         orderId: null,
-        waiter: null
+        waiter: null,
+        originalCapacity: 14,
+        merged: false,
+        mergedWith: null,
     },
 
         {
@@ -120,7 +141,10 @@ tables: [
         reservation: "",
         mergedWith: [],
         orderId: null,
-        waiter: null
+        waiter: null,
+        originalCapacity: 16,
+        merged: false,
+        mergedWith: null,
     }
 
 ]
