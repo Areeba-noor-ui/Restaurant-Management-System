@@ -207,35 +207,37 @@ const Tables = {
 
     this.selectedTable.status = status;
 
+    if(status === CONSTANTS.TABLE_STATUS.AVAILABLE){
+
+        this.selectedTable.customer = null;
+        this.selectedTable.phone = "";
+        this.selectedTable.waiter = "";
+        this.selectedTable.time = "";
+    }
+
     Storage.save(
-
         CONSTANTS.STORAGE_KEYS.TABLES,
-
         this.tables
-
     );
 
-    this.filteredTables = [...this.tables];
+    this.filteredTables=[...this.tables];
 
     this.renderTables();
 
     this.updateSummary();
 
     bootstrap.Modal
-        .getInstance(
-            Helper.id("tableModal")
-        )
-        .hide();
+    .getInstance(
+        Helper.id("tableModal")
+    )
+    .hide();
 
     Toast.show(
-
         "Table updated",
-
         "success"
-
     );
 
-    },
+},
 
     updateSummary() {
 
