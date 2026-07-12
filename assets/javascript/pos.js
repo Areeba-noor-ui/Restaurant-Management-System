@@ -111,11 +111,19 @@ const POS = {
 
         this.initializeCategorySelect();
 
-        this.initializeSearch();
-
-        this.loadCart();          
+        this.initializeSearch();     
 
         this.renderProducts();    
+        
+        this.cart = Storage.get(
+
+            CONSTANTS.STORAGE_KEYS.CART,
+
+            Database.cart
+
+        );    
+
+        this.renderCart();  
 
         this.initializeClearCart();
 
@@ -422,7 +430,13 @@ const POS = {
     }
 
     this.renderCart();
-    this.saveCart();
+    Storage.save(
+
+        CONSTANTS.STORAGE_KEYS.CART,
+
+        this.cart
+
+    );
 
     },
 
@@ -563,7 +577,14 @@ const POS = {
     }
 
     this.renderCart();
-    this.saveCart();
+
+    Storage.save(
+
+        CONSTANTS.STORAGE_KEYS.CART,
+
+        this.cart
+
+    );
 
     },
 
@@ -573,7 +594,13 @@ const POS = {
 
     this.renderCart();
 
-    this.saveCart();
+    Storage.save(
+
+        CONSTANTS.STORAGE_KEYS.CART,
+
+        this.cart
+
+    );
 
     },
 
@@ -611,43 +638,17 @@ const POS = {
 
         this.renderCart();
 
-        this.saveCart();
+        Storage.save(
+
+            CONSTANTS.STORAGE_KEYS.CART,
+
+            this.cart
+
+        );
 
         Toast.show("Cart cleared", "warning");
 
     });
-
-    },
-
-    saveCart(){
-
-        console.log("Saving cart to localStorage:", this.cart);
-
-    localStorage.setItem(
-
-        "posCart",
-
-        JSON.stringify(this.cart)
-
-    );
-
-    },
-
-    loadCart(){
-
-        console.log("loadCart() called");
-
-    const savedCart = localStorage.getItem("posCart");
-
-    if(savedCart){
-
-        this.cart = JSON.parse(savedCart);
-
-        console.log("Loaded cart from localStorage:", this.cart);
-
-        this.renderCart();
-
-    }
 
     },
 
@@ -667,7 +668,13 @@ const POS = {
 
             }
 
-            this.saveCart();
+            Storage.save(
+
+                CONSTANTS.STORAGE_KEYS.CART,
+
+                this.cart
+
+            );
 
             Toast.show("Order placed on hold","info");
 
@@ -689,6 +696,47 @@ const POS = {
 
             }
 
+             const order = {
+
+                id: Date.now(),
+
+                customer: Helper.id("customerSelect").value,
+
+                orderType: Helper.id("orderType").value,
+
+                payment: Helper.id("paymentMethod").value,
+
+                items: [...this.cart],
+
+                subtotal: this.cart.reduce(
+                    (sum, item) => sum + item.price * item.quantity,
+                    0
+                ),
+
+                status: CONSTANTS.ORDER_STATUS.PENDING,
+
+                createdAt: new Date().toLocaleString()
+
+            };
+
+            const orders = Storage.get(
+
+                CONSTANTS.STORAGE_KEYS.ORDERS,
+
+                Database.orders
+
+            );
+
+            orders.push(order);
+
+            Storage.save(
+
+                CONSTANTS.STORAGE_KEYS.ORDERS,
+
+                orders
+
+            );
+
             Toast.show(
 
                 "Order saved successfully",
@@ -701,7 +749,13 @@ const POS = {
 
             this.renderCart();
 
-            this.saveCart();
+            Storage.save(
+
+                CONSTANTS.STORAGE_KEYS.CART,
+
+                this.cart
+
+            );
 
         });
 
