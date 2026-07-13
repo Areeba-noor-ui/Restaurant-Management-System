@@ -20,6 +20,8 @@ const Customers = {
 
         this.initializeRefresh();
 
+        this.initializeDeleteButton();
+
     },
 
     loadCustomers() {
@@ -241,4 +243,340 @@ const Customers = {
         });
 
     },
+
+    openCustomerModal(customerId) {
+
+        this.selectedCustomer = this.customers.find(
+
+            customer => customer.id === customerId
+
+        );
+
+        if (!this.selectedCustomer) return;
+
+        Helper.id("modalCustomerName").textContent =
+            this.selectedCustomer.name;
+
+        Helper.id("modalCustomerPhone").textContent =
+            this.selectedCustomer.phone;
+
+        Helper.id("modalCustomerType").textContent =
+            this.selectedCustomer.type;
+
+        Helper.id("modalCustomerOrders").textContent =
+            this.selectedCustomer.orders;
+
+        Helper.id("modalCustomerLastVisit").textContent =
+            this.selectedCustomer.lastVisit;
+
+        const history = Helper.id("modalOrderHistory");
+
+        history.innerHTML = "";
+
+        if (this.selectedCustomer.history.length === 0) {
+
+            history.innerHTML = `
+
+                <p class="text-muted text-center">
+
+                    No Orders Found
+
+                </p>
+
+            `;
+
+        }
+
+        else {
+
+            this.selectedCustomer.history.forEach(order => {
+
+                history.innerHTML += `
+
+                <div class="border rounded p-3 mb-3">
+
+                    <div class="d-flex justify-content-between">
+
+                        <strong>
+
+                            Order #${order.id}
+
+                        </strong>
+
+                        <span class="badge bg-primary">
+
+                            ${order.status}
+
+                        </span>
+
+                    </div>
+
+                    <div class="mt-2">
+
+                        Order Type :
+
+                        ${order.orderType}
+
+                    </div>
+
+                    <div>
+
+                        Payment :
+
+                        ${order.payment}
+
+                    </div>
+
+                    <div>
+
+                        Total :
+
+                        ${formatCurrency(order.subtotal)}
+
+                    </div>
+
+                    <div>
+
+                        ${order.createdAt}
+
+                    </div>
+
+                </div>
+
+                `;
+
+            });
+
+        }
+
+        new bootstrap.Modal(
+
+            Helper.id("customerModal")
+
+        ).show();
+
+    },
+
+
+    initializeFilters() {
+
+        const search = Helper.id("customerSearch");
+
+        const filter = Helper.id("customerTypeFilter");
+
+        if (search) {
+
+            search.addEventListener("input", () => {
+
+                this.filterCustomers();
+
+            });
+
+        }
+
+        if (filter) {
+
+            filter.addEventListener("change", () => {
+
+                this.filterCustomers();
+
+            });
+
+        }
+
+    },
+
+
+    filterCustomers() {
+
+        const keyword =
+
+            Helper.id("customerSearch")
+
+            .value
+
+            .trim()
+
+            .toLowerCase();
+
+        const type =
+
+            Helper.id("customerTypeFilter").value;
+
+        this.filteredCustomers = this.customers.filter(customer => {
+
+            const matchName =
+
+                customer.name
+
+                .toLowerCase()
+
+                .includes(keyword);
+
+            const matchPhone =
+
+                customer.phone
+
+                .toLowerCase()
+
+                .includes(keyword);
+
+            const matchType =
+
+                type === "All"
+
+                ||
+
+                customer.type === type;
+
+            return (
+
+                (matchName || matchPhone)
+
+                &&
+
+                matchType
+
+            );
+
+        });
+
+        this.renderCustomers();
+
+    },
+
+    initializeRefresh() {
+
+        const button = Helper.id("refreshCustomers");
+
+        if (!button) return;
+
+        button.addEventListener("click", () => {
+
+            this.loadCustomers();
+
+            this.renderCustomers();
+
+            this.updateSummary();
+
+            Toast.show(
+
+                "Customers refreshed",
+
+                "success"
+
+            );
+
+        });
+
+    },
+
+
+    initializeDeleteButton() {
+
+        const button = Helper.id("deleteCustomerBtn");
+
+        if (!button) return;
+
+        button.addEventListener("click", () => {
+
+            if (!this.selectedCustomer) return;
+
+            if (!confirm("Delete this customer?"))
+                return;
+
+            this.customers = this.customers.filter(
+
+                customer =>
+
+                customer.id !== this.selectedCustomer.id
+
+            );
+
+            this.filteredCustomers = [...this.customers];
+
+            this.renderCustomers();
+
+            this.updateSummary();
+
+            bootstrap.Modal
+
+                .getInstance(
+
+                    Helper.id("customerModal")
+
+                )
+
+                .hide();
+
+            Toast.show(
+
+                "Customer removed",
+
+                "success"
+
+            );
+
+        });
+
+    },
+
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    Customers.init();
+
+    Counter.animate(
+
+        Helper.id("totalCustomers"),
+
+        Customers.customers.length
+
+    );
+
+    Counter.animate(
+
+        Helper.id("walkInCustomers"),
+
+        Customers.customers.filter(
+
+            customer =>
+
+            customer.type === "Walk-in"
+
+        ).length
+
+    );
+
+    Counter.animate(
+
+        Helper.id("registeredCustomers"),
+
+        Customers.customers.filter(
+
+            customer =>
+
+            customer.type === "Registered"
+
+        ).length
+
+    );
+
+    Counter.animate(
+
+        Helper.id("customerOrders"),
+
+        Customers.customers.reduce(
+
+            (total, customer) =>
+
+            total + customer.orders,
+
+            0
+
+        )
+
+    );
+
+});
