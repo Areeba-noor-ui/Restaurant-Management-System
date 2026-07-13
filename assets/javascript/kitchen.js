@@ -68,15 +68,27 @@ const Kitchen = {
 
             container.innerHTML = `
 
-                <div class="col-12">
+            <div class="col-12">
 
-                    <div class="alert alert-warning">
+                <div class="text-center py-5">
 
-                        No Kitchen Orders Found.
+                    <i class="bi bi-check2-circle display-1 text-success"></i>
 
-                    </div>
+                    <h3 class="mt-3">
+
+                        Kitchen is Clear
+
+                    </h3>
+
+                    <p class="text-muted">
+
+                        All kitchen orders have been completed.
+
+                    </p>
 
                 </div>
+
+            </div>
 
             `;
 
@@ -251,18 +263,40 @@ const Kitchen = {
         });
 
         Helper.id("clearKitchenFilters")
+            .addEventListener("click", () => {
 
-        .addEventListener("click", () => {
+                if (!confirm("Clear all kitchen orders?"))
+                    return;
 
-            search.value = "";
+                this.orders.forEach(order => {
 
-            status.value = "All";
+                    order.status = CONSTANTS.ORDER_STATUS.SERVED;
 
-            priority.value = "All";
+                });
 
-            this.filterOrders();
+                Storage.save(
 
-        });
+                    CONSTANTS.STORAGE_KEYS.ORDERS,
+
+                    this.orders
+
+                );
+
+                this.filteredOrders = [];
+
+                this.renderOrders();
+
+                this.updateSummary();
+
+                Toast.show(
+
+                    "Kitchen queue cleared",
+
+                    "success"
+
+                );
+
+            });
 
     },
 
