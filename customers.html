@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tables Management | Restaurant Management System</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+   
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+
+    <link rel="stylesheet" href="assets/css/customers.css">
+
+</head>
+
+<body>
+
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="logo-area">
+
+            <i class="bi bi-shop"></i>
+
+            <div>
+                <h4>RMS</h4>
+                <small>Restaurant Panel</small>
+            </div>
+
+        </div>
+
+        <ul class="sidebar-menu">
+
+            <li >
+                <a href="dashboard.html">
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="pos.html">
+                    <i class="bi bi-cart-check"></i>
+                    <span>POS</span>
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="tables.html">
+                    <i class="bi bi-grid-3x3-gap-fill"></i>
+                    <span>Table Management</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="kitchen.html">
+                    <i class="bi bi-fire"></i>
+                    <span>Kitchen Display</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="orders.html">
+                    <i class="bi bi-receipt"></i>
+                    <span>Orders</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="menu.html">
+                    <i class="bi bi-menu-button-wide-fill"></i>
+                    <span>Menu</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="customers.html">
+                    <i class="bi bi-people-fill"></i>
+                    <span>Customers</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="employees.html">
+                    <i class="bi bi-person-badge-fill"></i>
+                    <span>Employees</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="inventory.html">
+                    <i class="bi bi-box-seam"></i>
+                    <span>Inventory</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="purchases.html">
+                    <i class="bi bi-bag-fill"></i>
+                    <span>Purchases</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="expenses.html">
+                    <i class="bi bi-cash-stack"></i>
+                    <span>Expenses</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="delivery.html">
+                    <i class="bi bi-truck"></i>
+                    <span>Delivery</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="reservation.html">
+                    <i class="bi bi-calendar-check"></i>
+                    <span>Reservation</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="reports.html">
+                    <i class="bi bi-bar-chart-fill"></i>
+                    <span>Reports</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="settings.html">
+                    <i class="bi bi-gear-fill"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="index.html">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <div
+    class="sidebar-overlay"
+    id="sidebarOverlay">
+    </div>
+
+
+    <main class="main-content">
+
+         <nav class="top-navbar">
+
+            <div class="left-nav">
+
+                <button class="menu-btn" id="menuToggle">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div>
+
+                    <h4 class="page-title mb-0">
+                        Manage all restaurant customers and their order history.
+                    </h4>
+
+                    <nav>
+
+                        <ol class="breadcrumb mb-0">
+
+                            <li class="breadcrumb-item">
+                                Home
+                            </li>
+
+                            <li class="breadcrumb-item active">
+                                Customers
+                            </li>
+
+                        </ol>
+
+                    </nav>
+
+                </div>
+
+            </div>
+        </nav>
+
+        <div class="container-fluid py-4">
+
+            <!-- Summary Cards -->
+
+            <div class="row g-4 mb-4">
+
+                <div class="col-xl-3 col-md-6">
+
+                    <div class="customers-summary-card total">
+
+                        <div class="customers-summary-icon">
+
+                            <i class="bi bi-people-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h6>Total Customers</h6>
+
+                            <h3 id="totalCustomers">0</h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+
+                    <div class="customers-summary-card walkin">
+
+                        <div class="customers-summary-icon">
+
+                            <i class="bi bi-person-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h6>Walk-in Customers</h6>
+
+                            <h3 id="walkInCustomers">0</h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+
+                    <div class="customers-summary-card registered">
+
+                        <div class="customers-summary-icon">
+
+                            <i class="bi bi-person-check-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h6>Registered Customers</h6>
+
+                            <h3 id="registeredCustomers">0</h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+
+                    <div class="customers-summary-card orders">
+
+                        <div class="customers-summary-icon">
+
+                            <i class="bi bi-receipt-cutoff"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h6>Total Orders</h6>
+
+                            <h3 id="customerOrders">0</h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Filters -->
+
+            <div class="customers-filter-card mb-4">
+
+                <div class="row g-3">
+
+                    <div class="col-lg-5">
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="customerSearch"
+                            placeholder="Search customer">
+
+                    </div>
+
+                    <div class="col-lg-4">
+
+                        <select
+                            class="form-select"
+                            id="customerTypeFilter">
+
+                            <option value="All">
+
+                                All Customers
+
+                            </option>
+
+                            <option value="Walk-in">
+
+                                Walk-in
+
+                            </option>
+
+                            <option value="Registered">
+
+                                Registered
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-lg-3">
+
+                        <button
+                            class="btn btn-primary w-100"
+                            id="refreshCustomers">
+
+                            <i class="bi bi-arrow-clockwise"></i>
+
+                            Refresh
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Customers Table -->
+
+            <div class="customers-table-card">
+
+                <div class="table-responsive">
+
+                    <table class="table align-middle">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Name</th>
+
+                                <th>Phone</th>
+
+                                <th>Type</th>
+
+                                <th>Total Orders</th>
+
+                                <th>Last Visit</th>
+
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="customersTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+<!-- Customer Modal -->
+
+    <div class="modal fade"
+        id="customerModal">
+
+        <div class="modal-dialog modal-lg">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5>
+
+                        Customer Details
+
+                    </h5>
+
+                    <button
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+
+                            <strong>Name</strong>
+
+                            <p id="modalCustomerName"></p>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <strong>Phone</strong>
+
+                            <p id="modalCustomerPhone"></p>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <strong>Customer Type</strong>
+
+                            <p id="modalCustomerType"></p>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <strong>Total Orders</strong>
+
+                            <p id="modalCustomerOrders"></p>
+
+                        </div>
+
+                        <div class="col-md-12">
+
+                            <strong>Last Visit</strong>
+
+                            <p id="modalCustomerVisit"></p>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <h6>
+
+                        Order History
+
+                    </h6>
+
+                    <div id="modalOrderHistory">
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button
+                        class="btn btn-danger"
+                        id="deleteCustomerBtn">
+
+                        Delete
+
+                    </button>
+
+                    
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="assets/javascript/app.js"></script>
+
+<script src="assets/javascript/constants.js"></script>
+
+<script src="assets/javascript/database.js"></script>
+
+<script src="assets/javascript/customers.js"></script>
+
+</body>
+
+</html>

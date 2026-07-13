@@ -1,0 +1,234 @@
+.customers-summary-card{
+    border-radius:18px;
+
+    color:#fff;
+
+    padding:1.5rem;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+    height:100%;
+
+}
+.customers-summary-card.total{
+
+    background:#0d6efd;
+
+}
+
+.customers-summary-card.walkin{
+
+    background:#198754;
+
+}
+
+.customers-summary-card.registered{
+
+    background:#ffc107;
+
+    color:#212529;
+
+}
+
+.customers-summary-card.orders{
+
+    background:#dc3545;
+
+}
+.customers-summary-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.customers-summary-icon{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#fff;
+
+    font-size:1.6rem;
+
+    flex-shrink:0;
+
+}
+
+.customers-summary-card h6{
+
+    margin:0;
+
+    color:#373f46;
+
+    font-size:.9rem;
+
+}
+
+.customers-summary-card h3{
+
+    margin-top:5px;
+
+    margin-bottom:0;
+
+    font-weight:700;
+
+    font-size:1.8rem;
+
+}
+
+
+.customers-filter-card{
+
+    background:#fff;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+
+
+/* TABLE */
+.customers-table-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.customers-table-card thead{
+
+    background:#dc3545;
+
+    color:#fff;
+
+}
+
+.customers-table-card thead th{
+
+    border:none;
+
+    padding:16px;
+
+}
+
+.customers-table-card tbody td{
+
+    padding:16px;
+
+    vertical-align:middle;
+
+}
+
+.customers-table-card tbody tr:hover{
+
+    background:#fff6f6;
+
+}
+
+/*  BADGES */
+
+.customers-status{
+    padding:.45rem .8rem;
+    border-radius:30px;
+    font-size:.8rem;
+    font-weight:600;
+}
+
+.customers-active{
+    background:#d1e7dd;
+    color:#198754;
+}
+
+.customers-inactive{
+    background:#f8d7da;
+    color:#dc3545;
+}
+
+
+
+/*  ACTION BUTTONS */
+
+.customers-action-btn{
+    width:36px;
+    height:36px;
+    border:none;
+    border-radius:10px;
+    margin-right:.4rem;
+    transition:.3s;
+}
+
+.customers-view{
+    background:#0d6efd;
+    color:#fff;
+}
+
+.customers-edit{
+    background:#ffc107;
+    color:#000;
+}
+
+.customers-delete{
+    background:#dc3545;
+    color:#fff;
+}
+
+.customers-action-btn:hover{
+    transform:scale(1.08);
+}
+
+
+@media(max-width:768px){
+
+    .customers-summary-card{
+        padding:1rem;
+    }
+
+    .customers-summary-icon{
+        width:55px;
+        height:55px;
+        font-size:1.2rem;
+    }
+
+    .customers-summary-card h3{
+        font-size:1.4rem;
+    }
+
+    .customers-table-card{
+        overflow-x:auto;
+    }
+
+}
+
+@media(max-width:576px){
+
+    .customers-filter-card{
+        padding:1rem;
+    }
+
+}
