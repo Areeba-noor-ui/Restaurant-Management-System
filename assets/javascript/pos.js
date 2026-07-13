@@ -86,6 +86,16 @@ const POSData = {
 
 const POS = {
 
+    id: Date.now(),
+
+    customer: Helper.id("customerName").value,
+    
+    phone: Helper.id("customerPhone").value,
+
+    orderType: Helper.id("orderType").value,
+
+    payment: Helper.id("paymentMethod").value,
+
     currentCategory: "All",
 
     filteredProducts: [],
@@ -741,6 +751,8 @@ const POS = {
             this.renderCart();
 
             Helper.id("customerName").value = "";
+
+            Helper.id("customerPhone").value = "";
 
             Storage.save(
 
