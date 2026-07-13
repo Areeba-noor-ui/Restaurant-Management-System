@@ -64,7 +64,7 @@ const Customers = {
 
                     orders: 0,
 
-                    lastVisit: order.createdAt,
+                    lastVisit: new Date(order.createdAt),
 
                     history: []
 
@@ -74,7 +74,7 @@ const Customers = {
 
             map[customerName].orders++;
 
-            map[customerName].lastVisit = order.createdAt;
+            map[customerName].lastVisit =new Date(order.createdAt);
 
             map[customerName].history.push(order);
 
@@ -152,7 +152,7 @@ const Customers = {
 
                     <td>
 
-                        ${customer.lastVisit}
+                        ${customer.lastVisit.toLocaleString()}
 
                     </td>
 
@@ -267,7 +267,7 @@ const Customers = {
             this.selectedCustomer.orders;
 
         Helper.id("modalCustomerLastVisit").textContent =
-            this.selectedCustomer.lastVisit;
+            this.selectedCustomer.lastVisit.toLocaleString();
 
         const history = Helper.id("modalOrderHistory");
 
@@ -337,7 +337,7 @@ const Customers = {
 
                     <div>
 
-                        ${order.createdAt}
+                        ${order.createdAt.toLocaleString()}
 
                     </div>
 

@@ -716,7 +716,7 @@ const POS = {
 
                 status: CONSTANTS.ORDER_STATUS.PENDING,
 
-                createdAt: new Date().toLocaleString()
+                createdAt: Date.now()
 
             };
 

@@ -82,7 +82,7 @@ const Orders = {
 
             </td>
 
-            <td>${order.createdAt}</td>
+            <td>${new Date(order.createdAt).toLocaleString()}</td>
 
             <td>
 
