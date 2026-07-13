@@ -1,0 +1,552 @@
+/*==========================================================
+                    SUMMARY CARDS
+==========================================================*/
+
+.employees-summary-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:1.5rem;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+    height:100%;
+
+}
+
+.employees-summary-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.employees-summary-icon{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#fff;
+
+    font-size:1.6rem;
+
+    flex-shrink:0;
+
+}
+
+.employees-summary-icon.total{
+
+    background:#dc3545;
+
+}
+
+.employees-summary-icon.active{
+
+    background:#198754;
+
+}
+
+.employees-summary-icon.leave{
+
+    background:#ffc107;
+
+    color:#000;
+
+}
+
+.employees-summary-icon.salary{
+
+    background:#F4A300;
+
+}
+
+.employees-summary-card h6{
+
+    margin:0;
+
+    color:#6c757d;
+
+    font-size:.9rem;
+
+}
+
+.employees-summary-card h3{
+
+    margin-top:5px;
+
+    margin-bottom:0;
+
+    font-size:1.7rem;
+
+    font-weight:700;
+
+}
+
+
+/*==========================================================
+                    FILTER CARD
+==========================================================*/
+
+.employees-filter-card{
+
+    background:#fff;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.employees-filter-card .form-control,
+
+.employees-filter-card .form-select{
+
+    min-height:46px;
+
+    border-radius:12px;
+
+}
+
+
+/*==========================================================
+                    TABLE
+==========================================================*/
+
+.employees-table-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.employees-table-card table{
+
+    margin-bottom:0;
+
+}
+
+.employees-table-card thead{
+
+    background:#dc3545;
+
+    color:#fff;
+
+}
+
+.employees-table-card thead th{
+
+    padding:16px;
+
+    border:none;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+}
+
+.employees-table-card tbody td{
+
+    padding:16px;
+
+    vertical-align:middle;
+
+}
+
+.employees-table-card tbody tr{
+
+    transition:.25s;
+
+}
+
+.employees-table-card tbody tr:hover{
+
+    background:#fff7f7;
+
+}
+
+/*==========================================================
+                    EMPLOYEE PHOTO
+==========================================================*/
+
+.employees-avatar{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid #f1f1f1;
+
+}
+
+.employees-profile{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.employees-profile .employees-avatar{
+
+    width:130px;
+
+    height:130px;
+
+    margin-bottom:15px;
+
+    border:5px solid #dc3545;
+
+}
+
+.employees-profile h4{
+
+    margin-bottom:6px;
+
+    font-weight:700;
+
+}
+
+.employees-profile p{
+
+    margin:0;
+
+    color:#6c757d;
+
+}
+
+
+/*==========================================================
+                    STATUS BADGES
+==========================================================*/
+
+.employees-status{
+
+    padding:7px 16px;
+
+    border-radius:30px;
+
+    font-size:.8rem;
+
+    font-weight:600;
+
+    display:inline-block;
+
+}
+
+.employees-active{
+
+    background:#d1f7dd;
+
+    color:#198754;
+
+}
+
+.employees-leave{
+
+    background:#fff3cd;
+
+    color:#997404;
+
+}
+
+.employees-inactive{
+
+    background:#f8d7da;
+
+    color:#dc3545;
+
+}
+
+
+/*==========================================================
+                    ACTION BUTTONS
+==========================================================*/
+
+.employees-action-btn{
+
+    width:38px;
+
+    height:38px;
+
+    border:none;
+
+    border-radius:10px;
+
+    color:#fff;
+
+    margin-right:5px;
+
+    transition:.25s;
+
+}
+
+.employees-action-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.employees-view{
+
+    background:#0d6efd;
+
+}
+
+.employees-edit{
+
+    background:#198754;
+
+}
+
+.employees-delete{
+
+    background:#dc3545;
+
+}
+
+
+/*==========================================================
+                    MODAL
+==========================================================*/
+
+.employees-modal .modal-content{
+
+    border:none;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+}
+
+.employees-modal .modal-header{
+
+    background:#dc3545;
+
+    color:#fff;
+
+}
+
+.employees-modal .btn-close{
+
+    filter:invert(1);
+
+}
+
+.employees-modal .form-label{
+
+    font-weight:600;
+
+    color:#555;
+
+}
+
+.employees-modal p{
+
+    margin-bottom:0;
+
+    color:#444;
+
+    font-weight:500;
+
+}
+
+/*==========================================================
+                    RESPONSIVE
+==========================================================*/
+
+@media (max-width:991px){
+
+    .employees-summary-card{
+
+        padding:1.2rem;
+
+    }
+
+    .employees-filter-card{
+
+        padding:18px;
+
+    }
+
+    .employees-filter-card .btn{
+
+        width:100%;
+
+    }
+
+}
+
+
+@media (max-width:768px){
+
+    .employees-summary-card{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+    .employees-summary-icon{
+
+        margin-bottom:8px;
+
+    }
+
+    .employees-table-card{
+
+        overflow-x:auto;
+
+    }
+
+    .employees-table-card table{
+
+        min-width:1100px;
+
+    }
+
+    .employees-profile .employees-avatar{
+
+        width:100px;
+
+        height:100px;
+
+    }
+
+}
+
+
+@media (max-width:576px){
+
+    .employees-filter-card{
+
+        padding:15px;
+
+    }
+
+    .employees-summary-card h3{
+
+        font-size:1.4rem;
+
+    }
+
+    .employees-summary-icon{
+
+        width:55px;
+
+        height:55px;
+
+        font-size:1.3rem;
+
+    }
+
+    .employees-modal .modal-dialog{
+
+        margin:.7rem;
+
+    }
+
+    .employees-action-btn{
+
+        width:34px;
+
+        height:34px;
+
+        margin-bottom:4px;
+
+    }
+
+}
+
+
+/*==========================================================
+                    SCROLLBAR
+==========================================================*/
+
+.employees-table-card::-webkit-scrollbar{
+
+    height:8px;
+
+}
+
+.employees-table-card::-webkit-scrollbar-thumb{
+
+    background:#dc3545;
+
+    border-radius:20px;
+
+}
+
+
+/*==========================================================
+                    BUTTONS
+==========================================================*/
+
+#refreshEmployees,
+
+#addEmployeeBtn{
+
+    min-height:46px;
+
+    font-weight:600;
+
+}
+
+
+/*==========================================================
+                    IMAGE
+==========================================================*/
+
+#viewEmployeeImage{
+
+    background:#f8f9fa;
+
+}
+
+
+/*==========================================================
+                    TABLE ALIGNMENT
+==========================================================*/
+
+.employees-table-card td{
+
+    white-space:nowrap;
+
+}
+
+.employees-table-card td:last-child{
+
+    min-width:140px;
+
+}
