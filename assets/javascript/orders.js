@@ -108,34 +108,84 @@ const Orders = {
 
     updateSummary() {
 
-        Helper.id("totalOrders").textContent =
-            this.orders.length;
+        const total = this.orders.length;
 
-        Helper.id("pendingOrders").textContent =
-            this.orders.filter(order =>
-                order.status === CONSTANTS.ORDER_STATUS.PENDING
-            ).length;
+        const pending = this.orders.filter(
+            order => order.status === CONSTANTS.ORDER_STATUS.PENDING
+        ).length;
 
-        Helper.id("preparingOrders").textContent =
-            this.orders.filter(order =>
-                order.status === CONSTANTS.ORDER_STATUS.PREPARING
-            ).length;
+        const preparing = this.orders.filter(
+            order => order.status === CONSTANTS.ORDER_STATUS.PREPARING
+        ).length;
 
-        Helper.id("completedOrders").textContent =
-            this.orders.filter(order =>
-                order.status === CONSTANTS.ORDER_STATUS.COMPLETED
-            ).length;
+        const completed = this.orders.filter(
+            order => order.status === CONSTANTS.ORDER_STATUS.COMPLETED
+        ).length;
 
         const revenue = this.orders.reduce(
-
             (sum, order) => sum + order.subtotal,
-
             0
-
         );
 
-        Helper.id("totalRevenue").textContent =
-            formatCurrency(revenue);
+        Counter.animate(
+            Helper.id("totalOrders"),
+            total
+        );
+
+        Counter.animate(
+            Helper.id("pendingOrders"),
+            pending
+        );
+
+        Counter.animate(
+            Helper.id("preparingOrders"),
+            preparing
+        );
+
+        Counter.animate(
+            Helper.id("completedOrders"),
+            completed
+        );
+
+        Counter.animate(
+            Helper.id("totalRevenue"),
+            revenue
+        );
+        
+        this.animateRevenue(revenue);
+
+    },
+
+
+    animateRevenue(endValue, duration = 1500) {
+
+        const element = Helper.id("totalRevenue");
+
+        let startValue = 0;
+
+        const increment = endValue / (duration / 16);
+
+        function update() {
+
+            startValue += increment;
+
+            if (startValue >= endValue) {
+
+                element.textContent =
+                    formatCurrency(endValue);
+
+                return;
+
+            }
+
+            element.textContent =
+                formatCurrency(Math.floor(startValue));
+
+            requestAnimationFrame(update);
+
+        }
+
+        update();
 
     },
 
