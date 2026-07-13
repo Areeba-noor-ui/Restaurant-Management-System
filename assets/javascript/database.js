@@ -73,7 +73,7 @@ const Database = {
         price: 1450,
         preparation: 20,
         status: "Available",
-        image: "https://images.unsplash.com/photo-1548365328-9f547fb0953b?w=600",
+       image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&auto=format&fit=crop",
         description: "Traditional tikka flavor with extra cheese."
     },
 
@@ -248,7 +248,7 @@ const Database = {
         price: 250,
         preparation: 5,
         status: "Available",
-        image: "https://images.unsplash.com/photo-1551024709-8f23befc6cf7?w=600",
+        image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=600&auto=format&fit=crop",
         description: "Refreshing mint margarita."
     },
 
