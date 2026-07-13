@@ -102,6 +102,8 @@ const POS = {
 
     cart: [],
 
+    priority: Helper.id("priority").value,
+
     init() {
 
         this.filteredProducts = [...POSData.products];
