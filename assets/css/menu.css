@@ -1,0 +1,887 @@
+/* ==========================================================
+                        SUMMARY CARDS
+==========================================================*/
+
+.menu-summary-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:22px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+    height:100%;
+
+    border-left:5px solid transparent;
+
+}
+
+.menu-summary-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+}
+
+.menu-summary-icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#fff;
+
+    font-size:1.8rem;
+
+    flex-shrink:0;
+
+}
+
+
+/* Total */
+
+.menu-summary-icon.total{
+
+    background:linear-gradient(135deg,#dc3545,#ff6b6b);
+
+}
+
+.menu-summary-card:has(.total){
+
+    border-left-color:#dc3545;
+
+}
+
+
+/* Category */
+
+.menu-summary-icon.category{
+
+    background:linear-gradient(135deg,#0d6efd,#4ea5ff);
+
+}
+
+.menu-summary-card:has(.category){
+
+    border-left-color:#0d6efd;
+
+}
+
+
+/* Available */
+
+.menu-summary-icon.available{
+
+    background:linear-gradient(135deg,#198754,#4fd08a);
+
+}
+
+.menu-summary-card:has(.available){
+
+    border-left-color:#198754;
+
+}
+
+
+/* Out of Stock */
+
+.menu-summary-icon.stock{
+
+    background:linear-gradient(135deg,#fd7e14,#ffb347);
+
+}
+
+.menu-summary-card:has(.stock){
+
+    border-left-color:#fd7e14;
+
+}
+
+
+/* Average Price */
+
+.menu-summary-icon.price{
+
+    background:linear-gradient(135deg,#6f42c1,#9f75ff);
+
+}
+
+.menu-summary-card:has(.price){
+
+    border-left-color:#6f42c1;
+
+}
+
+
+.menu-summary-card h6{
+
+    margin:0;
+
+    font-size:.9rem;
+
+    color:#6c757d;
+
+    font-weight:500;
+
+}
+
+.menu-summary-card h3{
+
+    margin-top:6px;
+
+    margin-bottom:0;
+
+    font-size:1.9rem;
+
+    font-weight:700;
+
+    color:#212529;
+
+}
+
+
+/* ==========================================================
+                    FILTER CARD
+==========================================================*/
+
+.menu-filter-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
+
+}
+
+
+.menu-filter-card .form-control,
+
+.menu-filter-card .form-select{
+
+    min-height:48px;
+
+    border-radius:12px;
+
+    border:1px solid #dee2e6;
+
+    transition:.25s;
+
+}
+
+
+.menu-filter-card .form-control:focus,
+
+.menu-filter-card .form-select:focus{
+
+    border-color:#dc3545;
+
+    box-shadow:0 0 0 .18rem rgba(220,53,69,.15);
+
+}
+
+
+#refreshMenu{
+
+    height:48px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+}
+
+
+#addMenuBtn{
+
+    height:48px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+#addMenuBtn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================================
+                        MENU TABLE
+==========================================================*/
+
+.menu-table-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 28px rgba(0,0,0,.08);
+
+}
+
+.menu-table-card .table{
+
+    margin:0;
+
+}
+
+.menu-table-card thead{
+
+    background:linear-gradient(90deg,#dc3545,#b52a38);
+
+}
+
+.menu-table-card thead th{
+
+    color:#fff;
+
+    border:none;
+
+    padding:18px;
+
+    font-size:.92rem;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+    letter-spacing:.3px;
+
+}
+
+.menu-table-card tbody td{
+
+    padding:18px 16px;
+
+    vertical-align:middle;
+
+    border-color:#f2f2f2;
+
+}
+
+.menu-table-card tbody tr{
+
+    transition:.25s;
+
+}
+
+.menu-table-card tbody tr:nth-child(even){
+
+    background:#fcfcfc;
+
+}
+
+.menu-table-card tbody tr:hover{
+
+    background:#fff4f4;
+
+}
+
+
+/* ==========================================================
+                        FOOD IMAGE
+==========================================================*/
+
+.menu-food-image{
+
+    width:72px;
+
+    height:72px;
+
+    object-fit:cover;
+
+    border-radius:14px;
+
+    border:2px solid #f1f1f1;
+
+    transition:.3s;
+
+}
+
+.menu-food-image:hover{
+
+    transform:scale(1.08);
+
+    border-color:#dc3545;
+
+}
+
+
+/* ==========================================================
+                        ITEM NAME
+==========================================================*/
+
+.menu-item-name{
+
+    font-weight:700;
+
+    color:#212529;
+
+    margin-bottom:4px;
+
+}
+
+.menu-item-description{
+
+    font-size:.82rem;
+
+    color:#6c757d;
+
+}
+
+
+/* ==========================================================
+                        CATEGORY BADGE
+==========================================================*/
+
+.menu-category{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:7px 14px;
+
+    border-radius:30px;
+
+    background:#fff3cd;
+
+    color:#856404;
+
+    font-size:.8rem;
+
+    font-weight:600;
+
+}
+
+
+/* ==========================================================
+                        PRICE
+==========================================================*/
+
+.menu-price{
+
+    font-size:1rem;
+
+    font-weight:700;
+
+    color:#dc3545;
+
+}
+
+
+/* ==========================================================
+                    PREPARATION TIME
+==========================================================*/
+
+.menu-time{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-weight:600;
+
+    color:#6c757d;
+
+}
+
+.menu-time i{
+
+    color:#F4A300;
+
+}
+
+
+/* ==========================================================
+                    STATUS BADGES
+==========================================================*/
+
+.menu-status{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:7px 16px;
+
+    border-radius:30px;
+
+    font-size:.8rem;
+
+    font-weight:600;
+
+}
+
+.menu-available{
+
+    background:#d1f4df;
+
+    color:#198754;
+
+}
+
+.menu-stock{
+
+    background:#fde2e4;
+
+    color:#dc3545;
+
+}
+
+
+/* ==========================================================
+                    ACTION BUTTONS
+==========================================================*/
+
+.menu-action-btn{
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:12px;
+
+    color:#fff;
+
+    margin-right:6px;
+
+    transition:.3s;
+
+}
+
+.menu-action-btn:last-child{
+
+    margin-right:0;
+
+}
+
+.menu-view{
+
+    background:#0d6efd;
+
+}
+
+.menu-edit{
+
+    background:#ffc107;
+
+    color:#000;
+
+}
+
+.menu-delete{
+
+    background:#dc3545;
+
+}
+
+.menu-action-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 8px 18px rgba(0,0,0,.18);
+
+}
+
+
+/* ==========================================================
+                    EMPTY TABLE
+==========================================================*/
+
+.menu-empty{
+
+    text-align:center;
+
+    padding:60px 20px;
+
+}
+
+.menu-empty i{
+
+    font-size:4rem;
+
+    color:#ced4da;
+
+}
+
+.menu-empty h4{
+
+    margin-top:15px;
+
+    font-weight:700;
+
+    color:#495057;
+
+}
+
+.menu-empty p{
+
+    color:#6c757d;
+
+}
+
+/* ==========================================================
+                    VIEW MODAL
+==========================================================*/
+
+#viewMenuModal .modal-content,
+#menuModal .modal-content{
+
+    border:none;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+
+}
+
+#viewMenuModal .modal-header,
+#menuModal .modal-header{
+
+    background:linear-gradient(90deg,#dc3545,#b52a38);
+
+    color:#fff;
+
+    border:none;
+
+    padding:18px 24px;
+
+}
+
+#viewMenuModal .modal-header h5,
+#menuModal .modal-header h5{
+
+    font-weight:600;
+
+}
+
+#viewMenuModal .btn-close,
+#menuModal .btn-close{
+
+    filter:invert(1);
+
+}
+
+
+/* ==========================================================
+                    VIEW IMAGE
+==========================================================*/
+
+#viewMenuImage{
+
+    width:100%;
+
+    height:320px;
+
+    object-fit:cover;
+
+    border-radius:16px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+}
+
+#viewMenuName{
+
+    font-size:1.7rem;
+
+    font-weight:700;
+
+    color:#212529;
+
+}
+
+#viewMenuCategory,
+#viewMenuPrice,
+#viewPreparationTime,
+#viewMenuStatus,
+#viewMenuDescription{
+
+    color:#6c757d;
+
+    font-size:.95rem;
+
+    line-height:1.8;
+
+}
+
+
+/* ==========================================================
+                ADD / EDIT MODAL
+==========================================================*/
+
+#menuModal .form-label{
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+    color:#495057;
+
+}
+
+#menuModal .form-control,
+#menuModal .form-select{
+
+    min-height:48px;
+
+    border-radius:12px;
+
+    border:1px solid #dee2e6;
+
+    transition:.25s;
+
+}
+
+#menuModal .form-control:focus,
+#menuModal .form-select:focus{
+
+    border-color:#dc3545;
+
+    box-shadow:0 0 0 .18rem rgba(220,53,69,.15);
+
+}
+
+#menuDescription{
+
+    min-height:120px;
+
+    resize:none;
+
+}
+
+
+/* ==========================================================
+                IMAGE PREVIEW
+==========================================================*/
+
+#menuPreviewImage{
+
+    width:100%;
+
+    height:260px;
+
+    object-fit:cover;
+
+    border-radius:15px;
+
+    border:2px dashed #dee2e6;
+
+    transition:.3s;
+
+}
+
+#menuPreviewImage:hover{
+
+    border-color:#dc3545;
+
+}
+
+
+/* ==========================================================
+                    MODAL BUTTONS
+==========================================================*/
+
+#saveMenuBtn{
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    padding:10px 26px;
+
+}
+
+.modal-footer .btn{
+
+    border-radius:12px;
+
+    padding:10px 24px;
+
+}
+
+
+/* ==========================================================
+                    TABLE SCROLLBAR
+==========================================================*/
+
+.table-responsive{
+
+    overflow-x:auto;
+
+}
+
+.table-responsive::-webkit-scrollbar{
+
+    height:8px;
+
+}
+
+.table-responsive::-webkit-scrollbar-thumb{
+
+    background:#dc3545;
+
+    border-radius:30px;
+
+}
+
+
+/* ==========================================================
+                    RESPONSIVE
+==========================================================*/
+
+@media(max-width:992px){
+
+    .menu-summary-card{
+
+        padding:18px;
+
+    }
+
+    .menu-summary-icon{
+
+        width:60px;
+
+        height:60px;
+
+        font-size:1.5rem;
+
+    }
+
+}
+
+
+@media(max-width:768px){
+
+    .menu-filter-card{
+
+        padding:18px;
+
+    }
+
+    .menu-summary-card h3{
+
+        font-size:1.5rem;
+
+    }
+
+    #viewMenuImage{
+
+        height:240px;
+
+        margin-bottom:20px;
+
+    }
+
+    #menuPreviewImage{
+
+        height:220px;
+
+    }
+
+}
+
+
+@media(max-width:576px){
+
+    .menu-summary-card{
+
+        padding:16px;
+
+    }
+
+    .menu-summary-icon{
+
+        width:55px;
+
+        height:55px;
+
+        font-size:1.3rem;
+
+    }
+
+    .menu-summary-card h3{
+
+        font-size:1.3rem;
+
+    }
+
+    .menu-table-card thead th{
+
+        font-size:.82rem;
+
+    }
+
+    .menu-table-card tbody td{
+
+        font-size:.84rem;
+
+        padding:14px 10px;
+
+    }
+
+    .menu-food-image{
+
+        width:55px;
+
+        height:55px;
+
+    }
+
+    .menu-action-btn{
+
+        width:34px;
+
+        height:34px;
+
+        margin-bottom:4px;
+
+    }
+
+    #viewMenuImage{
+
+        height:200px;
+
+    }
+
+}

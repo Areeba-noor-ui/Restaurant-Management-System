@@ -187,38 +187,6 @@
 
         <div class="container-fluid py-4">
 
-            <!-- Page Header -->
-
-            <div class="menu-page-header">
-
-                <div>
-
-                    <h2>
-
-                        Menu Management
-
-                    </h2>
-
-                    <p>
-
-                        Manage food items, prices and availability.
-
-                    </p>
-
-                </div>
-
-                <button
-                    class="btn btn-danger"
-                    id="addMenuBtn">
-
-                    <i class="bi bi-plus-circle-fill"></i>
-
-                    Add New Item
-
-                </button>
-
-            </div>
-
             <!-- Summary Cards -->
 
             <div class="row g-4 mb-4">
@@ -377,97 +345,65 @@
 
             <!-- Filters -->
 
-            <div class="menu-filter-card mb-4">
+            <div class="row g-3 align-items-center">
 
-                <div class="row g-3">
+                <div class="col-lg-3">
 
-                    <div class="col-lg-4">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="menuSearch"
+                        placeholder="Search food item...">
 
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="menuSearch"
-                            placeholder="Search food item...">
+                </div>
 
-                    </div>
+                <div class="col-lg-2">
 
-                    <div class="col-lg-3">
+                    <select
+                        class="form-select"
+                        id="categoryFilter">
 
-                        <select
-                            class="form-select"
-                            id="categoryFilter">
+                        ...
+                    </select>
 
-                            <option value="All">
+                </div>
 
-                                All Categories
+                <div class="col-lg-2">
 
-                            </option>
+                    <select
+                        class="form-select"
+                        id="availabilityFilter">
 
-                            <option>Burger</option>
+                        ...
+                    </select>
 
-                            <option>Pizza</option>
+                </div>
 
-                            <option>BBQ</option>
+                <div class="col-lg-2">
 
-                            <option>Fast Food</option>
+                    <button
+                        class="btn btn-primary w-100"
+                        id="refreshMenu">
 
-                            <option>Chinese</option>
+                        <i class="bi bi-arrow-clockwise"></i>
 
-                            <option>Rice</option>
+                        Refresh
 
-                            <option>Drinks</option>
+                    </button>
 
-                            <option>Desserts</option>
+                </div>
 
-                            <option>Salads</option>
+                <div class="col-lg-3">
 
-                            <option>Hot Drinks</option>
+                    <button
+                        class="btn btn-danger w-100"
+                        id="addMenuBtn">
 
-                        </select>
+                        <i class="bi bi-plus-circle-fill"></i>
 
-                    </div>
+                        Add New Item
 
-                    <div class="col-lg-3">
-
-                        <select
-                            class="form-select"
-                            id="availabilityFilter">
-
-                            <option value="All">
-
-                                All Status
-
-                            </option>
-
-                            <option>
-
-                                Available
-
-                            </option>
-
-                            <option>
-
-                                Out of Stock
-
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                    <div class="col-lg-2">
-
-                        <button
-                            class="btn btn-primary w-100"
-                            id="refreshMenu">
-
-                            <i class="bi bi-arrow-clockwise"></i>
-
-                            Refresh
-
-                        </button>
-
-                    </div>
+                    </button>
 
                 </div>
 
@@ -883,7 +819,7 @@
 
     <script src="assets/javascript/database.js"></script>
 
-    <script src="assets/javascript/menue.js"></script>
+    <script src="assets/javascript/menu.js"></script>
 
 </body>
 
