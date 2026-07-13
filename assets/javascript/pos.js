@@ -20,15 +20,6 @@ const POSData = {
 
     ],
 
-    customers: [
-
-        "Walk-in Customer",
-        "Areeba Noor",
-        "Ali Ahmed",
-        "Sarah Khan",
-        "John Smith"
-
-    ],
 
     products: [
 
@@ -700,7 +691,7 @@ const POS = {
 
                 id: Date.now(),
 
-                customer: Helper.id("customerSelect").value,
+                customer: Helper.id("customerName").value.trim() || "Walk-in Customer",
 
                 orderType: Helper.id("orderType").value,
 
@@ -739,7 +730,7 @@ const POS = {
 
             Toast.show(
 
-                "Order saved successfully",
+                `${ Helper.id("customerName").value || "Walk-in Customer"}'s  Order saved successfully`,
 
                 "success"
 
@@ -748,6 +739,8 @@ const POS = {
             this.cart=[];
 
             this.renderCart();
+
+            Helper.id("customerName").value = "";
 
             Storage.save(
 
