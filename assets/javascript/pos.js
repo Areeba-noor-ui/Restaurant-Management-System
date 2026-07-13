@@ -9,75 +9,6 @@ function formatCurrency(amount){
 
 const POSData = {
 
-    categories: [
-
-        "All",
-        "Burger",
-        "Pizza",
-        "Chicken",
-        "Drinks",
-        "Dessert"
-
-    ],
-
-
-    products: [
-
-        {
-            id: 1,
-            name: "Zinger Burger",
-            category: "Burger",
-            price: 850,
-            image: "assets/images/zingerBurger.jpg",
-            description: "Crispy chicken burger"
-        },
-
-        {
-            id: 2,
-            name: "Cheese Burger",
-            category: "Burger",
-            price: 950,
-            image: "assets/images/cheeseBurger.jpg",
-            description: "Double cheese burger"
-        },
-
-        {
-            id: 3,
-            name: "Chicken Pizza",
-            category: "Pizza",
-            price: 1500,
-            image: "assets/images/chickenPizza.jpg",
-            description: "Large pizza"
-        },
-
-        {
-            id: 4,
-            name: "French Fries",
-            category: "Chicken",
-            price: 400,
-            image: "assets/images/frenchFries.jpg",
-            description: "Crispy fries"
-        },
-
-        {
-            id: 5,
-            name: "Cold Drink",
-            category: "Drinks",
-            price: 200,
-            image: "assets/images/coldDrinks.jpg",
-            description: "Soft drink"
-        },
-
-        {
-            id: 6,
-            name: "Chocolate Cake",
-            category: "Dessert",
-            price: 650,
-            image: "assets/images/choclateCake.jpg",
-            description: "Chocolate dessert"
-        }
-
-    ]
 
 };
 
@@ -106,7 +37,12 @@ const POS = {
 
     init() {
 
-        this.filteredProducts = [...POSData.products];
+        this.products = Storage.get(
+            CONSTANTS.STORAGE_KEYS.MENU,
+            Database.menu
+        );
+
+        this.filteredProducts = [...this.products];
 
         this.renderCategories();
 
@@ -142,7 +78,19 @@ const POS = {
 
     container.innerHTML = "";
 
-    POSData.categories.forEach(category => {
+    const categories = [
+
+        "All",
+
+        ...new Set(
+
+            this.products.map(item => item.category)
+
+        )
+
+    ];
+
+    categories.forEach(category => {
 
         container.innerHTML += `
 
@@ -189,7 +137,12 @@ const POS = {
 
     select.innerHTML = "";
 
-    POSData.customers.forEach(customer => {
+    const customers = Storage.get(
+        CONSTANTS.STORAGE_KEYS.CUSTOMERS,
+        Database.customers
+    );
+
+    customers.forEach(customer => {
 
         select.innerHTML += `
 
@@ -289,7 +242,19 @@ const POS = {
 
     if (!select) return;
 
-    POSData.categories.forEach(category => {
+    const categories = [
+
+        "All",
+
+        ...new Set(
+
+            this.products.map(item => item.category)
+
+        )
+
+    ];
+
+    categories.forEach(category => {
 
         select.innerHTML += `
 
@@ -360,7 +325,7 @@ const POS = {
         .trim()
         .toLowerCase();
 
-    let products = [...POSData.products];
+    let products = [...this.products];
 
     // Filter by category
     if (this.currentCategory !== "All") {
@@ -410,7 +375,7 @@ const POS = {
 
     addToCart(productId) {
 
-    const product = POSData.products.find(item => item.id === productId);
+    const product = this.products.find(item => item.id === productId);
 
     if (!product) return;
 
