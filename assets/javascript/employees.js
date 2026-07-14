@@ -81,6 +81,8 @@ this.filteredEmployees = [...this.employees];
 
         }
 
+        
+
         this.filteredEmployees.forEach(employee => {
 
             tbody.innerHTML += `
@@ -91,7 +93,7 @@ this.filteredEmployees = [...this.employees];
 
                         <img
 
-                            src="${employee.image}"
+                            src="${employee.image || "https://placehold.co/300x300?text=Employee"}"
 
                             class="employees-avatar"
 
@@ -111,11 +113,13 @@ this.filteredEmployees = [...this.employees];
 
                     <td>${employee.shift}</td>
 
-                    <td>Rs. ${employee.salary.toLocaleString()}</td>
+                    <td>
+                        Rs. ${(Number(employee.salary) || 0).toLocaleString()}
+                    </td>
 
                     <td>
 
-                        <span class="employees-status employees-${employee.status.toLowerCase().replace(/\s/g,"-")}">
+                        <span class="employees-status employees-${(employee.status || "Unknown").toLowerCase().replace(/\s/g,"-")}">
 
                             ${employee.status}
 
@@ -180,7 +184,7 @@ this.filteredEmployees = [...this.employees];
 
         const totalSalary = this.employees.reduce(
 
-            (sum, employee) => sum + employee.salary,
+            (sum, employee) => sum + (Number(employee.salary) || 0),
 
             0
 

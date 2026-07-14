@@ -12,7 +12,11 @@ const CONSTANTS = {
 
         TABLES: "restaurantTables",
 
-        CUSTOMERS: "restaurantCustomers"
+        CUSTOMERS: "restaurantCustomers",
+
+        MENU: "restaurantMenu",
+
+        EMPLOYEES: "restaurantEmployees"
 
     },
 
