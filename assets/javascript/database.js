@@ -840,6 +840,7 @@ const Database = {
     }
 
 ],
+
     purchases: [
 
     {
@@ -1000,6 +1001,210 @@ const Database = {
         status: "Completed",
         date: "2026-07-11",
         updated: "11 Jul 2026"
+    }
+
+],
+
+    expenses: [
+
+    {
+        id: 1,
+
+        receipt: "EXP-1001",
+
+        category: "Electricity",
+
+        title: "June Electricity Bill",
+
+        amount: 42000,
+
+        date: "2026-07-02",
+
+        payment: "Paid",
+
+        status: "Completed",
+
+        notes: "Monthly electricity charges for restaurant."
+    },
+
+    {
+        id: 2,
+
+        receipt: "EXP-1002",
+
+        category: "Water",
+
+        title: "Water Supply Charges",
+
+        amount: 8500,
+
+        date: "2026-07-04",
+
+        payment: "Paid",
+
+        status: "Completed",
+
+        notes: "Monthly water bill."
+    },
+
+    {
+        id: 3,
+
+        receipt: "EXP-1003",
+
+        category: "Gas",
+
+        title: "Kitchen Gas Refill",
+
+        amount: 18000,
+
+        date: "2026-07-06",
+
+        payment: "Pending",
+
+        status: "Pending",
+
+        notes: "Commercial gas cylinders."
+    },
+
+    {
+        id: 4,
+
+        receipt: "EXP-1004",
+
+        category: "Internet",
+
+        title: "PTCL Internet Bill",
+
+        amount: 6200,
+
+        date: "2026-07-08",
+
+        payment: "Paid",
+
+        status: "Completed",
+
+        notes: "Business internet connection."
+    },
+
+    {
+        id: 5,
+
+        receipt: "EXP-1005",
+
+        category: "Salary",
+
+        title: "Kitchen Staff Salaries",
+
+        amount: 165000,
+
+        date: "2026-07-10",
+
+        payment: "Paid",
+
+        status: "Completed",
+
+        notes: "Monthly salaries."
+    },
+
+    {
+        id: 6,
+
+        receipt: "EXP-1006",
+
+        category: "Cleaning",
+
+        title: "Cleaning Supplies",
+
+        amount: 9500,
+
+        date: "2026-07-12",
+
+        payment: "Pending",
+
+        status: "Pending",
+
+        notes: "Detergents and sanitizers."
+    },
+
+    {
+        id: 7,
+
+        receipt: "EXP-1007",
+
+        category: "Maintenance",
+
+        title: "AC Maintenance",
+
+        amount: 27000,
+
+        date: "2026-07-15",
+
+        payment: "Paid",
+
+        status: "Completed",
+
+        notes: "Restaurant AC servicing."
+    },
+
+    {
+        id: 8,
+
+        receipt: "EXP-1008",
+
+        category: "Marketing",
+
+        title: "Facebook Advertisement",
+
+        amount: 15000,
+
+        date: "2026-07-18",
+
+        payment: "Paid",
+
+        status: "Completed",
+
+        notes: "Weekend promotional campaign."
+    },
+
+    {
+        id: 9,
+
+        receipt: "EXP-1009",
+
+        category: "Rent",
+
+        title: "Restaurant Rent",
+
+        amount: 250000,
+
+        date: "2026-07-01",
+
+        payment: "Paid",
+
+        status: "Completed",
+
+        notes: "Monthly shop rent."
+    },
+
+    {
+        id: 10,
+
+        receipt: "EXP-1010",
+
+        category: "Miscellaneous",
+
+        title: "Office Stationery",
+
+        amount: 4300,
+
+        date: "2026-07-20",
+
+        payment: "Pending",
+
+        status: "Pending",
+
+        notes: "Pens, files and registers."
     }
 
 ],
