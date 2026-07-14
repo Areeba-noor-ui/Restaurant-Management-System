@@ -840,4 +840,167 @@ const Database = {
     }
 
 ],
+    purchases: [
+
+    {
+        id: 1001,
+        invoice: "INV-1001",
+        supplier: "Fresh Farm Suppliers",
+        item: "Chicken Breast",
+        category: "Meat",
+        quantity: 50,
+        unit: "Kg",
+        unitPrice: 620,
+        total: 31000,
+        payment: "Paid",
+        status: "Completed",
+        date: "2026-07-02",
+        updated: "2 Jul 2026"
+    },
+
+    {
+        id: 1002,
+        invoice: "INV-1002",
+        supplier: "Green Valley Farms",
+        item: "Fresh Tomatoes",
+        category: "Vegetables",
+        quantity: 80,
+        unit: "Kg",
+        unitPrice: 140,
+        total: 11200,
+        payment: "Paid",
+        status: "Completed",
+        date: "2026-07-03",
+        updated: "3 Jul 2026"
+    },
+
+    {
+        id: 1003,
+        invoice: "INV-1003",
+        supplier: "Dairy Best",
+        item: "Mozzarella Cheese",
+        category: "Dairy",
+        quantity: 35,
+        unit: "Kg",
+        unitPrice: 980,
+        total: 34300,
+        payment: "Partial",
+        status: "Pending",
+        date: "2026-07-04",
+        updated: "4 Jul 2026"
+    },
+
+    {
+        id: 1004,
+        invoice: "INV-1004",
+        supplier: "Spice World",
+        item: "Mixed Spices",
+        category: "Spices",
+        quantity: 25,
+        unit: "Kg",
+        unitPrice: 540,
+        total: 13500,
+        payment: "Paid",
+        status: "Completed",
+        date: "2026-07-05",
+        updated: "5 Jul 2026"
+    },
+
+    {
+        id: 1005,
+        invoice: "INV-1005",
+        supplier: "Cool Drinks Ltd",
+        item: "Soft Drinks",
+        category: "Beverages",
+        quantity: 120,
+        unit: "Bottle",
+        unitPrice: 95,
+        total: 11400,
+        payment: "Pending",
+        status: "Pending",
+        date: "2026-07-06",
+        updated: "6 Jul 2026"
+    },
+
+    {
+        id: 1006,
+        invoice: "INV-1006",
+        supplier: "Prime Bakery",
+        item: "Burger Buns",
+        category: "Bakery",
+        quantity: 300,
+        unit: "Piece",
+        unitPrice: 28,
+        total: 8400,
+        payment: "Paid",
+        status: "Completed",
+        date: "2026-07-07",
+        updated: "7 Jul 2026"
+    },
+
+    {
+        id: 1007,
+        invoice: "INV-1007",
+        supplier: "Frozen Foods Co.",
+        item: "French Fries",
+        category: "Frozen",
+        quantity: 40,
+        unit: "Kg",
+        unitPrice: 430,
+        total: 17200,
+        payment: "Partial",
+        status: "Pending",
+        date: "2026-07-08",
+        updated: "8 Jul 2026"
+    },
+
+    {
+        id: 1008,
+        invoice: "INV-1008",
+        supplier: "Food Packaging Hub",
+        item: "Takeaway Boxes",
+        category: "Packaging",
+        quantity: 600,
+        unit: "Piece",
+        unitPrice: 18,
+        total: 10800,
+        payment: "Paid",
+        status: "Completed",
+        date: "2026-07-09",
+        updated: "9 Jul 2026"
+    },
+
+    {
+        id: 1009,
+        invoice: "INV-1009",
+        supplier: "Sea Fresh Traders",
+        item: "Fish Fillet",
+        category: "Seafood",
+        quantity: 30,
+        unit: "Kg",
+        unitPrice: 760,
+        total: 22800,
+        payment: "Pending",
+        status: "Pending",
+        date: "2026-07-10",
+        updated: "10 Jul 2026"
+    },
+
+    {
+        id: 1010,
+        invoice: "INV-1010",
+        supplier: "Fresh Farm Suppliers",
+        item: "Chicken Wings",
+        category: "Meat",
+        quantity: 45,
+        unit: "Kg",
+        unitPrice: 590,
+        total: 26550,
+        payment: "Paid",
+        status: "Completed",
+        date: "2026-07-11",
+        updated: "11 Jul 2026"
+    }
+
+],
 }

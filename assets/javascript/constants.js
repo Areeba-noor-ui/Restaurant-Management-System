@@ -18,7 +18,9 @@ const CONSTANTS = {
 
         MENU: "restaurantMenu",
 
-        EMPLOYEES: "restaurantEmployees"
+        EMPLOYEES: "restaurantEmployees",
+
+        PURCHASES: "restaurant_purchases"
 
     },
 
