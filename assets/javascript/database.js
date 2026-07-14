@@ -136,7 +136,50 @@ const Database = {
         emergency: "03220001122",
         address: "Taxila",
         image: "https://randomuser.me/api/portraits/women/81.jpg"
-    }
+    },
+
+    {
+    id: 9,
+    name: "Ahmed Hassan",
+    designation: "Delivery Rider",
+    department: "Delivery",
+    phone: "03011223344",
+    salary: 32000,
+    shift: "Morning",
+    status: "Active",
+    joining: "2024-08-05",
+    emergency: "03019876543",
+    address: "Chakwal",
+    image: "https://randomuser.me/api/portraits/men/12.jpg"
+},
+{
+    id: 10,
+    name: "Usman Khalid",
+    designation: "Delivery Rider",
+    department: "Delivery",
+    phone: "03112223344",
+    salary: 32000,
+    shift: "Evening",
+    status: "Active",
+    joining: "2024-08-11",
+    emergency: "03119876543",
+    address: "Rawalpindi",
+    image: "https://randomuser.me/api/portraits/men/26.jpg"
+},
+{
+    id: 11,
+    name: "Hamza Ali",
+    designation: "Delivery Rider",
+    department: "Delivery",
+    phone: "03212223344",
+    salary: 32000,
+    shift: "Night",
+    status: "Active",
+    joining: "2024-08-18",
+    emergency: "03219876543",
+    address: "Islamabad",
+    image: "https://randomuser.me/api/portraits/men/37.jpg"
+}
 
 ],
 
@@ -1205,6 +1248,169 @@ const Database = {
         status: "Pending",
 
         notes: "Pens, files and registers."
+    }
+
+],
+    deliveries: [
+
+    {
+        id: 1,
+
+        order: "ORD-1001",
+
+        customer: "Ali Khan",
+
+        phone: "03001234567",
+
+        address: "Satellite Town, Rawalpindi",
+
+        rider: "Ahmed",
+
+        eta: "12 min",
+
+        progress: 70,
+
+        status: "Out For Delivery"
+    },
+
+    {
+        id: 2,
+
+        order: "ORD-1002",
+
+        customer: "Ayesha Malik",
+
+        phone: "03119876543",
+
+        address: "DHA Phase 2, Islamabad",
+
+        rider: "Usman",
+
+        eta: "5 min",
+
+        progress: 90,
+
+        status: "Near Customer"
+    },
+
+    {
+        id: 3,
+
+        order: "ORD-1003",
+
+        customer: "Hamza Ali",
+
+        phone: "03211234567",
+
+        address: "Chakwal City",
+
+        rider: "Bilal",
+
+        eta: "18 min",
+
+        progress: 45,
+
+        status: "Out For Delivery"
+    },
+
+    {
+        id: 4,
+
+        order: "ORD-1004",
+
+        customer: "Fatima Noor",
+
+        phone: "03335678901",
+
+        address: "Bahria Town, Rawalpindi",
+
+        rider: "Ahmed",
+
+        eta: "Delivered",
+
+        progress: 100,
+
+        status: "Delivered"
+    },
+
+    {
+        id: 5,
+
+        order: "ORD-1005",
+
+        customer: "Zain Ahmed",
+
+        phone: "03034561234",
+
+        address: "Jhelum Road, Chakwal",
+
+        rider: "Hamza",
+
+        eta: "25 min",
+
+        progress: 20,
+
+        status: "Preparing"
+    },
+
+    {
+        id: 6,
+
+        order: "ORD-1006",
+
+        customer: "Sana Khan",
+
+        phone: "03451234567",
+
+        address: "F-10, Islamabad",
+
+        rider: "Bilal",
+
+        eta: "15 min",
+
+        progress: 60,
+
+        status: "Out For Delivery"
+    },
+
+    {
+        id: 7,
+
+        order: "ORD-1007",
+
+        customer: "Hassan Raza",
+
+        phone: "03124567890",
+
+        address: "Gulberg, Lahore",
+
+        rider: "Usman",
+
+        eta: "Delivered",
+
+        progress: 100,
+
+        status: "Delivered"
+    },
+
+    {
+        id: 8,
+
+        order: "ORD-1008",
+
+        customer: "Maryam Iqbal",
+
+        phone: "03099887766",
+
+        address: "Saddar, Rawalpindi",
+
+        rider: "Hamza",
+
+        eta: "9 min",
+
+        progress: 85,
+
+        status: "Near Customer"
     }
 
 ],

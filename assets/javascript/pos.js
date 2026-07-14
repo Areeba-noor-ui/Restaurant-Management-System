@@ -664,11 +664,15 @@ const POS = {
 
             }
 
-             const order = {
+            const order = {
 
                 id: Date.now(),
 
                 customer: Helper.id("customerName").value.trim() || "Walk-in Customer",
+
+                phone: Helper.id("customerPhone").value.trim(),
+
+                address: Helper.id("customerAddress").value.trim(),
 
                 orderType: Helper.id("orderType").value,
 
@@ -705,6 +709,50 @@ const POS = {
 
             );
 
+            if (order.orderType === "Delivery") {
+
+                const deliveries = Storage.get(
+
+                    "rms_deliveries",
+
+                    Database.deliveries
+
+                );
+
+                deliveries.push({
+
+                    id: Date.now(),
+
+                    order: `ORD-${order.id}`,
+
+                    customer: order.customer,
+
+                    phone: order.phone,
+
+                    address: order.address || "Not Provided",
+
+                    rider: "Unassigned",
+
+                    eta: "--",
+
+                    progress: 0,
+
+                    status: "Preparing",
+
+                    createdAt: Date.now()
+
+                });
+
+                Storage.save(
+
+                    "rms_deliveries",
+
+                    deliveries
+
+                );
+
+            }
+
             Toast.show(
 
                 `${ Helper.id("customerName").value || "Walk-in Customer"}'s  Order saved successfully`,
@@ -720,6 +768,8 @@ const POS = {
             Helper.id("customerName").value = "";
 
             Helper.id("customerPhone").value = "";
+
+            Helper.id("customerAddress").value = "";
 
             Storage.save(
 
@@ -745,7 +795,38 @@ const POS = {
 
     }
 
-    }
+    },
+    initializeOrderType() {
+
+    const orderType = Helper.id("orderType");
+
+    const addressBox = Helper.id("addressContainer");
+
+    if (!orderType || !addressBox) return;
+
+    const toggleAddress = () => {
+
+        if (orderType.value === "Delivery") {
+
+            addressBox.style.display = "block";
+
+        }
+
+        else {
+
+            addressBox.style.display = "none";
+
+            Helper.id("customerAddress").value = "";
+
+        }
+
+    };
+
+    toggleAddress();
+
+    orderType.addEventListener("change", toggleAddress);
+
+},
 
 
 
