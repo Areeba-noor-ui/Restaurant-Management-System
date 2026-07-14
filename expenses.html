@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Expenses | Restaurant Management System</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+   
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+
+    <link rel="stylesheet" href="assets/css/expenses.css">
+
+</head>
+
+<body>
+    
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="logo-area">
+
+            <i class="bi bi-shop"></i>
+
+            <div>
+                <h4>RMS</h4>
+                <small>Restaurant Panel</small>
+            </div>
+
+        </div>
+
+        <ul class="sidebar-menu">
+
+            <li >
+                <a href="dashboard.html">
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="pos.html">
+                    <i class="bi bi-cart-check"></i>
+                    <span>POS</span>
+                </a>
+            </li>
+
+            <li >
+                <a href="tables.html">
+                    <i class="bi bi-grid-3x3-gap-fill"></i>
+                    <span>Table Management</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="kitchen.html">
+                    <i class="bi bi-fire"></i>
+                    <span>Kitchen Display</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="orders.html">
+                    <i class="bi bi-receipt"></i>
+                    <span>Orders</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="menu.html">
+                    <i class="bi bi-menu-button-wide-fill"></i>
+                    <span>Menu</span>
+                </a>
+            </li>
+
+            <li >
+                <a href="customers.html">
+                    <i class="bi bi-people-fill"></i>
+                    <span>Customers</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="employees.html">
+                    <i class="bi bi-person-badge-fill"></i>
+                    <span>Employees</span>
+                </a>
+            </li>
+
+            <li">
+                <a href="inventory.html">
+                    <i class="bi bi-box-seam"></i>
+                    <span>Inventory</span>
+                </a>
+            </li>
+
+            <li  >
+                <a href="purchases.html">
+                    <i class="bi bi-bag-fill"></i>
+                    <span>Purchases</span>
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="expenses.html">
+                    <i class="bi bi-cash-stack"></i>
+                    <span>Expenses</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="delivery.html">
+                    <i class="bi bi-truck"></i>
+                    <span>Delivery</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="reservation.html">
+                    <i class="bi bi-calendar-check"></i>
+                    <span>Reservation</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="reports.html">
+                    <i class="bi bi-bar-chart-fill"></i>
+                    <span>Reports</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="settings.html">
+                    <i class="bi bi-gear-fill"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="index.html">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <div
+    class="sidebar-overlay"
+    id="sidebarOverlay">
+    </div>
+
+
+    <main class="main-content">
+
+        <nav class="top-navbar">
+
+            <div class="left-nav">
+
+                <button class="menu-btn" id="menuToggle">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div>
+
+                    <h4 class="page-title mb-0">
+                        Expenses Management
+                    </h4>
+
+                    <p>Manage all operational expenses.</p>
+
+                 
+
+                </div>
+
+            </div>
+        </nav>
+
+        <div class="container-fluid py-4">
+
+    <!-- Analytics -->
+
+        <div class="row g-4 mb-4">
+
+            <div class="col-lg-8">
+
+                <div class="expense-card">
+
+                    <div class="expense-card-header">
+
+                        <h5>Monthly Expense Trend</h5>
+
+                    </div>
+
+                    <canvas id="expenseChart"></canvas>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="expense-card">
+
+                    <div class="expense-card-header">
+
+                        <h5>Expense Categories</h5>
+
+                    </div>
+
+                    <canvas id="categoryChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="expense-filter-card mb-4">
+
+        <div class="row g-3">
+
+            <div class="col-lg-3">
+
+                <input
+
+                    type="text"
+
+                    class="form-control"
+
+                    id="expenseSearch"
+
+                    placeholder="Search expense...">
+
+            </div>
+
+            <div class="col-lg-2">
+
+                <select
+
+                    class="form-select"
+
+                    id="categoryFilter">
+
+                    <option value="All">
+
+                        All Categories
+
+                    </option>
+
+                    <option>Rent</option>
+
+                    <option>Electricity</option>
+
+                    <option>Gas</option>
+
+                    <option>Water</option>
+
+                    <option>Internet</option>
+
+                    <option>Salary</option>
+
+                    <option>Cleaning</option>
+
+                    <option>Maintenance</option>
+
+                    <option>Marketing</option>
+
+                    <option>Miscellaneous</option>
+
+                </select>
+
+            </div>
+
+            <div class="col-lg-2">
+
+                <select
+
+                    class="form-select"
+
+                    id="paymentFilter">
+
+                    <option value="All">
+
+                        Payment Status
+
+                    </option>
+
+                    <option>Paid</option>
+
+                    <option>Pending</option>
+
+                </select>
+
+            </div>
+
+            <div class="col-lg-2">
+
+                <input
+
+                    type="date"
+
+                    class="form-control"
+
+                    id="expenseDate">
+
+            </div>
+
+            <div class="col-lg-1">
+
+                <button
+
+                    class="btn btn-primary w-100"
+
+                    id="refreshExpenses">
+
+                    <i class="bi bi-arrow-clockwise"></i>
+
+                </button>
+
+            </div>
+
+            <div class="col-lg-2">
+
+                <button
+
+                    class="btn btn-danger w-100"
+
+                    id="addExpenseBtn">
+
+                    <i class="bi bi-plus-circle-fill"></i>
+
+                    Add
+
+                </button>
+
+            </div>
+
+        </div>
+
+        </div>
+
+        <div class="expense-table-card mb-4">
+
+        <div class="table-responsive">
+
+            <table class="table align-middle">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Receipt</th>
+
+                        <th>Category</th>
+
+                        <th>Title</th>
+
+                        <th>Amount</th>
+
+                        <th>Date</th>
+
+                        <th>Payment</th>
+
+                        <th>Status</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="expenseTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        </div>
+
+        <div class="expense-card">
+
+            <div class="expense-card-header">
+
+                <h5>
+
+                    Recent Expense Activity
+
+                </h5>
+
+            </div>
+
+            <div id="expenseTimeline">
+
+            </div>
+
+        </div>
+
+        </div>
+
+    </main>
+
+    <!-- View Expense Modal -->
+     
+    <div
+    class="modal fade"
+    id="viewExpenseModal"
+    tabindex="-1">
+
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+
+                    Expense Details
+
+                </h5>
+
+                <button
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">Receipt No</label>
+
+                        <p id="viewExpenseReceipt"></p>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">Category</label>
+
+                        <p id="viewExpenseCategory"></p>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">Title</label>
+
+                        <p id="viewExpenseTitle"></p>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">Amount</label>
+
+                        <p id="viewExpenseAmount"></p>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">Date</label>
+
+                        <p id="viewExpenseDate"></p>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">Payment</label>
+
+                        <p id="viewExpensePayment"></p>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">Status</label>
+
+                        <p id="viewExpenseStatus"></p>
+
+                    </div>
+
+                    <div class="col-12">
+
+                        <label class="form-label">Notes</label>
+
+                        <p id="viewExpenseNotes"></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+
+    <!-- Add / Edit Expense Modal -->
+
+    <div
+    class="modal fade"
+    id="expenseModal"
+    tabindex="-1">
+
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5
+                    class="modal-title"
+                    id="expenseModalTitle">
+
+                    Add Expense
+
+                </h5>
+
+                <button
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">Receipt No</label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="expenseReceipt">
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">Category</label>
+
+                        <select
+                            class="form-select"
+                            id="expenseCategory">
+
+                            <option>Rent</option>
+                            <option>Electricity</option>
+                            <option>Gas</option>
+                            <option>Water</option>
+                            <option>Internet</option>
+                            <option>Salary</option>
+                            <option>Cleaning</option>
+                            <option>Maintenance</option>
+                            <option>Marketing</option>
+                            <option>Miscellaneous</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">Expense Title</label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="expenseTitle">
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">Amount</label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="expenseAmount">
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">Expense Date</label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            id="expenseDateInput">
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">Payment Status</label>
+
+                        <select
+                            class="form-select"
+                            id="expensePayment">
+
+                            <option>Paid</option>
+                            <option>Pending</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">Expense Status</label>
+
+                        <select
+                            class="form-select"
+                            id="expenseStatus">
+
+                            <option>Completed</option>
+                            <option>Pending</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-12">
+
+                        <label class="form-label">Notes</label>
+
+                        <textarea
+                            class="form-control"
+                            rows="4"
+                            id="expenseNotes"></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    class="btn btn-success"
+                    id="saveExpenseBtn">
+
+                    Save Expense
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+
+
+     <footer class="dashboard-footer">
+
+            <p class="mb-0">
+
+                © 2026 Restaurant Management System |
+                Designed by Areeba Noor
+
+            </p>
+
+        </footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="assets/javascript/app.js"></script>
+
+<script src="assets/javascript/constants.js"></script>
+
+<script src="assets/javascript/database.js"></script>
+
+<script src="assets/javascript/expenses.js"></script>
+
+</body>
+
+</html>
