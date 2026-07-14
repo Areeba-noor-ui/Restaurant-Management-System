@@ -16,6 +16,130 @@ const Database = {
 
     ],
 
+    employees: [
+
+    {
+        id: 1,
+        name: "Ahmed Khan",
+        designation: "Restaurant Manager",
+        department: "Management",
+        phone: "03011234567",
+        salary: 85000,
+        shift: "Morning",
+        status: "Active",
+        joining: "2024-02-10",
+        emergency: "03017654321",
+        address: "Satellite Town, Rawalpindi",
+        image: "https://randomuser.me/api/portraits/men/32.jpg"
+    },
+
+    {
+        id: 2,
+        name: "Fatima Noor",
+        designation: "Head Chef",
+        department: "Kitchen",
+        phone: "03124567890",
+        salary: 70000,
+        shift: "Morning",
+        status: "Active",
+        joining: "2024-01-18",
+        emergency: "03121234567",
+        address: "Bahria Town, Rawalpindi",
+        image: "https://randomuser.me/api/portraits/women/44.jpg"
+    },
+
+    {
+        id: 3,
+        name: "Ali Raza",
+        designation: "Sous Chef",
+        department: "Kitchen",
+        phone: "03214567891",
+        salary: 55000,
+        shift: "Evening",
+        status: "Active",
+        joining: "2024-03-12",
+        emergency: "03211234567",
+        address: "Chakwal",
+        image: "https://randomuser.me/api/portraits/men/22.jpg"
+    },
+
+    {
+        id: 4,
+        name: "Ayesha Malik",
+        designation: "Cashier",
+        department: "POS",
+        phone: "03334567890",
+        salary: 42000,
+        shift: "Morning",
+        status: "Active",
+        joining: "2024-04-20",
+        emergency: "03331234567",
+        address: "Islamabad",
+        image: "https://randomuser.me/api/portraits/women/68.jpg"
+    },
+
+    {
+        id: 5,
+        name: "Usman Tariq",
+        designation: "Waiter",
+        department: "Service",
+        phone: "03454567890",
+        salary: 30000,
+        shift: "Evening",
+        status: "Active",
+        joining: "2024-05-11",
+        emergency: "03451234567",
+        address: "Chakwal",
+        image: "https://randomuser.me/api/portraits/men/57.jpg"
+    },
+
+    {
+        id: 6,
+        name: "Hira Shah",
+        designation: "Receptionist",
+        department: "Front Desk",
+        phone: "03054561234",
+        salary: 35000,
+        shift: "Morning",
+        status: "On Leave",
+        joining: "2024-06-02",
+        emergency: "03059876543",
+        address: "Jhelum",
+        image: "https://randomuser.me/api/portraits/women/55.jpg"
+    },
+
+    {
+        id: 7,
+        name: "Bilal Ahmed",
+        designation: "Delivery Rider",
+        department: "Delivery",
+        phone: "03167894561",
+        salary: 32000,
+        shift: "Night",
+        status: "Active",
+        joining: "2024-07-15",
+        emergency: "03160001122",
+        address: "Rawalpindi",
+        image: "https://randomuser.me/api/portraits/men/75.jpg"
+    },
+
+    {
+        id: 8,
+        name: "Sara Iqbal",
+        designation: "Store Keeper",
+        department: "Inventory",
+        phone: "03227894561",
+        salary: 40000,
+        shift: "Morning",
+        status: "Inactive",
+        joining: "2024-03-25",
+        emergency: "03220001122",
+        address: "Taxila",
+        image: "https://randomuser.me/api/portraits/women/81.jpg"
+    }
+
+],
+
     menu: [
 
     // ===================== BURGERS =====================
