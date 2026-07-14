@@ -134,19 +134,22 @@
 
 .employees-table-card{
 
+    width:100%;
+
+    overflow-x:auto;
+
     background:#fff;
 
-    border-radius:18px;
+    border-radius:12px;
 
-    overflow:hidden;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
 
 }
 
 .employees-table-card table{
 
     margin-bottom:0;
+    min-width:1200px;
 
 }
 
@@ -507,7 +510,15 @@
     border-radius:20px;
 
 }
+.table-responsive{
 
+    width:100%;
+
+    overflow-x:auto;
+
+    -webkit-overflow-scrolling:touch;
+
+}
 
 /*==========================================================
                     BUTTONS
