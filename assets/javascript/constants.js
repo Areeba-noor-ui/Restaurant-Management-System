@@ -20,7 +20,9 @@ const CONSTANTS = {
 
         EMPLOYEES: "restaurantEmployees",
 
-        PURCHASES: "restaurant_purchases"
+        PURCHASES: "restaurant_purchases",
+
+        EXPENSES: "rms_expenses",
 
     },
 
