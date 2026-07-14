@@ -1,0 +1,355 @@
+/* =====================================================
+   PURCHASES PAGE
+===================================================== */
+
+.purchase-card,
+.purchase-filter-card,
+.purchase-table-card{
+    background:#fff;
+    border-radius:18px;
+    padding:1.4rem;
+    border:1px solid #eef2f7;
+    box-shadow:0 8px 24px rgba(0,0,0,.06);
+}
+
+.purchase-card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:1.25rem;
+}
+
+.purchase-card-header h5{
+    margin:0;
+    font-size:1.05rem;
+    font-weight:600;
+    color:#1f2937;
+}
+
+/* ==========================================
+   CHARTS
+========================================== */
+
+#purchaseChart,
+#paymentChart{
+    width:100%;
+    height:320px !important;
+}
+
+/* ==========================================
+   MONTHLY BUDGET
+========================================== */
+
+.progress{
+    height:12px;
+    border-radius:30px;
+    overflow:hidden;
+    background:#edf2f7;
+}
+
+#budgetProgress{
+    border-radius:30px;
+    background:linear-gradient(90deg,#2563eb,#3b82f6);
+    transition:width .35s ease;
+}
+
+#budgetAmount{
+    font-size:.9rem;
+    font-weight:600;
+    color:#6b7280;
+}
+
+/* ==========================================
+   FILTER AREA
+========================================== */
+
+.purchase-filter-card input,
+.purchase-filter-card select{
+    height:48px;
+    border-radius:12px;
+}
+
+#refreshPurchases{
+    height:48px;
+    border-radius:12px;
+}
+
+#addPurchaseBtn{
+    height:48px;
+    border-radius:12px;
+    font-weight:600;
+}
+
+/* ==========================================
+   PURCHASE TABLE
+========================================== */
+
+.purchase-table-card{
+    overflow:hidden;
+}
+
+.purchase-table-card .table{
+    margin-bottom:0;
+    min-width:1100px;
+}
+
+.purchase-table-card thead th{
+    background:#f8fafc;
+    color:#475569;
+    font-size:.9rem;
+    font-weight:600;
+    white-space:nowrap;
+    padding:1rem;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.purchase-table-card tbody td{
+    padding:1rem;
+    vertical-align:middle;
+    white-space:nowrap;
+    border-color:#edf2f7;
+}
+
+.purchase-table-card tbody tr{
+    transition:.25s;
+}
+
+.purchase-table-card tbody tr:hover{
+    background:#f8fbff;
+}
+
+/* ==========================================
+   STATUS BADGES
+========================================== */
+
+.purchase-status{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:.35rem .8rem;
+    border-radius:50px;
+    font-size:.8rem;
+    font-weight:600;
+}
+
+.purchase-completed{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.purchase-pending{
+    background:#fef3c7;
+    color:#b45309;
+}
+
+.purchase-cancelled{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+/* ==========================================
+   PAYMENT BADGES
+========================================== */
+
+.payment-paid{
+    background:#dcfce7;
+    color:#15803d;
+    padding:.35rem .75rem;
+    border-radius:50px;
+    font-size:.8rem;
+    font-weight:600;
+}
+
+.payment-pending{
+    background:#fee2e2;
+    color:#dc2626;
+    padding:.35rem .75rem;
+    border-radius:50px;
+    font-size:.8rem;
+    font-weight:600;
+}
+
+.payment-partial{
+    background:#fef3c7;
+    color:#b45309;
+    padding:.35rem .75rem;
+    border-radius:50px;
+    font-size:.8rem;
+    font-weight:600;
+}
+
+/* ==========================================
+   ACTION BUTTONS
+========================================== */
+
+.purchase-action-btn{
+    width:36px;
+    height:36px;
+    border:none;
+    border-radius:10px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    margin-right:4px;
+    transition:.25s;
+    color:#fff;
+}
+
+.purchase-view{
+    background:#2563eb;
+}
+
+.purchase-edit{
+    background:#f59e0b;
+}
+
+.purchase-delete{
+    background:#ef4444;
+}
+
+.purchase-action-btn:hover{
+    transform:translateY(-2px);
+    opacity:.9;
+}
+/* ==========================================
+   RECENT PURCHASE ACTIVITY
+========================================== */
+
+#purchaseActivity{
+    max-height:420px;
+    overflow-y:auto;
+}
+
+.purchase-activity-item{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:14px 0;
+    border-bottom:1px solid #edf2f7;
+}
+
+.purchase-activity-item:last-child{
+    border-bottom:none;
+}
+
+.purchase-activity-icon{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eff6ff;
+    color:#2563eb;
+    font-size:1rem;
+    flex-shrink:0;
+}
+
+.purchase-activity-content h6{
+    margin:0;
+    font-size:.95rem;
+    font-weight:600;
+    color:#1f2937;
+}
+
+.purchase-activity-content p{
+    margin:4px 0;
+    color:#64748b;
+    font-size:.85rem;
+}
+
+.purchase-activity-content small{
+    color:#94a3b8;
+}
+
+/* ==========================================
+   VIEW PURCHASE MODAL
+========================================== */
+
+#viewPurchaseModal .modal-content,
+#purchaseModal .modal-content{
+    border:none;
+    border-radius:18px;
+}
+
+#viewPurchaseModal .modal-header,
+#purchaseModal .modal-header{
+    border-bottom:1px solid #edf2f7;
+}
+
+#viewPurchaseModal .modal-footer,
+#purchaseModal .modal-footer{
+    border-top:1px solid #edf2f7;
+}
+
+#viewPurchaseModal label,
+#purchaseModal label{
+    font-weight:600;
+    color:#475569;
+    margin-bottom:4px;
+}
+
+#viewPurchaseModal p{
+    margin:0;
+    color:#1f2937;
+    font-weight:500;
+}
+
+/* ==========================================
+   ADD / EDIT MODAL
+========================================== */
+
+#purchaseModal input,
+#purchaseModal select,
+#purchaseModal textarea{
+    border-radius:12px;
+}
+
+#purchaseModal textarea{
+    resize:none;
+}
+
+
+
+@media (max-width:992px){
+
+    .purchase-card{
+        margin-bottom:20px;
+    }
+
+    .purchase-filter-card .btn{
+        width:100%;
+    }
+
+}
+
+@media (max-width:768px){
+
+    .purchase-card{
+        padding:1rem;
+    }
+
+    .purchase-card-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .purchase-table-card{
+        overflow-x:auto;
+    }
+
+}
+
+@media (max-width:576px){
+
+    #purchaseChart,
+    #paymentChart{
+        height:250px !important;
+    }
+
+    .purchase-card-header h5{
+        font-size:1rem;
+    }
+
+}
