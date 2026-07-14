@@ -1,0 +1,627 @@
+/* ===============================
+   INVENTORY SUMMARY CARDS
+================================== */
+
+.inventory-summary-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 8px 22px rgba(0,0,0,.06);
+    border: 1px solid #ececec;
+    transition: .3s;
+    height: 100%;
+}
+
+.inventory-summary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba(0,0,0,.08);
+}
+
+.inventory-summary-card h6 {
+    margin: 0;
+    color: #6c757d;
+    font-size: .9rem;
+    font-weight: 500;
+}
+
+.inventory-summary-card h3 {
+    margin-top: 8px;
+    margin-bottom: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #222;
+}
+
+
+/* ===============================
+   SUMMARY ICONS
+================================== */
+
+.inventory-summary-icon {
+    width: 62px;
+    height: 62px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.inventory-summary-icon.total {
+    background: linear-gradient(135deg,#4e73df,#224abe);
+}
+
+.inventory-summary-icon.low {
+    background: linear-gradient(135deg,#f6c23e,#d39e00);
+}
+
+.inventory-summary-icon.out {
+    background: linear-gradient(135deg,#e74a3b,#c0392b);
+}
+
+.inventory-summary-icon.supplier {
+    background: linear-gradient(135deg,#20c997,#198754);
+}
+
+.inventory-summary-icon.expiry {
+    background: linear-gradient(135deg,#fd7e14,#e8590c);
+}
+
+.inventory-summary-icon.value {
+    background: linear-gradient(135deg,#6f42c1,#5a32a3);
+}
+
+
+/* ===============================
+   ALERT CARDS
+================================== */
+
+.inventory-alert-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #ececec;
+    box-shadow: 0 8px 20px rgba(0,0,0,.05);
+    height: 100%;
+}
+
+.inventory-alert-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.inventory-alert-header i {
+    font-size: 1.25rem;
+}
+
+.inventory-alert-header h5 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+
+/* ===============================
+   ALERT COLORS
+================================== */
+
+.low-alert {
+    border-left: 5px solid #f6c23e;
+}
+
+.low-alert i {
+    color: #f6c23e;
+}
+
+.out-alert {
+    border-left: 5px solid #dc3545;
+}
+
+.out-alert i {
+    color: #dc3545;
+}
+
+.expiry-alert {
+    border-left: 5px solid #fd7e14;
+}
+
+.expiry-alert i {
+    color: #fd7e14;
+}
+
+
+/* ===============================
+   ALERT LISTS
+================================== */
+
+#lowStockList,
+#outStockList,
+#expiryList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.inventory-alert-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #f8f9fa;
+    border: 1px solid #ececec;
+}
+
+.inventory-alert-item h6 {
+    margin: 0;
+    font-size: .92rem;
+    font-weight: 600;
+}
+
+.inventory-alert-item small {
+    color: #6c757d;
+}
+
+.inventory-alert-badge {
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: .75rem;
+    font-weight: 600;
+}
+
+.inventory-alert-badge.low {
+    background: rgba(255,193,7,.18);
+    color: #b8860b;
+}
+
+.inventory-alert-badge.out {
+    background: rgba(220,53,69,.15);
+    color: #dc3545;
+}
+
+.inventory-alert-badge.expiry {
+    background: rgba(253,126,20,.15);
+    color: #fd7e14;
+}
+
+/* ===================================
+   INVENTORY FILTER CARD
+=================================== */
+
+.inventory-filter-card{
+    background:#fff;
+    border:1px solid #ececec;
+    border-radius:16px;
+    padding:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
+}
+
+.inventory-filter-card .form-control,
+.inventory-filter-card .form-select{
+    height:48px;
+    border-radius:10px;
+    border:1px solid #dcdcdc;
+    box-shadow:none;
+    transition:.25s;
+}
+
+.inventory-filter-card .form-control:focus,
+.inventory-filter-card .form-select:focus{
+    border-color:#dc3545;
+    box-shadow:0 0 0 .18rem rgba(220,53,69,.15);
+}
+
+#refreshInventory,
+#addInventoryBtn{
+    height:48px;
+    border-radius:10px;
+    font-weight:600;
+}
+
+#refreshInventory i,
+#addInventoryBtn i{
+    margin-right:6px;
+}
+
+
+/* ===================================
+   INVENTORY TABLE CARD
+=================================== */
+
+.inventory-table-card{
+    background:#fff;
+    border-radius:16px;
+    border:1px solid #ececec;
+    box-shadow:0 8px 22px rgba(0,0,0,.05);
+    overflow:hidden;
+}
+
+
+/* ===================================
+   TABLE
+=================================== */
+
+.inventory-table-card table{
+    margin-bottom:0;
+    min-width:1250px;
+}
+
+.inventory-table-card thead{
+    background:#f8f9fa;
+}
+
+.inventory-table-card thead th{
+    border:none;
+    padding:16px;
+    font-size:.9rem;
+    font-weight:600;
+    color:#495057;
+    white-space:nowrap;
+}
+
+.inventory-table-card tbody td{
+    vertical-align:middle;
+    padding:16px;
+    white-space:nowrap;
+    border-color:#f1f1f1;
+}
+
+.inventory-table-card tbody tr{
+    transition:.25s;
+}
+
+.inventory-table-card tbody tr:hover{
+    background:#fafafa;
+}
+
+
+/* ===================================
+   ITEM IMAGE
+=================================== */
+
+.inventory-table-card tbody img{
+    width:58px;
+    height:58px;
+    object-fit:cover;
+    border-radius:10px;
+    border:1px solid #ececec;
+}
+
+
+/* ===================================
+   STOCK LEVEL BADGE
+=================================== */
+
+.inventory-stock{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:6px 14px;
+    border-radius:50px;
+    font-size:.8rem;
+    font-weight:600;
+}
+
+.inventory-stock.high{
+    background:rgba(25,135,84,.12);
+    color:#198754;
+}
+
+.inventory-stock.low{
+    background:rgba(255,193,7,.15);
+    color:#b8860b;
+}
+
+.inventory-stock.out{
+    background:rgba(220,53,69,.15);
+    color:#dc3545;
+}
+
+
+/* ===================================
+   STATUS BADGES
+=================================== */
+
+.inventory-status{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:6px 14px;
+    border-radius:50px;
+    font-size:.8rem;
+    font-weight:600;
+}
+
+.inventory-status.in-stock{
+    background:rgba(25,135,84,.12);
+    color:#198754;
+}
+
+.inventory-status.low-stock{
+    background:rgba(255,193,7,.15);
+    color:#b8860b;
+}
+
+.inventory-status.out-of-stock{
+    background:rgba(220,53,69,.15);
+    color:#dc3545;
+}
+
+
+/* ===================================
+   ACTION BUTTONS
+=================================== */
+
+.inventory-action-btn{
+    width:36px;
+    height:36px;
+    border:none;
+    border-radius:8px;
+    margin-right:4px;
+    transition:.25s;
+    color:#fff;
+}
+
+.inventory-action-btn:hover{
+    transform:translateY(-2px);
+}
+
+.inventory-view{
+    background:#0d6efd;
+}
+
+.inventory-edit{
+    background:#ffc107;
+    color:#212529;
+}
+
+.inventory-delete{
+    background:#dc3545;
+}
+
+
+/* ===================================
+   TABLE RESPONSIVE
+=================================== */
+
+.inventory-table-card .table-responsive{
+    overflow-x:auto;
+}
+
+.inventory-table-card .table-responsive::-webkit-scrollbar{
+    height:8px;
+}
+
+.inventory-table-card .table-responsive::-webkit-scrollbar-thumb{
+    background:#cfcfcf;
+    border-radius:50px;
+}
+
+/* ==========================================
+   VIEW INVENTORY MODAL
+========================================== */
+
+#viewInventoryModal .modal-content,
+#inventoryModal .modal-content{
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+}
+
+#viewInventoryModal .modal-header,
+#inventoryModal .modal-header{
+    background:#dc3545;
+    color:#fff;
+    border-bottom:none;
+}
+
+#viewInventoryModal .btn-close,
+#inventoryModal .btn-close{
+    filter:invert(1);
+}
+
+#viewInventoryModal .modal-body,
+#inventoryModal .modal-body{
+    padding:28px;
+}
+
+#viewInventoryImage{
+    width:100%;
+    max-width:260px;
+    height:220px;
+    object-fit:cover;
+    border-radius:14px;
+    border:1px solid #ececec;
+}
+
+#viewInventoryModal label{
+    font-weight:600;
+    color:#6c757d;
+    margin-bottom:4px;
+}
+
+#viewInventoryModal p{
+    margin-bottom:14px;
+    font-weight:500;
+    color:#212529;
+}
+
+
+/* ==========================================
+   ADD / EDIT MODAL
+========================================== */
+
+#inventoryModal label{
+    font-weight:600;
+    margin-bottom:6px;
+}
+
+#inventoryModal .form-control,
+#inventoryModal .form-select{
+    border-radius:10px;
+    height:46px;
+    box-shadow:none;
+    border:1px solid #d9d9d9;
+    transition:.25s;
+}
+
+#inventoryModal textarea.form-control{
+    height:auto;
+    resize:none;
+}
+
+#inventoryModal .form-control:focus,
+#inventoryModal .form-select:focus{
+    border-color:#dc3545;
+    box-shadow:0 0 0 .18rem rgba(220,53,69,.15);
+}
+
+
+/* ==========================================
+   PREVIEW IMAGE
+========================================== */
+
+#inventoryPreviewImage{
+    width:100%;
+    max-width:320px;
+    height:220px;
+    object-fit:cover;
+    border-radius:12px;
+    border:1px solid #ececec;
+}
+
+
+/* ==========================================
+   MODAL FOOTER
+========================================== */
+
+#inventoryModal .modal-footer{
+    border-top:none;
+    padding:20px 28px;
+}
+
+#saveInventoryBtn{
+    min-width:130px;
+}
+
+
+/* ==========================================
+   LAPTOP
+========================================== */
+
+@media (max-width:1200px){
+
+    .inventory-summary-card{
+        padding:18px;
+    }
+
+    .inventory-summary-card h3{
+        font-size:1.35rem;
+    }
+
+    .inventory-summary-icon{
+        width:56px;
+        height:56px;
+        font-size:1.4rem;
+    }
+
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width:992px){
+
+    .inventory-summary-card{
+        justify-content:flex-start;
+    }
+
+    .inventory-filter-card{
+        padding:18px;
+    }
+
+    .inventory-alert-card{
+        margin-bottom:18px;
+    }
+
+    #refreshInventory,
+    #addInventoryBtn{
+        width:100%;
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width:768px){
+
+    .inventory-summary-card{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .inventory-summary-icon{
+        margin-bottom:10px;
+    }
+
+    .inventory-filter-card{
+        padding:16px;
+    }
+
+    .inventory-alert-card{
+        padding:18px;
+    }
+
+    .inventory-table-card{
+        border-radius:12px;
+    }
+
+    #viewInventoryImage{
+        height:190px;
+        margin-bottom:20px;
+    }
+
+    #inventoryPreviewImage{
+        height:180px;
+    }
+
+}
+
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width:576px){
+
+    .inventory-summary-card h3{
+        font-size:1.25rem;
+    }
+
+    .inventory-summary-icon{
+        width:52px;
+        height:52px;
+        font-size:1.2rem;
+    }
+
+    .inventory-alert-header h5{
+        font-size:.95rem;
+    }
+
+    .inventory-filter-card{
+        padding:14px;
+    }
+
+}
