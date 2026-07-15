@@ -711,6 +711,40 @@ const POS = {
 
             );
 
+            const customers = Storage.get(
+                CONSTANTS.STORAGE_KEYS.CUSTOMERS,
+                Database.customers
+            );
+
+            const customerName = Helper.id("customerName").value.trim();
+            const customerPhone = Helper.id("customerPhone").value.trim();
+
+            if (customerName) {
+
+                const exists = customers.some(customer =>
+                    customer.phone === customerPhone ||
+                    customer.name === customerName
+                );
+
+                if (!exists) {
+
+                    customers.push({
+
+                        id: Date.now(),
+
+                        name: customerName,
+
+                        phone: customerPhone
+
+                    });
+
+                    Storage.save(
+                        CONSTANTS.STORAGE_KEYS.CUSTOMERS,
+                        customers
+                    );
+                }
+            }
+
             if (order.orderType === "Delivery") {
 
                 const deliveries = Storage.get(
