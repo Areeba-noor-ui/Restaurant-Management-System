@@ -10,6 +10,8 @@ const Delivery = {
 
         this.loadDeliveries();
 
+        this.syncOrdersFromPOS();
+
         this.renderSummary();
 
         this.renderTable();
@@ -20,27 +22,68 @@ const Delivery = {
 
         this.initializeFilters();
 
+        this.startDeliveryTimer();
+
     },
 
     loadDeliveries() {
 
-        const saved = localStorage.getItem("rms_deliveries");
+    this.deliveries = Storage.get(
 
-        if (saved) {
+        CONSTANTS.STORAGE_KEYS.DELIVERIES,
 
-            this.deliveries = JSON.parse(saved);
+        Database.deliveries
 
-        }
+    );
 
-        else {
+    this.filteredDeliveries=[...this.deliveries];
 
-            this.deliveries = [...Database.deliveries];
+},
 
-            this.saveDeliveries();
+    syncOrdersFromPOS() {
 
-        }
+    const orders = Storage.get(
+        CONSTANTS.STORAGE_KEYS.ORDERS,
+        Database.orders
+    );
 
-        this.filteredDeliveries = [...this.deliveries];
+    orders.forEach(order => {
+
+        if (order.orderType !== "Delivery") return;
+
+        const exists = this.deliveries.find(
+            delivery => delivery.order === `ORD-${order.id}`
+        );
+
+        if (exists) return;
+
+        this.deliveries.push({
+
+            id: Date.now() + Math.random(),
+
+            order: `ORD-${order.id}`,
+
+            customer: order.customer,
+
+            phone: order.phone || "",
+
+            address: order.address || "",
+
+            rider: "Unassigned",
+
+            eta: "--",
+
+            status: "Preparing",
+
+            progress: 0
+
+        });
+
+    });
+
+    this.saveDeliveries();
+
+    this.filteredDeliveries = [...this.deliveries];
 
     },
 
@@ -72,11 +115,9 @@ const Delivery = {
 
     const riders = new Set(
 
-        this.deliveries.map(
-
-            delivery => delivery.rider
-
-        )
+         this.deliveries
+            .filter(delivery => delivery.rider !== "Unassigned")
+            .map(delivery => delivery.rider)
 
     );
 
@@ -259,7 +300,9 @@ const Delivery = {
 
     let html = `
 
-        <option value="Unassigned">
+        <option
+            value="Unassigned"
+            ${selected === "Unassigned" ? "selected" : ""}>
 
             Unassigned
 
@@ -361,6 +404,82 @@ const Delivery = {
 
 },
 
+    startDeliveryTimer() {
+
+        setInterval(() => {
+
+            let changed = false;
+
+            this.deliveries.forEach(delivery => {
+
+                if (
+
+                    delivery.status === "Out For Delivery" &&
+
+                    delivery.remainingSeconds > 0
+
+                ) {
+
+                    delivery.remainingSeconds--;
+
+                    changed = true;
+
+                    const minutes = Math.floor(
+
+                        delivery.remainingSeconds / 60
+
+                    );
+
+                    const seconds =
+
+                        delivery.remainingSeconds % 60;
+
+                    delivery.eta =
+
+                        `${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
+
+                    delivery.progress =
+
+                        Math.round(
+
+                            (180 - delivery.remainingSeconds)
+
+                            /180*100
+
+                        );
+
+                    if (delivery.remainingSeconds <= 0) {
+
+                        delivery.progress = 100;
+
+                        delivery.status = "Delivered";
+
+                        delivery.eta = "Delivered";
+
+                    }
+
+                }
+
+            });
+
+            if (changed) {
+
+                this.saveDeliveries();
+
+                this.filteredDeliveries=[...this.deliveries];
+
+                this.renderSummary();
+
+                this.renderTable();
+
+                this.renderProgress();
+
+            }
+
+        },1000);
+
+    },
+
     initializeSearch() {
 
     Helper.id("deliverySearch")
@@ -377,19 +496,14 @@ const Delivery = {
     const riderFilter =
         Helper.id("deliveryRiderFilter");
 
-    const riders = [
+    const employees = Storage.get(
+        CONSTANTS.STORAGE_KEYS.EMPLOYEES,
+        Database.employees
+    );
 
-        ...new Set(
-
-            this.deliveries.map(
-
-                delivery => delivery.rider
-
-            )
-
-        )
-
-    ];
+    const riders = employees
+        .filter(employee => employee.designation === "Delivery Rider")
+        .map(employee => employee.name);
 
     riders.forEach(rider => {
 
@@ -527,9 +641,11 @@ const Delivery = {
 
                 delivery.status = "Out For Delivery";
 
-                delivery.progress = 20;
+                delivery.progress = 0;
 
-                delivery.eta = "25 min";
+                delivery.remainingSeconds = 180;
+
+                delivery.eta = "03:00";
 
             }
 
@@ -558,6 +674,8 @@ const Delivery = {
     });
 
 },
+
+    
 
     viewDelivery(id) {
 

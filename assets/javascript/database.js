@@ -1270,7 +1270,9 @@ const Database = {
 
         progress: 70,
 
-        status: "Out For Delivery"
+        status: "Out For Delivery",
+
+        remainingSeconds: 0,
     },
 
     {
@@ -1290,7 +1292,9 @@ const Database = {
 
         progress: 90,
 
-        status: "Near Customer"
+        status: "Near Customer",
+
+        remainingSeconds: 0,
     },
 
     {
@@ -1310,7 +1314,9 @@ const Database = {
 
         progress: 45,
 
-        status: "Out For Delivery"
+        status: "Out For Delivery",
+
+        remainingSeconds: 0,
     },
 
     {
@@ -1330,7 +1336,9 @@ const Database = {
 
         progress: 100,
 
-        status: "Delivered"
+        status: "Delivered",
+
+        remainingSeconds: 0,
     },
 
     {
@@ -1350,7 +1358,9 @@ const Database = {
 
         progress: 20,
 
-        status: "Preparing"
+        status: "Preparing",
+
+        remainingSeconds: 0,
     },
 
     {
@@ -1370,27 +1380,9 @@ const Database = {
 
         progress: 60,
 
-        status: "Out For Delivery"
-    },
+        status: "Out For Delivery",
 
-    {
-        id: 7,
-
-        order: "ORD-1007",
-
-        customer: "Hassan Raza",
-
-        phone: "03124567890",
-
-        address: "Gulberg, Lahore",
-
-        rider: "Usman",
-
-        eta: "Delivered",
-
-        progress: 100,
-
-        status: "Delivered"
+        remainingSeconds: 0,
     },
 
     {
@@ -1410,7 +1402,9 @@ const Database = {
 
         progress: 85,
 
-        status: "Near Customer"
+        status: "Near Customer",
+
+        remainingSeconds: 0,
     }
 
 ],

@@ -68,6 +68,8 @@ const POS = {
 
         this.initializeActionButtons();
 
+        this.initializeOrderType();
+
     },
 
     renderCategories() {
@@ -739,13 +741,15 @@ const POS = {
 
                     status: "Preparing",
 
-                    createdAt: Date.now()
+                    createdAt: Date.now(),
+
+                    remainingSeconds: 0
 
                 });
 
                 Storage.save(
 
-                    "rms_deliveries",
+                    CONSTANTS.STORAGE_KEYS.DELIVERIES,
 
                     deliveries
 
